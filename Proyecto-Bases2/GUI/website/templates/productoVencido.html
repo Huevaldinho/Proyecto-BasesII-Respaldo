@@ -1,0 +1,35 @@
+{% extends "menuEmpleado.html"%}
+<title>{% block title %}Producto Vencido{% endblock %}</title>
+{% block content %}  
+
+    <h2 align="center">Marque la opción que desee realizar</h2>  
+    <form class="form-check" method="POST" action="{{url_for('cli.ponerProductosDescuento') }}">
+
+        <div style = "text-align: center; margin-top: 4%;" class="form-check">
+            <input class="form-check-input" type="radio" value = '1' name="flexRadioDefault" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+                Poner en descuento
+            </label>
+        </div>
+        <div style = "text-align: center;" class="form-check">
+            <input class="form-check-input" type="radio" value = '2' name="flexRadioDefault" id="flexRadioDefault2" checked>
+            <label class="form-check-label" for="flexRadioDefault2">
+                Sacar del exhibidor
+            </label>
+        </div>
+
+        <div style = "width:15%; margin-left: 43%; margin-top: 4%;" class="form-outline">
+            <input type="number" name="porcentaje" id="typeNumber" class="form-control" />
+            <label class="form-label" for="typeNumber">Porcentaje deseado</label>
+        </div>
+
+        <div style = "text-align: center;" class="form-check">
+            <button style = "width: 50%; margin-top: 4%;" type="submit" class="btn btn-outline-dark">Aceptar</button>
+        </div>
+        
+        <a href="/menuEmpleado" style = "width: 25%; margin-left: 39%; margin-top: 4%;" class="btn btn-primary btn-sm" tabindex="-1" role="button" >Regresar</a>
+        </div>
+      </div>
+    </form>
+      
+{% endblock %}

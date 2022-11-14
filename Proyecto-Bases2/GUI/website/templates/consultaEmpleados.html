@@ -1,0 +1,105 @@
+{% extends "menuEmpleado.html"%}
+<title>{% block title %}Consulta Empleados{% endblock %}</title>
+{% block content %}  
+
+    <h1 align="center">Consulta Empleados</h1>    
+    <h2 align="center">Marque las casillas que desea incluir como filtros</h2>  
+    <form class="form-inline" method="POST" action="{{url_for('cli.consultaEmpleados') }}">
+      <div class="form-group">
+        <div class="input-group">
+          <div style = "width: 88%; margin-block: 2%; " class="input-group">
+              <input  type="checkbox" name = "sucursalCheck" class="form-check-input" id="sucursalCheck">
+              <span class="input-group-addon">Seleccione la sucursal: </span>
+                  <select name="sucursalSeleccionada" class="selectpicker form-control">
+                    {% for s in sucursales %}
+                    <option value="{{s}}">{{s.nombreSucursal}}</option>
+                    {% endfor %}
+                  </select>
+          </div>
+          <div style = "width: 88%; margin-block: 2%;" class="input-group">
+              <input  type="checkbox" name="puestoCheck" class="form-check-input" id="puestoCheck">
+              <span class="input-group-addon"> Seleccione el puesto: </span>
+              <select name="puestoSeleccionado" class="selectpicker form-control">
+                {% for c in puestos %}
+                <option value="{{c}}">{{c.nombrePuesto}}</option>
+                {% endfor %}
+              </select>
+          </div>
+            <div style = "width: 13%; margin-block: 2%;" class="input-group">
+            <input  type="checkbox" name="fechaInicialCheck" class="form-check-input" id="fechaInicialCheck">
+            <label for="fechaInicial">Fecha Inicial</label>
+            <input type="date" id="fechaInicial" name="fechaInicialSeleccionada"
+            value="2020-01-01"
+            min="2020-01-01" max="2050-12-31">
+            </div>
+
+            <div style = "width: 10%; margin-block: 2%;" class="input-group">
+            <input  type="checkbox" name="fechaFinalCheck" class="form-check-input" id="fechaFinalCheck">
+            <label for="fechaFinal">Fecha Final</label>
+            <input type="date" id="fechaFinal" name="fechaFinalSeleccionada"
+            value="2020-01-01"
+            min="2020-01-01" max="2050-12-31">
+            </div>
+
+            <div style = "width: 15%; margin-block: 2%;" class="form-group">
+                <label for="idEmpleado"> ID Empleado </label>
+                <input 
+                    type="number" 
+                    class="form-control" 
+                    id="idEmpleado" 
+                    name="idEmpleado" 
+                    min="1" >
+            </div>
+
+          <button style = "width: 50%; margin-left: 15%; " type="submit" class="btn btn-outline-dark">Consultar</button>
+          
+        </div>
+      </div>
+    </form>
+
+    {% if resultado!=None %}
+    <br>
+      <!--El cliente debe seleccionar el pais para que se muestren las sucursales.-->
+      <table class="table table-bordered table-hover table-condensed">
+        <thead>
+          <tr>
+            <th title="Field #1">idEmpleado</th>
+            <th title="Field #2">cedula</th>
+            <th title="Field #2">nombreEmpleado</th>
+            <th title="Field #3">apellido1</th>
+            <th title="Field #4">apellido2</th>
+            <th title="Field #5">estado</th>
+            <th title="Field #6">fechaNacimiento</th>
+            <th title="Field #7">nombreSucursal</th>
+            <th title="Field #8">nombrePuesto</th>
+            <th title="Field #9">fechaContratacion</th>
+            <th title="Field #10">correo</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for r in resultado %}
+            <tr>
+                <td>{{r.idEmpleado}}</td>
+                <td>{{r.cedula}}</td>
+                <td>{{r.nombreEmpleado}}</td>
+                <td>{{r.apellido1}}</td>
+                <td>{{r.apellido2}}</td>
+                <td>{{r.estado}}</td>
+                <td>{{r.fechaNacimiento}}</td>
+                <td>{{r.nombreSucursal}}</td>
+                <td>{{r.nombrePuesto}}</td>
+                <td>{{r.fechaContratacion}}</td>
+                <td>{{r.correo}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {%endif%}
+    {% if resultado!=None %}
+    <a href="/menuEmpleado" style = "  margin-left: 30%; margin-top:3%; text-align: center; margin-bottom: 100px;" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Regresar</a>
+    {%endif%}
+ 
+{% endblock %}
+
+

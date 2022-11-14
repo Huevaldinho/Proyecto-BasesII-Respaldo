@@ -1,0 +1,84 @@
+{% extends "base.html"%}
+
+<title>{% block title %}Actualizar{% endblock %}</title>
+
+<!--Mete la etiqueta p en el bloque definido en base.-->
+{% block content %}  
+<div>
+    <br>
+    <h3 align="center"> Actualizar</h3>
+    <h2 align="center">Marque las casillas que desea incluir como filtros</h2>  
+    <form  id="upload-form" action="{{ url_for('cli.updateCliente') }}" method="POST" enctype="multipart/form-data"><!--Envia request a la ruta registrarse-->
+        <div class="form-group">
+            <input  type="checkbox" name="nombreCheck" class="form-check-input" id="nombreCheck">
+            <label for="nombre"> Nombre </label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="nombre" 
+                name="nombre" 
+                placeholder={{resultado.nombre}}>
+        </div>
+        <!--Apellido 1-->
+        <div class="form-group">
+            <input  type="checkbox" name="apellido1Check" class="form-check-input" id="apellido1Check">
+            <label for="apellido1"> Primer apellido</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="apellido1" 
+                name="apellido1" 
+                placeholder={{resultado.apellido1}}>
+        </div>
+        <!--Apellido 2-->
+        <div class="form-group">
+            <input  type="checkbox" name="apellido2Check" class="form-check-input" id="apellido2Check">
+            <label for="apellido2"> Segundo apellido</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="apellido2" 
+                name="apellido2" 
+                placeholder={{resultado.apellido2}}>
+        </div>
+        <!--Cedula-->
+        <div class="form-group">
+            <input  type="checkbox" name="cedulaCheck" class="form-check-input" id="cedulaCheck">
+            <label for="cedula"> Cedula</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="cedula" 
+                name="cedula" 
+                placeholder={{resultado.cedula}}>
+        </div>
+       
+        <div class="form-group">
+            <input  type="checkbox" name="celularCheck" class="form-check-input" id="celularCheck">
+            <label for="celular"> Celular</label>
+            <input 
+                type="email" 
+                class="form-control" 
+                id="celular" 
+                name="celular" 
+                placeholder={{resultado.celular}}>
+        </div>
+
+        <div class="form-group">
+            <input  type="checkbox" name="correoCheck" class="form-check-input" id="correoCheck">
+            <label for="correo"> Correo electronico</label>
+            <input 
+                type="email" 
+                class="form-control" 
+                id="correo" 
+                name="correo" 
+                placeholder={{resultado.correo}}>
+        </div>
+        <!--Celular-->
+        
+    <br>
+    <button type="submit" style = "  margin-right: 30%; margin-top: 3%; text-align: center; margin-bottom: 100px;"  class="btn btn-primary"> Actualizar </button>
+    <a href= '\' style = "  margin-left: 30%; margin-top:3%; text-align: center; margin-bottom: 100px;" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Regresar</a>
+</form>
+</div>
+{% endblock %}

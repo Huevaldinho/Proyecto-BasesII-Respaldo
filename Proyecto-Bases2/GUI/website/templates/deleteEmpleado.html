@@ -1,0 +1,24 @@
+{% extends "menuEmpleado.html"%}
+
+<title>{% block title %}Eliminar Empleado{% endblock %}</title>
+
+<!--Mete la etiqueta p en el bloque definido en base.-->
+{% block content %}  
+<div>
+    <br>
+    <h3 align="center"> Eliminar Empleado</h3>
+    <form action="{{ url_for('cli.deleteEmpleado') }}" method="POST"><!--Envia request a la ruta registrarse-->
+        <div style = "width: 15%; margin-block: 2%;" class="form-group">
+            <label for="idEmpleado"> ID Empleado </label>
+            <input 
+                type="number" 
+                class="form-control" 
+                id="idEmpleado" 
+                name="idEmpleado" 
+                min="1" >
+        </div>
+        <button type="submit" style = "  margin-right: 30%; margin-top: 3%; text-align: center; margin-bottom: 100px;"  class="btn btn-primary"> Eliminar Empleado </button>
+        <a href="/menuEmpleado" style = "  margin-left: 30%; margin-top:3%; text-align: center; margin-bottom: 100px;" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Regresar</a>
+    </form>
+</div>
+{% endblock %}

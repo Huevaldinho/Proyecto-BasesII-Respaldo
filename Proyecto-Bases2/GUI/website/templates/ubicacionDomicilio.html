@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!--Importa bootstrap-->
+            <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            crossorigin="anonymous"
+        />
+        <!--MAPA-->
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+        <!--Include Leaflet CSS file in the head section of your document:-->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+            integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="crossorigin=""/>
+            <meta charset="utf-8" />
+        <!--Include Leaflet JavaScript file after Leaflet’s CSS:-->
+        <!-- Make sure you put this AFTER Leaflet's CSS -->
+        <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+            integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="crossorigin=""></script>
+        <style>
+            #map { height: 500px; width: 1000px;}
+        </style>
+        <style>
+            #contenedorMapa{
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        </style>
+        <title>Ubicación</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <!--Crea un boton para expandir la barra de navegacion para ver los botones de la barra.-->
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbar"
+            >
+              <!--Carga icono del boton-->
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar">
+              <!--Define los items de la barra de navegacion, cada uno redirije a una pantalla diferente.-->
+              <div class="navbar-nav">
+                {%if usuario!=None%}
+                  <!--Boton pagina principal-->
+                  <a class="nav-item nav-link" id="home" href="/">Pagina Principal</a>
+                  <!--Boton Carrito-->
+                  <a class="nav-item nav-link" id="carrito" href="/carrito">Carrito</a>
+                  <!--Boton Carrito-->
+                  <a class="nav-item nav-link" id="carrito" href="/sucursal">Sucursal</a>
+                  <!--Boton ubicacion-->
+                  <a class="nav-item nav-link" id="ubicacion" href="/ubicacionDomicilio">Ubicacion</a>
+                  <!--Boton cerrar sesion-->
+                  <a class="nav-item nav-link" id="cerrarSesion" href="/cerrarSesion">Cerrar Sesion</a>
+                {%else%}
+                  <!--Boton para iniciar sesion-->
+                  <a class="nav-item nav-link" id="iniciarSesion" href="/iniciarSesion">Iniciar Sesion</a>
+                {%endif%}
+              </div>
+            </div>
+          </nav>
+        <br>
+        <h1 class="text-center">Seleccione su ubicación</h1>
+    <!--Si hay mensajes de respuesta por parte del servidor, se hace un ciclo que muestra todos los mensajes segun categoria.-->
+        <div class="container" id="contenedorMapa">
+            <div id="map"> </div>
+            <script> 
+                //Instancia mapa
+                var map = L.map('map').setView([9.91063853017209, -84.01572156047563], 6);
+                //Configura mapa
+                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                }).addTo(map);
+                var marcador = new L.marker() //Marcador
+                var lat=0;                    //Guarda la latitud del punto seleccionado (number)
+                var lng=0;                    //Guarda la longitud del punto seleccionado (number)
+                function onMapClick(e) {
+                    //Funcion para que se marque y se obtenga el punto en el mapa.
+                    marcador.setLatLng(e.latlng).                                       //Agrega latitud y longitud al marcador
+                            addTo(map).                                                 //Agrega el marcador al mapa
+                            bindPopup("<b>Ubicación Seleccionada</b>").openPopup();     //Agrega etiqueta al marcador
+                    lat = (e.latlng.lat); 
+                    lng = (e.latlng.lng);
+                }  
+                function enviarUbicacion(){
+                    if (lat ==0 && lng==0) {
+                        alert('Debe seleccionar un punto en el mapa!');
+                        return false;
+                    } 
+                    //Funcion para enviar las coordenadas del punto seleccionado en el mapa
+                    let xhr = new XMLHttpRequest();//Requester
+                    xhr.open("POST", '/ubicacionDomicilio', true);//Abre el request
+                    xhr.setRequestHeader('Content-Type', 'application/json');//Configura el request
+                    xhr.onload = function () {
+                        // do something to response
+                        console.log(this.responseText);//me trae el render de paginaPrincipal como html
+                        
+                        window.location.assign(this.responseText);
+                    };
+                    xhr.send(JSON.stringify({//Mete los datos y envia.
+                        "latitud": lat,//Latitud del punto seleccionado
+                        "longitud":lng//Longitud del punto seleccionado
+                    }));
+                    return false;
+                }
+               //Cuando se da un click en el mapa se llama a la funcion onMapClick
+                //esta funcion toma la latitud y longitud del punto seleccionado y las guarda
+                //en variables que seran enviadas con la otra funcion de enviarUbicacion()
+                map.on('click', onMapClick);
+            </script>
+        </div>
+        <br>
+        <div>
+            <div class="d-grid gap-2 col-3 mx-auto">
+                <button class="btn btn-primary" type="button " onclick="enviarUbicacion()">Aceptar</button>
+            </div>
+        </div>
+        <!--Carga los scripts para bootstrap-->
+        <script
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>

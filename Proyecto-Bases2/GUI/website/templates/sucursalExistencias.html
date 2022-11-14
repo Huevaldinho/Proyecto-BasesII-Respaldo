@@ -1,0 +1,51 @@
+<!--Hereda de base, al heredar permite reescribir los bloques del archivo del que hereda.-->
+{% extends "base.html"%}
+<title>{% block title %}Pagina Principal{% endblock %}</title>
+
+<!--Mete la etiqueta p en el bloque definido en base.-->
+{% block content %}
+    <div class="padre">
+        <div class="hijo">
+            <br>
+            <h3 align="center"> Sucursal con existencias más cercana</h3>
+            <form method="POST"><!--Envia request a la ruta registrarse-->
+                <div class="form-group">
+                    <label for="idProducto">ID de Producto</label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="idProducto" 
+                        name="idProducto" 
+                        placeholder="Ingresar idProducto">
+                </div>
+                <button type="submit" class="btn btn-primary">Aceptar</button>
+            </form>
+        </div>
+    </div>
+    {%if sucursal !={} %}
+        <div class="hijo">
+            <table  class="table table-hover">
+                <tr>
+                    <th>ID sucursal</th>
+                    <th>Nombre sucursal</th>
+                    <th>Distancia (km)</th>
+                    <th>ID producto</th>
+                    <th>Nombre producto</th>
+                    <th>Cantidad</th>
+                </tr>
+                    <TD class="c1">{{sucursal.idSucursal}}</TD>
+                    <TD class="c1">{{sucursal.nombreSucursal}}</TD>
+                    <TD class="c1">{{sucursal.kilometrosDistancia}}</TD>
+                    <TD class="c1">{{sucursal.idProducto}}</TD>
+                    <TD class="c1">{{sucursal.nombreProducto}}</TD>
+                    <TD class="c1">{{sucursal.cantidad}}</TD>
+            </table>
+        </div>
+    {% elif sucursal=={} %}
+        <div class="hijo">
+
+            <h3>Lo sentimos, no hay sucursal cercana con el producto buscado.</h3>
+
+        </div>
+    {%endif%}
+{% endblock%}

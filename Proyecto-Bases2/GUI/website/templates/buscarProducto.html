@@ -1,0 +1,38 @@
+{% extends "base.html"%}
+<title>{% block title %}Buscar producto{% endblock %}</title>
+{% block content %}  
+<a href="/" style = "width: 15%; margin-left: 85%; margin-top: 4%; margin-bottom: 2%;" class="btn btn-primary btn-sm" tabindex="-1" role="button" >Regresar</a>
+    <h2 style = "margin-bottom: 4%;" align="center">Busqueda de un producto</h2>  
+    <form class="form-check" method="POST" action="{{url_for('cli.buscarProducto') }}">
+        
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name = "productoNombre" laceholder="Recipient's username" aria-label="Nombre del producto" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+            </div>
+        </div>
+
+    </form>
+
+    {% if productos!=None %}
+    <br>
+        {% for producto in productos %}
+            <div style = "padding-top: 40px; margin-left: 4%; margin-right: 4%; width: 30%;" class="input-group">
+                    <div class=”about”>
+                        <h2 class={{producto}}>{{producto.nombre}}</h2>
+                        <h4 class={{producto}}>{{producto.descripcion}}</h4>
+                        <h5 class={{producto}}>{{producto.precio}}</h5>
+
+                        <div class=”image-box”>
+                            <div>Aqui va una imagen</div>
+                            <!--<img src=”images/apple.png” /> /> -->
+                        </div>
+
+                        <!-- <img src=”images/veg.png” /> -->
+
+                    </div>
+            </div>
+        {% endfor %}
+    {%endif%}
+      
+{% endblock %}

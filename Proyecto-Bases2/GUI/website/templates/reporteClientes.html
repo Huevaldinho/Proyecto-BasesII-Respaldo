@@ -1,0 +1,100 @@
+{% extends "barraMenuEmpleado.html"%}
+<title>{% block title %}Reporte Clientes{% endblock %}</title>
+{% block content %}  
+
+    <h1 align="center">Reporte Clientes</h1>    
+    <h2 align="center">Marque las casillas que desea incluir como filtros</h2>  
+    <form class="form-inline" method="POST" action="{{url_for('cli.reporteClientes') }}">
+      <div class="form-group">
+        <div class="input-group">
+          <div style = "width: 88%; margin-block: 2%; " class="input-group">
+              <input  type="checkbox" name = "sucursalCheck" class="form-check-input" id="sucursalCheck">
+              <span class="input-group-addon">Seleccione la sucursal: </span>
+                  <select name="sucursalSeleccionada" class="selectpicker form-control">
+                    {% for s in sucursales %}
+                    <option value="{{s}}">{{s.nombreSucursal}}</option>
+                    {% endfor %}
+                  </select>
+          </div>
+          <div style = "width: 88%; margin-block: 2%;" class="input-group">
+              <input  type="checkbox" name="productoCheck" class="form-check-input" id="productoCheck">
+              <span class="input-group-addon">Seleccione el producto: </span>
+              <select name="productoSeleccionado" class="selectpicker form-control">
+                {% for p in productos %}
+                <option value="{{p}}">{{p.nombre}}</option>
+                {% endfor %}
+              </select>
+          </div>
+          <div style = "width: 88%; margin-block: 2%;" class="input-group">
+            <input  type="checkbox" name="proveedorCheck" class="form-check-input" id="proveedorCheck">
+            <span class="input-group-addon">Seleccione el proveedor: </span>
+            <select name="proveedorSeleccionado" class="selectpicker form-control">
+              {% for p in proveedores %}
+              <option value="{{p}}">{{p.nombreproveedor}}</option>
+              {% endfor %}
+            </select>
+        </div>
+
+            <div style = "width: 15%; margin-block: 2%;" class="input-group">
+            <input  type="checkbox" name="fechaInicialCheck" class="form-check-input" id="fechaInicialCheck">
+            <label for="fechaInicial">Fecha Inicial</label>
+            <input type="date" id="fechaInicial" name="fechaInicialSeleccionada"
+            value="2020-01-01"
+            min="2020-01-01" max="2050-12-31">
+            </div>
+
+            <div style = "width: 15%; margin-block: 2%;" class="input-group">
+            <input  type="checkbox" name="fechaFinalCheck" class="form-check-input" id="fechaFinalCheck">
+            <label for="fechaFinal">Fecha Final</label>
+            <input type="date" id="fechaFinal" name="fechaFinalSeleccionada"
+            value="2020-01-01"
+            min="2020-01-01" max="2050-12-31">
+            </div>
+
+          <button style = "width: 50%; margin-left: 35%; " type="submit" class="btn btn-outline-dark">Consultar</button>
+          {% if resultado!=None %}
+            <a href="/menuEmpleado" style = "width: 25%; margin-left: 47%; margin-top: 5%;" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Regresar</a>
+          {%endif%}
+        </div>
+      </div>
+    </form>
+
+    {% if resultado!=None %}
+    <br>
+      <!--El cliente debe seleccionar el pais para que se muestren las sucursales.-->
+      <table class="table table-bordered table-hover table-condensed">
+        <thead>
+          <tr>
+            <th title="Field #1">Cliente</th>
+            <th title="Field #1">Producto</th>
+            <th title="Field #2">Sucursal</th>
+            <th title="Field #3">Proveedor</th>
+            <th title="Field #4">Pais</th>
+            <th title="Field #4">Compras</th>
+            <th title="Field #4">Fecha</th>
+          </tr>
+      </thead>
+
+        <tbody>
+          {% for r in resultado %}
+            <tr>
+                <td>{{r.nombreCompleto}}</td>
+                <td>{{r.nombreProducto}}</td>
+                <td>{{r.nombreSucursal}}</td>
+                <td>{{r.nombreProveedor}}</td>
+                <td>{{r.nombrePais}}</td>
+                <td>{{r.cantFacturas}}</td>
+                <td>{{r.fechaFactura}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {%endif%}
+
+      
+{% endblock %}
+
+
+
+    
+      

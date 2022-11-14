@@ -1,0 +1,62 @@
+{% extends "barraMenuEmpleado.html"%}
+<title>{% block title %}Pedidos realizados{% endblock %}</title>
+{% block content %}  
+    <style>
+        .hijo {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+        <br>
+        <h3>Seleccione la sucursal a la que quiere consultar.</h3>
+        <form class="form-inline" method="POST" action="{{url_for('emp.pedidosRealizados') }}">
+            <div class="form-group">
+            <div class="input-group">
+                <div style = "width: 88%; margin-block: 2%;" class="input-group">
+                    <select name="sucursalSeleccionada" class="selectpicker form-control">
+                      {% for s in sucursales %}
+                      <option value="{{s.idSucursal}}">{{s.nombreSucursal}}</option>
+                      {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Aceptar</button>
+            </div>
+        </form>
+            {% if pedidos!=[]%}
+            <div class="d-grid gap-2 hijo">
+                <h1>Pedidos realizados</h1>
+                <table class="table table-hover">
+                    <tr>
+                        <!--nombreSucursal,nombreProducto,cantidad,fechaSolicitud,fechaRecibido,estado,idProveedor-->
+                        <th>Nombre sucursal</th>
+                        <th>Nombre producto</th>
+                        <th>Cantidad</th>
+                        <th>Fecha solicitud</th>
+                        <th>Fecha recibido</th>
+                        <th>Estado</th>
+                        <th>Proveedor</th>
+                    </tr>
+                    {% for pedido in pedidos %}
+                    <TR>
+                    <TD class="c1">{{pedido.sucursal}}</TD>
+                    <TD class="c2">{{pedido.nombreProducto}}</TD>
+                    <TD class="c3">{{pedido.cantidad}}</TD>
+                    <TD class="c4">{{pedido.fechaSolicitud}}</TD>
+                    <TD class="c5">{{pedido.fechaRecibido}}</TD>
+                    <TD class="c6">{{pedido.estado}}</TD>
+                    <TD class="c6">{{pedido.proveedor}}</TD>
+                    </TR>
+                    {% endfor %}
+                    </table>                
+            </div>
+        {%else%}
+            <div class="d-grid gap-2 hijo">
+                <h4>Esta sucursal aún no ha realizado ningún pedido.</h4>
+            </div>
+        {%endif%}
+        
+{% endblock %}
+

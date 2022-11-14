@@ -1,0 +1,58 @@
+<!--Hereda de base, al heredar permite reescribir los bloques del archivo del que hereda.-->
+
+{% extends "base.html"%}
+
+<title>{% block title %}Iniciar Sesion{% endblock %}</title>
+
+{% block content %}  
+    <style>
+        .padre {
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        }
+        .hijo{
+            
+
+        }
+    </style>
+    <div class="padre">
+    <div class="hijo">
+        <br>
+        <h3 align="center"> Iniciar Sesion</h3>
+        <form method="POST"><!--Envia request a la ruta registrarse-->
+            <!--Correo electronico-->
+            <div class="form-group">
+                <label for="correo"> Correo electronico</label>
+                <input 
+                    type="email" 
+                    class="form-control" 
+                    id="correo" 
+                    name="correo" 
+                    placeholder="Ingresar Correo">
+            </div>
+            <!--Contraseña-->
+            <div class="form-group">
+                <label for="contrasenna"> Contraseña</label>
+                <input 
+                    type="password" 
+                    class="form-control" 
+                    id="contrasenna" 
+                    name="contrasenna" 
+                    placeholder="Ingresar contraseña">
+            </div>
+            <!--Radio boton para saber si es empleado o cliente.-->
+            <div class="form-group">
+                <input type="radio" name="options" id="radioCliente" value="Cliente"> Cliente </input><br>
+                <input type="radio" name="options" id="radioEmpleado" value="Empleado"> Empleado </input><br>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Iniciar Sesion</button>
+            <br><br>
+            <!--Boton para redireccionar a la pagina de registrarse.-->
+            <a class="btn-secondary" href="/registrarse"><input type="button" value="Registrarse"></a>
+        </form>
+    </div>
+</div>
+{% endblock %}

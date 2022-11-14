@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!--Importa bootstrap-->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+
+    <!--Define un bloque que puede ser sobreescrito por los hijos-->
+    <title>{% block title %}Home{% endblock %}</title>
+  </head>
+  <body>
+    <!--Crea una barra de navegacion-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <!--Crea un boton para expandir la barra de navegacion para ver los botones de la barra.-->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbar"
+      >
+        <!--Carga icono del boton-->
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar">
+        <!--Define los items de la barra de navegacion, cada uno redirije a una pantalla diferente.-->
+        <div class="navbar-nav">
+
+          {%if usuario!=None%}
+
+            <!--Boton pagina principal-->
+            <a class="nav-item nav-link" id="home" href="/">Pagina Principal</a>
+            <!--Boton Carrito-->
+            <a class="nav-item nav-link" id="carrito" href="/carrito">Carrito</a>
+            <!--Boton Carrito-->
+            <a class="nav-item nav-link" id="carrito" href="/sucursalChoose">Sucursal</a>
+            <!--Boton ubicacion-->
+            <a class="nav-item nav-link" id="ubicacion" href="/ubicacionCliente">Ubicación</a>
+
+            <!--Boton cerrar sesion-->
+            <a class="nav-item nav-link" id="cerrarSesion" href="/cerrarSesion">Cerrar Sesion</a>
+            
+
+          {%else%}
+
+            <!--Boton para iniciar sesion-->
+            <a class="nav-item nav-link" id="iniciarSesion" href="/iniciarSesion">Iniciar Sesion</a>
+            
+          {%endif%}
+
+
+        </div>
+      </div>
+    </nav>
+    <!--Si hay mensajes de respuesta por parte del servidor, se hace un ciclo que muestra todos los mensajes segun categoria.-->
+    {% with messages = get_flashed_messages(with_categories=true) %} 
+      {% if messages %} 
+          {% for category, message in messages %} 
+            {% if category =='error' %}
+              <div class="alert alert-danger alter-dismissable fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            {% elif category =='advertencia' %}
+              <div class="alert alert-warning alter-dismissable fade show" role="warning">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+          
+                  
+            {% else %}
+                <div class="alert alert-success alter-dismissable fade show" role="alert">
+                  {{ message }}
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+            {% endif %} 
+
+
+      {% endfor %} 
+      {% endif %} 
+    {% endwith %}
+
+
+    <!--Bloque usado en los otros templates para modificar el template base.-->
+    <div class="container">{% block content %} {% endblock %}</div>
+
+
+    <!--Carga los scripts para bootstrap-->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+  </body>
+</html>

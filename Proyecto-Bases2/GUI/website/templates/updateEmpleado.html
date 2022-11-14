@@ -1,0 +1,25 @@
+<!--Hereda de base, al heredar permite reescribir los bloques del archivo del que hereda.-->
+{% extends "menuEmpleado.html"%}
+
+<title>{% block title %}Actualizar Empleado{% endblock %}</title>
+
+<!--Mete la etiqueta p en el bloque definido en base.-->
+{% block content %}  
+<div>
+    <br>
+    <h3 align="center"> Actualizar Empleado</h3>
+    <form  id="upload-form" action="{{ url_for('cli.updateEmpleado') }}" method="POST" enctype="multipart/form-data"><!--Envia request a la ruta registrarse-->
+        <div style = "width: 15%; margin-block: 2%;" class="form-group">
+            <label for="idEmpleado"> ID Empleado </label>
+            <input 
+                type="number" 
+                class="form-control" 
+                id="idEmpleado" 
+                name="idEmpleado" 
+                min="1" >
+        </div>
+        <br>
+    <button type="submit" style = "  margin-right: 30%; margin-top: 3%; text-align: center; margin-bottom: 100px;"  class="btn btn-primary"> Actualizar Empleado </button>
+    </form>
+</div>
+{% endblock %}

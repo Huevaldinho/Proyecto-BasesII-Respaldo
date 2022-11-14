@@ -1,0 +1,41 @@
+{% extends "base.html"%}
+<title>{% block title %}Home{% endblock %}</title>
+{% block content %} 
+    <h1>Home</h1>
+    <form class="form-inline"  method="POST" action="{{url_for('cli.home') }}">
+        <a href="/carrito" style = " float:inline-start; margin-right: 70%; margin-bottom: 4%;" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Carrito</a>
+        <div class="form-group">
+            <div class="input-group">
+                    {% for i in range(length) %}
+                <div style = "margin-right: 1%; margin-bottom: 4%;" class="input-group">
+                        <div class=”about”>
+                            <button value = {{productos[i]['idProducto']}} name= "btn" type="submit" class="btn btn-outline-dark">Agregar</button>
+                            <h5 class={{productos[i]}}>id: {{productos[i]['idProducto']}}</h5>
+                            <h2 class={{productos[i]}}>{{productos[i]['nombre']}}</h2>
+                            <h4 class={{productos[i]}}>{{productos[i]['descripcion']}}</h4>
+                            <h5 class={{productos[i]}}>${{productos[i]['precio']}}</h5>
+                            {% if pais=='Costa Rica'%}
+                                <h5 class={{productos[i]}}>₡{{productos[i]['precioNacional']}}</h5>
+                            {%endif%}
+                            {% if pais=='Panamá'%}
+                                <h5 class={{productos[i]}}>B/.{{productos[i]['precioNacional']}}</h5>
+                            {%endif%}
+                            {% if pais=='Colombia'%}
+                                <h5 class={{productos[i]}}>${{productos[i]['precioNacional']}}</h5>
+                            {%endif%}
+                            
+                            <!--Se muestran las imagenes que esten guardadas -->
+                            {% for image_name in image_names%}
+                            <div style = "float:left; " class="col-lg-3 col-md-4 col-xs-6 thumb">
+                                    <img style = "width: 100%;" class="img-responsive" src=" {{url_for('cli.send_image',path=paths[i], filename=image_name)}}">
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                </div>
+                    {% endfor %}
+            </div>
+        </div>
+    </form>
+      
+{% endblock %}

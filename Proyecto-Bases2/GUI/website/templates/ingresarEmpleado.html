@@ -1,0 +1,160 @@
+<!--Hereda de base, al heredar permite reescribir los bloques del archivo del que hereda.-->
+{% extends "menuEmpleado.html"%}
+
+<title>{% block title %}Registrar Empleado{% endblock %}</title>
+
+<!--Mete la etiqueta p en el bloque definido en base.-->
+{% block content %}  
+<div>
+    <br>
+    <h3 align="center"> Registrar Empleado</h3>
+    <form  id="upload-form" action="{{ url_for('cli.ingresarEmpleado') }}" method="POST" enctype="multipart/form-data"><!--Envia request a la ruta registrarse-->
+        <!--FALTA PUESTO Y SUCURSAL, Fecha contratacion -->
+        <div class="form-group">
+            <label for="nombre"> Nombre </label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="nombre" 
+                name="nombre" 
+                placeholder="Ingresar el nombre">
+        </div>
+        <!--Apellido 1-->
+        <div class="form-group">
+            <label for="apellido1"> Primer apellido</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="apellido1" 
+                name="apellido1" 
+                placeholder="Ingresar primer apellido">
+        </div>
+        <!--Apellido 2-->
+        <div class="form-group">
+            <label for="apellido2"> Segundo apellido</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="apellido2" 
+                name="apellido2" 
+                placeholder="Ingresar segundo apellido">
+        </div>
+        <!--Cedula-->
+        <div class="form-group">
+            <label for="cedula"> Cedula</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="cedula" 
+                name="cedula" 
+                placeholder="Ingresar cedula">
+        </div>
+        <!--Correo electronico-->
+        <div class="form-group">
+            <label for="correo"> Correo electronico</label>
+            <input 
+                type="email" 
+                class="form-control" 
+                id="correo" 
+                name="correo" 
+                placeholder="Ingresar Correo">
+        </div>
+        <!--Celular-->
+
+        <!--Fecha Nacimiento, podria mejorarse porque es un toque tierso.-->
+        <div class="form-group">
+            <label for="fechaNacimiento">Fecha Nacimiento</label>
+            <input 
+                type="date" 
+                class="form-control" 
+                id="fechaNacimiento"
+                name="fechaNacimiento" >
+        </div>
+
+        <div class="form-group">
+            <label for="contrasenna1"> Contraseña</label>
+            <input 
+                type="password" 
+                class="form-control" 
+                id="contrasenna1" 
+                name="contrasenna1" 
+                placeholder="Ingresar contraseña">
+        </div>
+        <!--Confirmar contraseña-->
+        <div class="form-group">
+            <label for="contrasenna2"> Confirmar contraseña</label>
+            <input 
+                type="password" 
+                class="form-control" 
+                id="contrasenna2" 
+                name="contrasenna2" 
+                placeholder="Ingresar confirmación de contraseña">
+        </div>
+
+        <div class="form-group">
+            <label for="fechaContratacion">Fecha de contratacion</label>
+            <input 
+                type="date" 
+                class="form-control" 
+                id="fechaContratacion"
+                name="fechaContratacion" >
+        </div>
+        
+        <div style = "width: 88%; margin-block: 2%; " class="input-group">
+            <span class="input-group-addon">Seleccione la sucursal: </span>
+                <select name="sucursalSeleccionada" class="selectpicker form-control">
+                {% for s in sucursales %}
+                <option value="{{s}}">{{s.nombreSucursal}}</option>
+                {% endfor %}
+                </select>
+        </div>
+        <br>
+        <div style = "width: 88%; margin-block: 2%;" class="input-group">
+            <span class="input-group-addon"> Seleccione el puesto: </span>
+            <select name="puestoSeleccionado" class="selectpicker form-control">
+            {% for c in puestos %}
+            <option value="{{c}}">{{c.nombrePuesto}}</option>
+            {% endfor %}
+            </select>
+        </div>    
+        <!--Contraseña-->
+        <br>
+
+    </div>
+        
+    </script>
+
+    <strong>Foto:</strong><br>
+    <input id="file" type="file" name="file" accept="image/*" multiple>
+    <div  style="width: 100%;height: 40px; text-align: center;" id="msg"></div>
+
+    
+    <script>
+        $("#file1").change(function(){
+
+            var input = document.getElementById('file1');
+
+            for (var i=0; i<input.files.length; i++)
+            {
+        //koala.jpg, koala.JPG substring(index) lastIndexOf('a') koala.1.jpg
+                var ext= input.files[i].name.substring(input.files[i].name.lastIndexOf('.')+1).toLowerCase()
+
+                if ((ext == 'jpg') || (ext == 'png')){
+                    $("#msg").text("La imagen es soportada")
+                }
+                else{
+                    $("#msg").text("La imagen no es soportada")
+                    document.getElementById("file1").value ="";
+                }
+            }
+
+        } );
+
+
+    </script>
+
+        <br>
+        <button type="submit" style = "  margin-right: 30%; margin-top: 3%; text-align: center; margin-bottom: 100px;"  class="btn btn-primary"> Registrar Empleado </button>
+    </form>
+</div>
+{% endblock %}

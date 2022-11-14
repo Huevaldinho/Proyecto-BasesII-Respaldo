@@ -1,0 +1,33 @@
+{% extends "barraMenuEmpleado.html"%}
+<title>{% block title %}Menú{% endblock %}</title>
+{% block content %}  
+    <H1>Menú</H1>
+    <p>Bienvenido, {{usuario}}</p>
+    <div class="d-grid gap-2">
+        <a href="/montoRecolectadoEnvio" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Consultar monto de envios</a>
+        <a href="/proveedorBuscar" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Consultar proveedores</a>
+        <a href="/ingresarProducto" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Ingresar Producto</a>
+        <a href="/consultarGananciasNetas" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Consultar ganancias netas</a>
+
+    </div>
+    <br>
+    <div class="d-grid gap-2">
+        <a href="/ingresarEmpleado" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Ingresar Empleado</a>
+        <a href="/consultaEmpleados" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Consultar empleado</a>
+        <a href="/updateEmpleado" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Actualizar Empleado</a>
+        <a href="/deleteEmpleado" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Eliminar Empleado</a>
+    </div>
+    <br>
+    <div class="d-grid gap-2">
+        <a href="/pedidosRealizados" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Mostrar pedidos realizados</a>
+        <a href="/consultaClientes" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Consultar Clientes</a>
+        <a href="/deleteCliente" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Eliminar Cliente</a>
+        <a href="/ponerProductosDescuento" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Poner productos en descuento o sacar del exhibidor</a>
+    </div>
+    <br>
+    <div class="d-grid gap-2">
+        <a href="/reporteProductos" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Productos Vendidos</a>
+        <a href="/reporteClientes" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Compras Clientes</a>
+        <a href="/reporteVencidos" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Productos Vencidos</a>
+    </div>
+{% endblock %}

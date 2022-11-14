@@ -1,0 +1,23 @@
+
+<!--Hereda de base, al heredar permite reescribir los bloques del archivo del que hereda.-->
+{% extends "base.html"%}
+<title>{% block title %}Pagina Principal{% endblock %}</title>
+
+<!--Mete la etiqueta p en el bloque definido en base.-->
+{% block content %} 
+    <br>
+    <div class="d-grid gap-2">
+        <a href="/sucursal" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Comprar productos</a>
+        <a href="/buscarProducto" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Buscar producto</a>
+        <a href="/sucursalExistencias" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Sucursal con existencias más cercana</a>
+    </div>
+    <br>
+    <div class="d-grid gap-2">
+        <a href="/consultarSucursal" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Consultar sucursal</a>
+        <a href="/updateCliente" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Actualizar mi información</a>
+    </div>
+{% endblock %}
+
+
+
+

@@ -1,0 +1,63 @@
+{% extends "base.html"%}
+<title>{% block title %}Seleccione la sucursal{% endblock %}</title>
+{% block content %}  
+
+    <!-- <h1 align="center">Seleccione el pais de la sucursal</h1>     -->
+  <!--Si el cliente aun no ha seleccionado el pais, muestra todos los disponibles,
+  si ya habia seleccionado el pais con el boton, se muestra solo el pais seleccionado.-->
+  {% if op == 1 %}
+  <form class="form-inline" method="POST" action="{{url_for('cli.sucursal') }}">
+    <div class="form-group">
+    <div class="input-group">
+        <div style = "width: 88%; margin-block: 2%;" class="input-group">
+            <span class="input-group-addon">Seleccione la sucursal: </span>
+            <select name="sucursalSeleccionada" class="selectpicker form-control">
+              {% for s in sucursales %}
+              <option value="{{s}}">{{s.nombreSucursal}}</option>
+              {% endfor %}
+            </select>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Aceptar</button>
+    </div>
+</form>
+  {% endif %}
+
+  {% if op == 2 %}
+  <form class="form-inline" method="POST" action="{{url_for('cli.sucursalChoose') }}">
+    <div class="form-group">
+    <div class="input-group">
+        <div style = "width: 88%; margin-block: 2%;" class="input-group">
+            <span class="input-group-addon">Seleccione la sucursal: </span>
+            <select name="sucursalSeleccionada" class="selectpicker form-control">
+              {% for s in sucursales %}
+              <option value="{{s}}">{{s.nombreSucursal}}</option>
+              {% endfor %}
+            </select>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Aceptar</button>
+    </div>
+</form>
+  {% endif %}
+
+    <!-- <form class="form-inline" method="POST" action="{{url_for('cli.sucursal') }}">
+        <div class="form-group">
+        <div class="input-group">
+            <div style = "width: 88%; margin-block: 2%;" class="input-group">
+                <span class="input-group-addon">Seleccione la sucursal: </span>
+                <select name="sucursalSeleccionada" class="selectpicker form-control">
+                  {% for s in sucursales %}
+                  <option value="{{s}}">{{s.nombreSucursal}}</option>
+                  {% endfor %}
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Aceptar</button>
+        </div>
+    </form> -->
+
+
+
+      
+{% endblock %}

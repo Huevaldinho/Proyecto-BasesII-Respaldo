@@ -1,0 +1,39 @@
+{% extends "base.html"%}
+
+
+<title>{% block title %}Consultar sucursal{% endblock %}</title>
+
+{% block content %}  
+    <style>
+        .hijo {
+            position: absolute;
+            top: 65%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+        <br>
+        <div class="d-grid gap-2 hijo">
+            <h1>Consultar sucursales</h1>
+            <table class="table table-hover">
+                <tr>
+                    <th>Nombre sucursal</th>
+                    <th>Horario</th>
+                    <th>Horas</th>
+                    <th>Distancia</th>
+                    <th>Administrador</th>
+                    <th>Correo</th>
+                </tr>
+                {% for info in infoSucursales %}
+                <TR>
+                   <TD class="c1">{{info.nombreSucursal}}</TD>
+                   <TD class="c2">{{info.abiertoCerrado}}</TD>
+                   <TD class="c3">{{info.horario}}</TD>
+                   <TD class="c4">{{info.distancia}}</TD>
+                   <TD class="c5">{{info.administrador.nombreEmpleado+' '+info.administrador.apellido1}}</TD>
+                   <TD class="c6">{{info.administrador.correo}}</TD>
+                </TR>
+                {% endfor %}
+                </table>                
+        </div>
+{% endblock %}  

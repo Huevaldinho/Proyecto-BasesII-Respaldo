@@ -1,0 +1,32 @@
+<!--Hereda de base, al heredar permite reescribir los bloques del archivo del que hereda.-->
+
+{% extends "base.html"%}
+
+<title>{% block title %}Factura{% endblock %}</title>
+
+{% block content %}
+{% if factInfo.factura != [] %}
+    <h2>Productos</h2>
+
+    {% for producto in factInfo.detalle%}
+    <div style='height: 30%; width: 100%; padding-bottom: 10%; padding-left: 20%'>
+        <h1 style='width: 25%; float: left;' class=nombreProducto>{{producto.nombre}}</h1>
+        <h3 style='width: 25%; float: left;' class=subTotalProducto>{{producto.subTotal}}</h3>
+    </div>
+    {%endfor%}
+
+    {% if factInfo.envio != []%}
+        <h2 class=envio>Envio</h2>
+        <div style='height: 30%; width: 100%; padding-bottom: 10%; padding-left: 20%'>
+            <h3 style='width: 25%; float: left;'>Costo de Envio: </h3>
+            <h3 style='width: 25%; float: left;' class=subTotalEnvio>{{factInfo.envio[0].costoEnvio}}</h3>
+        </div>
+    {%endif%}
+    <div>
+        <h1 class=Total>Total</h1>
+        <h3 style='padding-left: 20%;' class=TotalFactura>{{factInfo.factura[0].total}}</h3>
+    </div>
+{% else %}
+    <h2>No hay factura</h2>
+{%endif%}
+{% endblock %}

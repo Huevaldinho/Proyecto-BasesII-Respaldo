@@ -1,0 +1,81 @@
+{% extends "menuEmpleado.html"%}
+<title>{% block title %}Montos Recolectados en Envios{% endblock %}</title>
+{% block content %}  
+
+    <h1 align="center">Montos Recolectados en Envios</h1>    
+    <h2 align="center">Marque las casillas que desea incluir como filtros</h2>  
+    <form class="form-inline" method="POST" action="{{url_for('cli.montoRecolectadoEnvio') }}">
+      <div class="form-group">
+        <div class="input-group">
+          <div style = "width: 88%; margin-block: 2%; " class="input-group">
+              <input  type="checkbox" name = "sucursalCheck" class="form-check-input" id="sucursalCheck">
+              <span class="input-group-addon">Seleccione la sucursal: </span>
+                  <select name="sucursalSeleccionada" class="selectpicker form-control">
+                    {% for s in sucursales %}
+                    <option value="{{s}}">{{s.nombreSucursal}}</option>
+                    {% endfor %}
+                  </select>
+          </div>
+        
+            <div style = "width: 15%; margin-block: 2%;" class="input-group">
+            <input  type="checkbox" name="fechaInicialCheck" class="form-check-input" id="fechaInicialCheck">
+            <label for="fechaInicial">Fecha Inicial</label>
+            <input type="date" id="fechaInicial" name="fechaInicialSeleccionada"
+            value="2020-01-01"
+            min="2020-01-01" max="2050-12-31">
+            </div>
+
+            <div style = "width: 15%; margin-block: 2%;" class="input-group">
+            <input  type="checkbox" name="fechaFinalCheck" class="form-check-input" id="fechaFinalCheck">
+            <label for="fechaFinal">Fecha Final</label>
+            <input type="date" id="fechaFinal" name="fechaFinalSeleccionada"
+            value="2020-01-01"
+            min="2020-01-01" max="2050-12-31">
+            </div>
+
+            <div style = "width: 25%; margin-block: 2%; " class="input-group">
+              <label for="idCliente"> ID Cliente </label>
+              <input 
+                  type="number" 
+                  class="form-control" 
+                  id="idCliente" 
+                  name="idCliente" 
+                  min="1" >
+          </div>
+
+          <button style = "width: 50%; margin-left: 15%; margin-top: 5%; " type="submit" class="btn btn-outline-dark">Consultar</button>
+          {% if resultado!=None %}
+            <a href="/menuEmpleado" style = "width: 25%; margin-left: 47%; margin-top: 5%;" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Regresar</a>
+          {%endif%}
+        </div>
+      </div>
+    </form>
+
+    {% if resultado!=None %}
+    <br>
+      <table class="table table-bordered table-hover table-condensed">
+        <thead>
+          <tr>
+            <th title="Field #1">totalesEnvios</th>
+            <th title="Field #2">nombreSucursal</th>
+            <th title="Field #3">idCliente</th>
+            <th title="Field #4">fechaEnvio</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for r in resultado %}
+            <tr>
+                <td>${{r.totalesEnvios}}</td>
+                <td>{{r.nombreSucursal}}</td>
+                <td>{{r.idCliente}}</td>
+                <td>{{r.fechaEnvio}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {%endif%}
+
+      
+{% endblock %}
+

@@ -1,0 +1,73 @@
+{% extends "menuEmpleado.html"%}
+<title>{% block title %}Consulta Clientes{% endblock %}</title>
+{% block content %}  
+
+    <h1 align="center">Consulta Clientes</h1>    
+    <h2 align="center">Marque las casillas que desea incluir como filtros</h2>  
+    <form method="POST" action="{{url_for('cli.consultaClientes') }}">
+        <div  class="form-group">
+          <input  type="checkbox" name="idClienteCheck" class="form-check-input" id="idClienteCheck">
+            <label for="idCliente"> ID Cliente </label>
+            <input 
+                type="number" 
+                class="form-control" 
+                id="idCliente"
+                name="idCliente" 
+                min="1" >
+        </div>
+        <div  class="form-group">
+          <input  type="checkbox" name="cedulaCheck" class="form-check-input" id="cedulaCheck">
+            <label for="cedula"> Cedula del cliente </label>
+            <input 
+                type="number" 
+                class="form-control" 
+                id="cedula"
+                name="cedula" 
+                min="1" >
+        </div>
+      <button  type="submit" class="btn btn-outline-dark">Consultar</button>
+      
+    </div>
+  </div>
+</form>
+
+{% if resultado!=None %}
+<br>
+  <!--El cliente debe seleccionar el pais para que se muestren las sucursales.-->
+  <table class="table table-bordered table-hover table-condensed">
+    <thead>
+      <tr>
+        <th title="Field #1">idCliente</th>
+        <th title="Field #2">cedula</th>
+        <th title="Field #2">nombre</th>
+        <th title="Field #3">apellido1</th>
+        <th title="Field #4">apellido2</th>
+        <th title="Field #5">estado</th>
+        <th title="Field #6">fechaNacimiento</th>
+        <th title="Field #7">celular</th>
+        <th title="Field #10">correo</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for r in resultado %}
+        <tr>
+            <td>{{r.idCliente}}</td>
+            <td>{{r.cedula}}</td>
+            <td>{{r.nombre}}</td>
+            <td>{{r.apellido1}}</td>
+            <td>{{r.apellido2}}</td>
+            <td>{{r.estado}}</td>
+            <td>{{r.fechaNacimiento}}</td>
+            <td>{{r.celular}}</td>
+            <td>{{r.correo}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{%endif%}
+{% if resultado!=None %}
+<a href="/menuEmpleado" style = "  margin-left: 30%; margin-top:3%; text-align: center; margin-bottom: 100px;" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Regresar</a>
+{%endif%}
+
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends "barraMenuEmpleado.html"%}
+
+
+{% block content %}
+<title>{% block title %}Buscar Proveedor{% endblock %}</title>
+<form method="POST" style="padding-left: 15%;">
+    <div style="width: 100%; height: 40%; float: left;" class="primer">
+        <div style="width: 33%; float: left; " class="Ubicacion">
+            <div style="padding-top: 2%; padding-bottom: 2%;" class="input-group">
+                <input type="checkbox" name="paisCheck" class="form-check-input" id="paisCheck">
+                <span style="padding-right: 2%;" class="input-group-addon">País: </span>
+                <select name="PaisSeleccionado" class="selectpicker form-control">
+                    {% for pais in paises %}
+                    <option value="{{pais}}">{{pais['nombrePais']}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div style="padding-top: 2%; padding-bottom: 2%;" class="input-group">
+                <input type="checkbox" name="provinciaCheck" class="form-check-input" id="provinciaCheck">
+                <span style="padding-right: 2%;" class="input-group-addon">Provincia: </span>
+                <select name="ProvinciaSeleccionado" class="selectpicker form-control">
+                    {% for provincia in provincias %}
+                    <option value="{{provincia}}">{{provincia['nombreProvincia']}}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-default" name="actuProvincia" >Actualizar</button>
+            </div>
+            <div style="padding-top: 2%; padding-bottom: 2%;" class="input-group">
+                <input type="checkbox" name="cantonCheck" class="form-check-input" id="cantonCheck">
+                <span style="padding-right: 2%;" class="input-group-addon">Canton: </span>
+                <select name="CantonSeleccionado" class="selectpicker form-control">
+                    {% for canton in cantones %}
+                    <option value="{{canton}}">{{canton['nombreCanton']}}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-default" name="actuCanton">Actualizar</button>
+            </div>
+            <div style="padding-top: 2%; padding-bottom: 2%;" class="input-group">
+                <input type="checkbox" name="distritoCheck" class="form-check-input" id="distritoCheck">
+                <span style="padding-right: 2%;" class="input-group-addon">Distrito: </span>
+                <select name="DistritoSeleccionado" class="selectpicker form-control">
+                    {% for distrito in distritos %}
+                    <option value="{{distrito}}">{{distrito['nombreDistrito']}}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-default" name="actuDistrito">Actualizar</button>
+            </div>
+        </div>
+    </div>
+    <div style=" width: 60%; height: 20%; float: left; padding-top: 2%; padding-bottom: 2%;" class="productosSection">
+        <input type="checkbox" name="productoCheck" class="form-check-input" id="productoCheck">
+        <span style="padding-right: 2%;" class="input-group-addon">Producto: </span>
+        <select style=" width: 25%;" name="ProductoSeleccionado" class="selectpicker form-control">
+            {% for producto in productos %}
+            <option value="{{producto}}">{{producto['nombre']}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div style=" width: 60%; height: 20%; float: left; padding-top: 2%; padding-bottom: 2%;" class="proeedor">
+        <input type="checkbox" name="proveedorCheck" class="form-check-input" id="proveedorCheck">
+        <label for="nombreProveedor"> Nombre del Proveedor   </label>
+        <input 
+            type="text" 
+            class="form-control" 
+            id="nombreProveedor" 
+            name="nombreProveedor" 
+            float: right
+            placeholder="Ingresar el nombre ">
+    </div>
+    <button style = "width: 50%; margin-left: 5%; " type="submit" class="btn btn-outline-dark" name="consultar">Consultar</button>
+    {% if resultados != None %}
+        <div style=" width: 100%; height: 300%; float: left; padding-top: 2%; padding-bottom: 2%;" class="Resultados">
+            
+            {% for resultado in resultados %}
+            <h1>{{resultado.nombreProveedor}}</h1>
+            <h3>{{resultado.correo}}</h3>
+            <h3>{{resultado.celular}}</h3>
+            <h2>Productos</h2>
+            {% for producto in resultado.productos %}
+            <div  class="producto">
+                <div class=”about”>
+                    <h3 class={{producto.nombre}}>{{producto.nombreProducto}}</h3>
+
+                    <h3 class={{producto.precio}}>Costo: {{producto.costoProducto}}$</h3>
+                </div>
+            </div>
+            <hr>
+            {% endfor %}
+            {% endfor %}
+            
+        </div>
+    {%endif%}
+
+</form>
+{% endblock %}

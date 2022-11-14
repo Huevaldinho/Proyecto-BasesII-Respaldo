@@ -1,0 +1,107 @@
+<!--Hereda de base, al heredar permite reescribir los bloques del archivo del que hereda.-->
+{% extends "base.html"%}
+
+<title>{% block title %}Registrarse{% endblock %}</title>
+
+<!--Mete la etiqueta p en el bloque definido en base.-->
+{% block content %}  
+<div>
+    <h3 align="center"> Registrarse</h3>
+    <form method="POST"><!--Envia request a la ruta registrarse-->
+        <!--Nombre-->
+        <div class="form-group">
+            <label for="nombre"> Nombre</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="nombre" 
+                name="nombre" 
+                placeholder="Ingresar nombre">
+        </div>
+        <!--Apellido 1-->
+        <div class="form-group">
+            <label for="apellido1"> Primer apellido</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="apellido1" 
+                name="apellido1" 
+                placeholder="Ingresar primer apellido">
+        </div>
+        <!--Apellido 2-->
+        <div class="form-group">
+            <label for="apellido2"> Segundo apellido</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="apellido2" 
+                name="apellido2" 
+                placeholder="Ingresar segundo apellido">
+        </div>
+        <!--Cedula-->
+        <div class="form-group">
+            <label for="cedula"> Cedula</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="cedula" 
+                name="cedula" 
+                placeholder="Ingresar cedula">
+        </div>
+        <!--Correo electronico-->
+        <div class="form-group">
+            <label for="correo"> Correo electronico</label>
+            <input 
+                type="email" 
+                class="form-control" 
+                id="correo" 
+                name="correo" 
+                placeholder="Ingresar Correo">
+        </div>
+        <!--Celular-->
+        <div class="form-group">
+            <label for="celular"> Celular</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="celular" 
+                name="celular" 
+                placeholder="Ingresar celular">
+        </div>
+        
+
+        <!--Fecha Nacimiento, podria mejorarse porque es un toque tierso.-->
+        <div class="form-group">
+            <label for="fechaNacimiento">Fecha Nacimiento</label>
+            <input 
+                type="date" 
+                class="form-control" 
+                id="fechaNacimiento"
+                name="fechaNacimiento" >
+        </div>
+
+        <!--Contraseña-->
+        <div class="form-group">
+            <label for="contrasenna1"> Contraseña</label>
+            <input 
+                type="password" 
+                class="form-control" 
+                id="contrasenna1" 
+                name="contrasenna1" 
+                placeholder="Ingresar contraseña">
+        </div>
+        <!--Confirmar contraseña-->
+        <div class="form-group">
+            <label for="contrasenna2"> Confirmar contraseña</label>
+            <input 
+                type="password" 
+                class="form-control" 
+                id="contrasenna2" 
+                name="contrasenna2" 
+                placeholder="Ingresar confirmación de contraseña">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Registrarse</button>
+    </form>
+</div>
+{% endblock %}

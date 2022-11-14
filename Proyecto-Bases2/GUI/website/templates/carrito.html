@@ -1,0 +1,70 @@
+<!--Hereda de base, al heredar permite reescribir los bloques del archivo del que hereda.-->
+
+{% extends "base.html"%}
+
+<title>{% block title %}Carrito{% endblock %}</title>
+
+{% block content %}
+<div class="Carrito">
+    <form method="POST">
+        {% for i in range(0, length) %}
+
+        <div style="height: 250px;padding-top: 40px; width: 50%; float: left;" class="producto">
+            <div class=”about”>
+                <h1 class={{pedidos[i].nombre}}>{{pedidos[i].nombre}}</h1>
+                <h3 class={{pedidos[i].descripcion}}>{{pedidos[i].descripcion}}</h3>
+                <div ,class=”image-box”>
+                    {% for image_name in image_names%}
+                    <div style="float:left; " class="col-lg-3 col-md-4 col-xs-6 thumb">
+                        <img style="width: 100%;" class="img-responsive"
+                            src=" {{url_for('cli.send_image',path=paths[i], filename=image_name)}}">
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- <img src=”images/veg.png” /> -->
+
+            </div>
+
+        </div>
+        <div style="height: 250px;padding-top: 40px; width: 50%; float: left; padding-left: 2%;" class="cantsBotons">
+            <div class="counter">
+                <button style="width: 10%;" input type="submit" name="masButton" value={{i}}>+</button>
+                <div style="padding-left: 2%;" , class={{cantidad[i]}}>{{cantidad[i]}}</div>
+                <button style="width: 10%;" ,input type="submit" name="menosButton" value={{i}}>-</button>
+            </div>
+            <div class=”prices”>
+                <div class={{pedidos[i].precio}}>{{pedidos[i].precio}}$</div>
+                <button input type="submit" name="removeButton" value={{i}}>Remove
+            </div>
+        </div>
+
+        {% endfor %}
+
+        <div style="width: 50%; float: left; text-align: center;" ,class=”checkout”>
+            <div class=”total”>
+
+                <h3>Sub-Total</h3>
+
+
+                <div>${{subTotal}}</div>
+            </div>
+            <div style="padding-top: 2%; padding-bottom: 2%;" class="input-group">
+                <span style="padding-right: 2%;" class="input-group-addon">Seleccione el método de pago: </span>
+                <select name="metodoSeleccionado" class="selectpicker form-control">
+                    {% for metodo in metodos %}
+                    <option value="{{metodo['idMetodoPago']}}">{{metodo['nombreMetodoPago']}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div style="width: 100%; height: 15%;padding-top: 2%; padding-bottom: 2%;">
+                <button style="width: 25%;" class="button" input type="submit" name="submitButton"
+                    value="comprar">Comprar</button>
+                <button style="width: 25%;" class="button" input type="submit" name="submitButton"
+                    value="domicilio">Domicilio</button>
+
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
