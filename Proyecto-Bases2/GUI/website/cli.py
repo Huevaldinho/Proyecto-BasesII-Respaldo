@@ -545,11 +545,28 @@ def consultaEmpleados():
         if (idEmpleado==''):
             idEmpleado=None
 
-        resultado = conexion.consultaEmpleado(idSucursal, idPuesto , fechaInicio,fechaFinal , idEmpleado )
-
+        resultado = conexion.consultaEmpleado(idSucursal, idPuesto , fechaInicio,fechaFinal , idEmpleado)
+        print(resultado)
+        if(idEmpleado!=None):
+            if(conexion.getExisteEmpleado(idEmpleado)):
+                photo=True
+                #CREAR UN PROCEDIMINETO QUE DEVUELVA LO MISMO PER
+                picture=conexion.getFotoEmpleado(idEmpleado)
+                print(resultado)
+                #path =Path('{0}.jpg'.format(resultado["nombreEmpleado"]+str(idEmpleado)))
+                dire  = Path("fotosEmpleados",resultado[0]['nombreEmpleado']+str(idEmpleado)+'jpg')
+                print(dire)
+                
+                rut=Path('{0}.jpg'.format(resultado[0]["nombreEmpleado"]+str(idEmpleado)))
+                print(str(rut))
+                conexion.cerrarConexionServidor()
+                return render_template('consultaEmpleados.html',sucursales=sucursales,puestos=puestos,length = 1, resultado = resultado, paths =str( dire),photo=photo,image_names=str(rut))
+            else:
+                flash('EL ID del empleado no existe',category='error')  
+            
         #Cierra la conexion con el servidor
         conexion.cerrarConexionServidor()
-        return render_template('consultaEmpleados.html',sucursales=sucursales,puestos=puestos, resultado = resultado)
+        return render_template('consultaEmpleados.html',sucursales=sucursales,puestos=puestos, resultado = resultado,paths = None,photo=None,image_names=None)
 
 @cli.route('/ingresarEmpleado',methods=['GET','POST'])
 def ingresarEmpleado():

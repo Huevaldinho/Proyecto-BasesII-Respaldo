@@ -744,7 +744,6 @@ class ConexionServidorSQL:
             print(e)
             return None
 
-
     def getGananciasNetas (self, fechaInicio, fechaFinal, idPais, idSucursal, idCategoria):
         '''
         Funcion: Obtiene las ganancias netas
@@ -1041,47 +1040,7 @@ class ConexionServidorSQL:
             print(e)
             return None
 
-    def obtenerDirectorioEmpleado(self):
-        """
-        Funcion: Crear una carpeta dentro de la carpeta Imagenes 
-        Param:
-            pNombreCarpeta(str): Nombre de la carpta donde se guadara la carpte
-            pNombreArchivo(str): Nombre de como se llamara la carpeta
-        Retorna:
-            path: La ruta de la carpeta creada
-            None: si pasa algun error o no se pudo crear 
-        """
-        try:
-            ruta=os.getcwd()
-            path = Path(ruta,"Fotos Empleados")
-            path.mkdir(parents=True, exist_ok=True)
-            return path
-    
-        except Exception as e:
-                    #Si no encuentra el proc
-                print(e)
-                return None
 
-    def readEmpleado(self, idEmpleado):
-        try:
-            dirFoto=self.getFotoEmpleado(idEmpleado) #Tomamos la direccion donde se saco la imagen
-            dic=self.select('exec dbo.CRUDempleado ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?',
-            (1, idEmpleado,None, None, None, None, None, None, None, None, None, None, None))
-            dic[0]["foto"]=dirFoto #Le metemos en el diccionario la foto
-            return dic
-        except Exception as e:
-            print(e)
-            return None
-
-    def readEmpleadoG(self, idEmpleado):
-        try:
-          
-            dic=self.select('exec dbo.CRUDempleado ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?',
-            (1, idEmpleado,None, None, None, None, None, None, None, None, None, None, None))
-            return dic
-        except Exception as e:
-            print(e)
-            return None
     #CRUDS
     def getCategorias(self):
         """
@@ -1331,19 +1290,7 @@ class ConexionServidorSQL:
         except Exception as e:
             print(e)
             return None
-   
-    
-    def consultaEmpleado(self, idSucursal, idPuesto , fechaInicioContratacion,fechaFinContratacion , idEmpleado):
-        try:
-            #Retorna los resultados conseguidos del procedimiento ObtenerInfoBono
-            print(idSucursal, idPuesto, fechaInicioContratacion,fechaFinContratacion , idEmpleado)
-            return self.select('exec consultaEmpleado ?, ?, ?, ?,?',
-                                (idSucursal, idPuesto, fechaInicioContratacion,fechaFinContratacion , idEmpleado))
-        except Exception as e:
-            print(e)
-            #Si no encuentra el proc
-            return None
-
+     
     def montoRecolectadoEnvio(self, idSucursal = None, fechaInicial = None, fechaFin = None, idCliente = None):
 
         try:
@@ -1366,6 +1313,17 @@ class ConexionServidorSQL:
             #Si no encuentra el proc
             return None
    
+    def consultaEmpleado(self, idSucursal, idPuesto , fechaInicioContratacion,fechaFinContratacion , idEmpleado):
+        try:
+            #Retorna los resultados conseguidos del procedimiento ObtenerInfoBono
+            print(idSucursal, idPuesto, fechaInicioContratacion,fechaFinContratacion , idEmpleado)
+            return self.select('exec consultaEmpleado ?, ?, ?, ?,?',
+                                (idSucursal, idPuesto, fechaInicioContratacion,fechaFinContratacion , idEmpleado))
+        except Exception as e:
+            print(e)
+            #Si no encuentra el proc
+            return None
+
     def obtenerDirectorioEmpleado(self):
         """
         Funcion: Crear una carpeta dentro de la carpeta Imagenes 
@@ -1378,7 +1336,7 @@ class ConexionServidorSQL:
         """
         try:
             ruta=os.getcwd()
-            path = Path(ruta,"Fotos Empleados")
+            path = Path(ruta,"Proyecto-Bases2","GUI","website","fotosEmpleados")
             path.mkdir(parents=True, exist_ok=True)
             return path
     
@@ -1386,7 +1344,28 @@ class ConexionServidorSQL:
                     #Si no encuentra el proc
                 print(e)
                 return None
-   
+
+    def readEmpleado(self, idEmpleado):
+        try:
+            dirFoto=self.getFotoEmpleado(idEmpleado) #Tomamos la direccion donde se saco la imagen
+            dic=self.select('exec dbo.CRUDempleado ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?',
+            (1, idEmpleado,None, None, None, None, None, None, None, None, None, None, None))
+            dic[0]["foto"]=dirFoto #Le metemos en el diccionario la foto
+            return dic
+        except Exception as e:
+            print(e)
+            return None
+
+    def readEmpleadoG(self, idEmpleado):
+        try:
+          
+            dic=self.select('exec dbo.CRUDempleado ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?',
+            (1, idEmpleado,None, None, None, None, None, None, None, None, None, None, None))
+            return dic
+        except Exception as e:
+            print(e)
+            return None
+
     def getFotoEmpleado(self,pIdEmpleado):
         """
         Funcion: Retorna la Foto de un empleado
@@ -1409,7 +1388,7 @@ class ConexionServidorSQL:
 
         except Exception as e:
                 #Si no encuentra el proc
-            print('RETORNAL: getFotoEmpleado',e)
+            print(e)
 
             return None
     
@@ -1444,7 +1423,6 @@ class ConexionServidorSQL:
             #Si no encuentra el proc
             print(e)
             return False
-
 
     def updateEmpleado(self, idEmpleado, idPuesto, idSucursal, 
     cedula, nombreEmpleado, apellido1, apellido2, fechaContratacion, fechaNacimiento, correo, pFilePathFoto):
@@ -1636,7 +1614,7 @@ class ConexionServidorSQL:
         """
         try:
             ruta=os.getcwd()
-            path = Path(ruta,"Imagenes",pNombreArchivo)
+            path = Path(ruta,"Proyecto-Bases2","GUI","website","images",pNombreArchivo)
             path.mkdir(parents=True, exist_ok=True)
             return path
     
@@ -1697,7 +1675,6 @@ class ConexionServidorSQL:
                 #Si no encuentra el proc
             print(e)
             return None
-
 
     def consultaCliente(self,cedula,idCliente):
         try:
