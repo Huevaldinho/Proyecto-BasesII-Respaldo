@@ -58,8 +58,8 @@ insert into Sucursal(idUbicacion, nombreSucursal, idAdministrador) values
 --Horarios
 insert into Horario(horaApertura, horaCierre, dia) values
                     ('10:10:00', '15:10:00', 'L'),
-                    ('08:10:00', '19:10:00', 'M'),
-                    ('05:10:00', '12:10:00', 'K'),
+                    ('08:10:00', '19:10:00', 'K'),
+                    ('05:10:00', '12:10:00', 'M'),
                     ('10:10:00', '20:10:00', 'J'),
                     ('07:10:00', '14:10:00', 'V'),
                     ('11:10:00', '22:10:00', 'S'),
