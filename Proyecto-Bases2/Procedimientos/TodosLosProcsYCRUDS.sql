@@ -1991,7 +1991,7 @@ AS
 BEGIN
 SELECT count(Detalle.idDetalle) as vendidos, Producto.nombre,
     Sucursal.nombreSucursal, Prov.nombreProveedor,
-    Pais.nombrePais, Factura.fechaFactura
+    Pais.nombrePais
     FROM Detalle
     INNER JOIN Unidad ON Unidad.idUnidad = Detalle.idUnidad
     INNER JOIN LoteProducto ON LoteProducto.idLote = Unidad.idLote
@@ -2014,10 +2014,13 @@ SELECT count(Detalle.idDetalle) as vendidos, Producto.nombre,
 	Factura.fechaFactura BETWEEN isnull(CONVERT(datetime, @fechaInc), Factura.fechaFactura) and
     isnull(CONVERT(datetime, @fechaFin), Factura.fechaFactura)
 	GROUP BY Producto.nombre, Sucursal.nombreSucursal, Prov.nombreProveedor,
-    Pais.nombrePais, Factura.fechaFactura
+    Pais.nombrePais
 	ORDER BY vendidos DESC;
 END
 GO
+
+exec ReportesProductos null, null, null, null, null, null
+select * from detalle
 
 --Procedimiento de reportes para ver Clientes mas frecuentes
 GO
@@ -2032,7 +2035,7 @@ BEGIN
 	SELECT count(Factura.idFactura) as cantFacturas, CONCAT(Cliente.nombre,' ',Cliente.apellido1,' ',
     Cliente.apellido2) as nombreCompleto, Producto.nombre as nombreProducto,
     Sucursal.nombreSucursal, Prov.nombreProveedor,
-    Pais.nombrePais, Factura.fechaFactura
+    Pais.nombrePais
     FROM Factura
     INNER JOIN Cliente ON Cliente.idCliente = Factura.idCliente --Para obtener nombre del cliente  
     INNER JOIN Detalle ON Detalle.idFactura = Factura.idFactura
@@ -2056,7 +2059,7 @@ BEGIN
     Factura.fechaFactura BETWEEN isnull(CONVERT(datetime, @fechaInc), Factura.fechaFactura) and
     isnull(CONVERT(datetime, @fechaFin), Factura.fechaFactura)
     GROUP BY Cliente.nombre,Cliente.apellido1,Cliente.apellido2, Producto.nombre, Sucursal.nombreSucursal, Prov.nombreProveedor,
-    Pais.nombrePais, Factura.fechaFactura
+    Pais.nombrePais
     ORDER BY cantFacturas DESC ;
 END
 GO
@@ -2072,7 +2075,7 @@ CREATE PROCEDURE ReportesVencimientos @idPais INT,
 BEGIN
 	SELECT count(Unidad.idUnidad) as vencidos, Producto.nombre,
     Sucursal.nombreSucursal, Prov.nombreProveedor,
-    Pais.nombrePais, Pedido.fechaRecibido
+    Pais.nombrePais
     FROM Unidad
     INNER JOIN LoteProducto ON LoteProducto.idLote = Unidad.idLote
 	INNER JOIN Pedido ON Pedido.idPedido = LoteProducto.idPedido -- Para obtener la fecha de recibido
@@ -2094,7 +2097,7 @@ BEGIN
     Pedido.fechaRecibido BETWEEN isnull(@fechaInc, Pedido.fechaRecibido) and
     isnull(@fechaFin, Pedido.fechaRecibido)
     GROUP BY Producto.nombre, Sucursal.nombreSucursal, Prov.nombreProveedor,
-    Pais.nombrePais, Pedido.fechaRecibido
+    Pais.nombrePais
     ORDER BY vencidos DESC ;
 END
 GO
