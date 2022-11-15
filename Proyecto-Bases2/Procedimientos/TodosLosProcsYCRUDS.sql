@@ -1673,8 +1673,8 @@ GO
 --Procedimiento Obtener Informacion de Bonos
 --FALTA PROBARLO
 CREATE OR ALTER PROCEDURE ObtenerInfoBono @idEmpleado INT,
-								@fechaInicio SMALLDATETIME,
-								@fechaFin SMALLDATETIME,
+								@fechaInicioP varchar(50),
+								@fechaFinP varchar(50),
 								@idSucursal INT,
 								@idPais INT
 								WITH ENCRYPTION AS
@@ -1683,8 +1683,12 @@ BEGIN
 		Se debe poder obtener informaci�n sobre los bonos recibidos por empleado, fechas,
 		succursal y/o pais.
 		Si todos los parametros son nulos, muestra todos los bonos de todos los empleados.
+		'2020-08-25'
+		'2021-12-08'
 	*/
-
+		declare @fechaInicio  smalldatetime,@fechaFin smalldatetime;
+		set @fechaInicio = (SELECT CAST(@fechaInicioP AS smalldatetime)); 
+        set @fechaFin = (SELECT CAST(@fechaFinP AS smalldatetime)); 
 		SELECT E.idEmpleado as idEmpleado,B.fechaBono,S.nombreSucursal as nombreSucursal,
 				Pa.nombrePais as pais FROM Bono AS B
 

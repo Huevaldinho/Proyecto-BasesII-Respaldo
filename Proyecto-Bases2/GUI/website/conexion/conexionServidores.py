@@ -1798,7 +1798,12 @@ class ConexionServidorSQL:
     def verBonosOtorgados(self,idEmpleado,fechaInicio,fechaFin,idSucursal,idPais):
         """
             Metodo para ver los bonos otorgados.
-            Parametros:
+            Parametros: 
+                idEmpleado int
+                fechaInicio varchar 'yyyy-mm-dd'
+                fechaFin varchar 'yyyy-mm-dd'
+                idSucursal int
+                idPais int
             Retorna: [{}]
         """
         try:
