@@ -2139,7 +2139,7 @@ BEGIN
     inner join Impuesto on Impuesto.idImpuesto = ProductoxImpuesto.idImpuesto --Obtenemos el impuesto del producto
     WHERE Unidad.idUnidad = @idUnidad
 	group by Producto.precio, Descuento.porcentaje;
-    select (@precio + @precio * @Descuentos + @precio * @Impuestos) as subtotal;
+    select (@precio -( @precio * @Descuentos) + @precio * @Impuestos) as subtotal;
 END
 GO
 
