@@ -859,11 +859,11 @@ def home():
     path  = "images\A"
     paths = []
     for p in productos:
+        conexion.getFotosProducto(p['idProducto'])
         paths += [path[:-1]+p['nombre']]
         #p.update({'precioNacional':640.44 * float(p['precio'])}) 
         print(p)
         p.update({'precioNacional': conexion.conversion(1, p['precio'])})
-
     image_names = ['1.jpg', '2.jpg', '3.jpg']
     #return render_template("gallery.html", path = path, image_names=image_names)
     
