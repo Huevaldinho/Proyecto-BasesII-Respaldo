@@ -1203,6 +1203,19 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (1,23,1,704292146,'Dasha','Pearce','Pearce','Dasha_Pearce9889@fuliss.net','0603-09-14 22:03:16Z','4421-04-28 14:46:27Z');
 
 update Empleado set idEstado = 2;
+DECLARE @cnt INT = 1;
+WHILE @cnt <= (select count(idEmpleado) from Empleado)
+BEGIN
+
+	UPDATE Empleado
+	SET fechaNacimiento = DATEADD(DAY, ABS(CHECKSUM(NEWID()) % 3650), '1980-01-01')
+	
+	UPDATE Empleado
+	SET fechaContratacion = DATEADD(DAY, ABS(CHECKSUM(NEWID()) % 2920), '2014-01-01')
+   
+   SET @cnt = @cnt + 1;
+END;
+GO
 
 --UsuarioEmpleados
 INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
