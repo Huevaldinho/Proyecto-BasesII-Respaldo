@@ -32,42 +32,44 @@
 </form>
 
 {% if resultado!=None %}
-<br>
-  <!--El cliente debe seleccionar el pais para que se muestren las sucursales.-->
-  <table class="table table-bordered table-hover table-condensed">
-    <thead>
-      <tr>
-        <th title="Field #1">idCliente</th>
-        <th title="Field #2">cedula</th>
-        <th title="Field #2">nombre</th>
-        <th title="Field #3">apellido1</th>
-        <th title="Field #4">apellido2</th>
-        <th title="Field #5">estado</th>
-        <th title="Field #6">fechaNacimiento</th>
-        <th title="Field #7">celular</th>
-        <th title="Field #10">correo</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      {% for r in resultado %}
+    <br>  
+    <!--El cliente debe seleccionar el pais para que se muestren las sucursales.-->
+    <div style="text-align:center">
+    <table class="table table-bordered table-hover table-condensed" border="1"  align="center">
+      <thead>
         <tr>
-            <td>{{r.idCliente}}</td>
-            <td>{{r.cedula}}</td>
-            <td>{{r.nombre}}</td>
-            <td>{{r.apellido1}}</td>
-            <td>{{r.apellido2}}</td>
-            <td>{{r.estado}}</td>
-            <td>{{r.fechaNacimiento}}</td>
-            <td>{{r.celular}}</td>
-            <td>{{r.correo}}</td>
+          <th title="Field #1">idCliente</th>
+          <th title="Field #2">cedula</th>
+          <th title="Field #3">nombre</th>
+          <th title="Field #4">apellido1</th>
+          <th title="Field #5">apellido2</th>
+          <th title="Field #6">estado</th>
+          <th title="Field #7">fechaNacimiento</th>
+          <th title="Field #8">celular</th>
+          <th title="Field #9">correo</th>
         </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+      </thead>
+
+      <tbody>
+        {% for r in resultado %}
+          <tr>
+              <td>{{r.idCliente}}</td>
+              <td>{{r.cedula}}</td>
+              <td>{{r.nombre}}</td>
+              <td>{{r.apellido1}}</td>
+              <td>{{r.apellido2}}</td>
+              <td>{{r.estado}}</td>
+              <td>{{r.fechaNacimiento}}</td>
+              <td>{{r.celular}}</td>
+              <td>{{r.correo}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 {%endif%}
 {% if resultado!=None %}
-<a href="/menuEmpleado" style = "  margin-left: 30%; margin-top:3%; text-align: center; margin-bottom: 100px;" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Regresar</a>
+<a href="/menuEmpleado" style = "margin-left: 30%; margin-top:3%; text-align: center; margin-bottom: 100px;" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Regresar</a>
 {%endif%}
 
 {% endblock %}
