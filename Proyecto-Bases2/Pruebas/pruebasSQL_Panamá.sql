@@ -1426,7 +1426,7 @@ insert into Categoria(nombre, descripcion) values
 --Productos
 insert into Producto(idCategoria, nombre, descripcion, precio) values
 (1,'Pera', 'tipicas y deliciosas', 0.5),(1,'Melon', 'cultivado por nuestra gente', 1),(1,'Guayaba', 'la fruta de temporada', 0.5),
-(2,'Jet', 'bebida energética', 2),(2,'Arizona', 'té asiático', 2),(2,'Lecha', 'proteína añadida', 2),
+(2,'Jet', 'bebida energética', 2),(2,'Arizona', 'té asiático', 2),(2,'Leche', 'proteína añadida', 2),
 (3,'Platanitos', 'marca Pro', 2),(3,'Yuquitas', 'marca Pro', 2),(3,'Meneitos', 'marca Jacks', 2),
 (4,'Higado', 'perfecto para comer con cebolla', 2),(4,'Salmon', 'desde los Alpes', 2),(4,'Pulpo', 'diferente y sabroso', 2),
 (5,'Aspirina', 'ayuda a combatir molestias', 2),(5,'Enterogermina', 'restaura la flora estomacal', 2),(5,'Rupax', 'Combate alergias', 2);;
