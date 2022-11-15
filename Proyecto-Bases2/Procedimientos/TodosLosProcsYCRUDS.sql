@@ -1960,17 +1960,18 @@ BEGIN
 	WHERE Pais.idPais = isnull(@idPais, Pais.idPais)
 end
 go
+
 --Procedimiento de reportes para ver productos mas vendidos
 GO
-CREATE PROCEDURE ReportesProductos @idPais INT,
+CREATE or alter PROCEDURE ReportesProductos @idPais INT,
                         @idProducto INT,
                         @idSucursal INT,
                         @idProveedor INT,
-                        @fechaInc date,
-                        @fechaFin date
-                        WITH ENCRYPTION AS
+                        @fechaInc varchar(20),
+                        @fechaFin varchar(20)
+AS
 BEGIN
-	SELECT count(Detalle.idDetalle) as vendidos, Producto.nombre,
+SELECT count(Detalle.idDetalle) as vendidos, Producto.nombre,
     Sucursal.nombreSucursal, Prov.nombreProveedor,
     Pais.nombrePais, Factura.fechaFactura
     FROM Detalle
@@ -1986,19 +1987,20 @@ BEGIN
     inner join Distrito ON Distrito.idDistrito = Ubicacion.idDistrito
     inner join Canton ON Canton.idCanton = Distrito.idCanton
     inner join Provincia ON Provincia.idProvincia = Canton.idProvincia
-    inner join Pais ON Pais.idPais = Provincia.idPais --Para obtener el nombrePais
+    inner join Pais ON Pais.idPais = Provincia.idPais
 	WHERE Pais.idPais = isnull(@idPais, Pais.idPais) and
     Producto.idProducto = isnull(@idProducto, Producto.idProducto) and
     Sucursal.idSucursal = isnull(@idSucursal, Sucursal.idSucursal) and
     Prov.idProveedor = isnull(@idProveedor, Prov.idProveedor) and
     Prov.estado = 2 and --Proveedor activo
-    Factura.fechaFactura BETWEEN isnull(@fechaInc, Factura.fechaFactura) and
-    isnull(@fechaFin, Factura.fechaFactura)
-    GROUP BY Producto.nombre, Sucursal.nombreSucursal, Prov.nombreProveedor,
+	Factura.fechaFactura BETWEEN isnull(CONVERT(datetime, @fechaInc), Factura.fechaFactura) and
+    isnull(CONVERT(datetime, @fechaFin), Factura.fechaFactura)
+	GROUP BY Producto.nombre, Sucursal.nombreSucursal, Prov.nombreProveedor,
     Pais.nombrePais, Factura.fechaFactura
-    ORDER BY vendidos DESC ;
+	ORDER BY vendidos DESC;
 END
 GO
+
 --Procedimiento de reportes para ver Clientes mas frecuentes
 GO
 CREATE PROCEDURE ReportesClientes @idPais INT,
