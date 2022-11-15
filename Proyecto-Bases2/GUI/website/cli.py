@@ -218,7 +218,7 @@ def consultarSucursal():
         return redirect(url_for('cli.pais'))
     elif not session.get('ubicacion'):#Valida que haya selecionado la ubicacion
         flash('Debe seleccionar su ubicación para poder consultar las sucursales.',category='error')
-        return redirect(url_for('cli.ubicacionDomicilio'))
+        return redirect(url_for('cli.ubicacionCliente'))
     else:
         conexion =ConexionServidorSQL()
         conexion.conectarServidor(conexion.getNombreBaseDatos(session.get('pais')))
