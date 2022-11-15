@@ -1,14 +1,7 @@
 {% extends "barraMenuEmpleado.html"%}
 <title>{% block title %}Pedidos realizados{% endblock %}</title>
 {% block content %}  
-    <style>
-        .hijo {
-            position: absolute;
-            top: 30%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-    </style>
+    
         <br>
         <h3>Seleccione la sucursal a la que quiere consultar.</h3>
         <form class="form-inline" method="POST" action="{{url_for('emp.pedidosRealizados') }}">
