@@ -39,6 +39,18 @@ def pedidosRealizados():
         conexion.cerrarConexionServidor()
         return render_template('pedidosRealizados.html',sucursales=sucursales,pedidos=pedidos)
         
-        
+@emp.route('/otorgarBono',methods=['GET','POST'])
+def ortorgarBono():
+    if request.method=='GET':
+        print('OTORGA EL BONO')
+        #Llamar base para otorgar el bono
+        conexion = ConexionServidorSQL()
+        conexion.conectarServidor(conexion.getNombreBaseDatos(session['pais']))#Se conecta al servidor del pais
+        if (conexion.ortorgarBonos()):
+            flash('Se han ortorgado los bonos correctamente.',category='success')
+            conexion.cerrarConexionServidor()
+        else:
+            flash('No se ha podido otorgar los bonos',category='error')
+        return redirect(url_for('emp.menuEmpleado'))
 
         
