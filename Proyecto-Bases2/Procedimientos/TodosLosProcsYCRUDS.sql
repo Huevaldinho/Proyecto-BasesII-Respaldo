@@ -712,7 +712,7 @@ BEGIN
 			set idMoneda = ISNULL(@idMoneda,idMoneda), 
 				nombrePais = ISNULL(@nombrePais,nombrePais)
 			where idPais= @idPais;
-		endio
+		end
 END
 GO
 
