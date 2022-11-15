@@ -903,7 +903,9 @@ class ConexionServidorSQL:
         """
         infoLimpia=[]
         dias ={'Monday':'L','Tuesday':"K","Wednesday":'M',"Thursday":'J',"Friday":'V','Saturday':'S','Sunday':'D'}
+        
         dia = dias.get(calendar.day_name[date.today().weekday()])#Saca la primera letra del dia para comparar si la sucursal esta abierta.
+        print(dia)
         abierto='Cerrado'
         horarioBonito = ''
         admin = {}
