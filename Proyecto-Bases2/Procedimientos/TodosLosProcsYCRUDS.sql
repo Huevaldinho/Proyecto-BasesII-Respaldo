@@ -1929,6 +1929,17 @@ BEGIN
 end
 go
 
+--Procedimiento cambioMoneda
+GO
+CREATE PROCEDURE getCambioMoneda @idPais INT
+                                WITH ENCRYPTION AS
+BEGIN
+	SELECT Moneda.nombreDivisa, Moneda.cambioDolar
+    FROM Pais 
+    INNER JOIN Moneda ON Moneda.idMoneda = Pais.idMoneda
+	WHERE Pais.idPais = isnull(@idPais, Pais.idPais)
+end
+go
 
 --Procedimiento de reportes para ver productos mas vendidos
 GO
@@ -2051,9 +2062,6 @@ BEGIN
 END
 GO
 
-
-
-execute ReportesVencimientos null, null, null, null, null, null
 --Proceso para conseguir el id del usuario de un cliente segun su correo
 GO
 CREATE PROCEDURE getUsuarioCliente @correo varchar(50) WITH ENCRYPTION AS
@@ -2113,6 +2121,17 @@ BEGIN
     Distrito.idDistrito = isnull(@idDistrito, Distrito.idDistrito);
 END
 GO
+
+--Proceso para conseguir el la cantidad disponible en un inventario
+GO
+CREATE or alter PROCEDURE getCantidadInventario @idProducto INT, @idSucursal int WITH ENCRYPTION AS
+BEGIN
+	SELECT Inventario.cantidad, Inventario.idProducto, Inventario.idSucursal
+    FROM Inventario
+    WHERE Inventario.idProducto = isnull(@idProducto, Inventario.idProducto) and
+    Inventario.idSucursal = isnull(@idSucursal, Inventario.idSucursal);
+END
+GO
  
 --Calcular el subtotal del detalle
 GO
@@ -2131,7 +2150,31 @@ BEGIN
     inner join Impuesto on Impuesto.idImpuesto = ProductoxImpuesto.idImpuesto --Obtenemos el impuesto del producto
     WHERE Unidad.idUnidad = @idUnidad
 	group by Producto.precio, Descuento.porcentaje;
-    select (@precio + @precio * @Descuentos + @precio * @Impuestos) as subtotal;
+    select (@precio -( @precio * @Descuentos) + @precio * @Impuestos) as subtotal;
+END
+GO
+
+GO
+CREATE or alter PROCEDURE getUnidadProducto @idProducto int WITH ENCRYPTION AS
+BEGIN
+    select unidad.idUnidad from unidad
+    inner join LoteProducto on LoteProducto.idLote = Unidad.idLote
+    inner join Pedido on Pedido.idPedido = LoteProducto.idPedido
+    inner join Producto on Producto.idProducto = Pedido.idProducto --Obtenemos producto
+    where Producto.idProducto = isnull(@idProducto,Producto.idProducto)
+    and (unidad.idEstado = 3 or unidad.idEstado = 10)
+END
+GO
+
+GO
+CREATE or alter PROCEDURE getInfoDetalle @idFactura int WITH ENCRYPTION AS
+BEGIN
+    select producto.nombre, detalle.subTotal from detalle
+    inner join Unidad on Unidad.idUnidad = detalle.idUnidad
+    inner join LoteProducto on LoteProducto.idLote = Unidad.idLote
+    inner join Pedido on Pedido.idPedido = LoteProducto.idPedido
+    inner join Producto on Producto.idProducto = Pedido.idProducto --Obtenemos producto
+    where Detalle.idFactura = isnull(@idFactura,Detalle.idFactura)
 END
 GO
 
@@ -2254,7 +2297,7 @@ GO
 -- determinar si van a
 -- expirer en una semana y se pone en descuento, si un producto ya ha expirado debe de
 -- sacarlo del exhibidor
-use CostaRica;
+
 go
 CREATE PROCEDURE ponerProductoEnDescuento @idLote int, @porcentaje float WITH ENCRYPTION AS
 BEGIN
@@ -2322,6 +2365,27 @@ as
 
 go
 
+create procedure consultaCliente(@Cedula int ,@idCliente int )
+as 
+	BEGIN
+	select Cliente.idCliente,Cliente.cedula, Cliente.nombre, Cliente.apellido1, Cliente.apellido2 ,
+	Estado.nombre as estado, Cliente.fechaNacimiento, Cliente.celular, Cliente.correo
+	from Cliente inner join Estado on Cliente.idEstado=Estado.idEstado
+	where Cliente.idCliente = isnull(@idCliente, Cliente.idCliente) and 
+	Cliente.cedula=isnull(@cedula,Cliente.cedula)
+	END
+go
+
+create procedure consultaClienteC(@Correo varchar(60))
+as 
+	BEGIN
+	select Cliente.idCliente,Cliente.cedula, Cliente.nombre, Cliente.apellido1, Cliente.apellido2 
+	, Cliente.fechaNacimiento, Cliente.celular, Cliente.correo
+	from Cliente 
+	where Cliente.correo = isnull(@Correo ,Cliente.correo) 
+	END
+go
+
 create procedure montoRecolectadoEnvio(@idSucursal int, @fechaInicial date, @fechaFin date, @idCliente int )
 as 
 	select sum(Envio.costoEnvio) as totalesEnvios , Sucursal.nombreSucursal, Factura.idCliente, Envio.fechaEnvio 
@@ -2340,6 +2404,34 @@ as
 	and Producto.nombre= isnull(@nombre,Producto.nombre);
 
 go
+
+GO
+CREATE PROCEDURE getFoto @idFoto int WITH ENCRYPTION AS
+BEGIN
+	SELECT Fotos.foto 
+    FROM Fotos
+    WHERE Fotos.idFoto = @idFoto;
+END
+GO
+
+
+GO
+CREATE PROCEDURE getNombreProducto @idProducto int WITH ENCRYPTION AS
+BEGIN
+	SELECT Producto.nombre
+    FROM Producto
+    WHERE Producto.idProducto = @idProducto;
+END
+GO
+
+CREATE PROCEDURE getNombreProductoFoto @idFoto int WITH ENCRYPTION AS
+BEGIN
+	SELECT Producto.nombre
+    FROM Fotos inner join 
+	Producto on Fotos.idProducto = Producto.idProducto where idFoto=@idFoto;
+END
+GO
+
 
 --Procedimiento buscarProducto
 GO
