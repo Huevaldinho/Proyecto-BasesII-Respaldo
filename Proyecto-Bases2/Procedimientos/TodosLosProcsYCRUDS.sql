@@ -2354,6 +2354,27 @@ as
 
 go
 
+create procedure consultaCliente(@Cedula int ,@idCliente int )
+as 
+	BEGIN
+	select Cliente.idCliente,Cliente.cedula, Cliente.nombre, Cliente.apellido1, Cliente.apellido2 ,
+	Estado.nombre as estado, Cliente.fechaNacimiento, Cliente.celular, Cliente.correo
+	from Cliente inner join Estado on Cliente.idEstado=Estado.idEstado
+	where Cliente.idCliente = isnull(@idCliente, Cliente.idCliente) and 
+	Cliente.cedula=isnull(@cedula,Cliente.cedula)
+	END
+go
+
+create procedure consultaClienteC(@Correo varchar(60))
+as 
+	BEGIN
+	select Cliente.idCliente,Cliente.cedula, Cliente.nombre, Cliente.apellido1, Cliente.apellido2 
+	, Cliente.fechaNacimiento, Cliente.celular, Cliente.correo
+	from Cliente 
+	where Cliente.correo = isnull(@Correo ,Cliente.correo) 
+	END
+go
+
 create procedure montoRecolectadoEnvio(@idSucursal int, @fechaInicial date, @fechaFin date, @idCliente int )
 as 
 	select sum(Envio.costoEnvio) as totalesEnvios , Sucursal.nombreSucursal, Factura.idCliente, Envio.fechaEnvio 
@@ -2372,6 +2393,34 @@ as
 	and Producto.nombre= isnull(@nombre,Producto.nombre);
 
 go
+
+GO
+CREATE PROCEDURE getFoto @idFoto int WITH ENCRYPTION AS
+BEGIN
+	SELECT Fotos.foto 
+    FROM Fotos
+    WHERE Fotos.idFoto = @idFoto;
+END
+GO
+
+
+GO
+CREATE PROCEDURE getNombreProducto @idProducto int WITH ENCRYPTION AS
+BEGIN
+	SELECT Producto.nombre
+    FROM Producto
+    WHERE Producto.idProducto = @idProducto;
+END
+GO
+
+CREATE PROCEDURE getNombreProductoFoto @idFoto int WITH ENCRYPTION AS
+BEGIN
+	SELECT Producto.nombre
+    FROM Fotos inner join 
+	Producto on Fotos.idProducto = Producto.idProducto where idFoto=@idFoto;
+END
+GO
+
 
 --Procedimiento buscarProducto
 GO
