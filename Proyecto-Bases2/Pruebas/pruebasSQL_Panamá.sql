@@ -1202,6 +1202,20 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (1,41,1,897746944,'Paula','Tutton','Tutton','Paula_Tutton8696@gompie.com','3662-09-24 09:30:38Z','0237-10-30 13:02:07Z'),
 (1,23,1,704292146,'Dasha','Pearce','Pearce','Dasha_Pearce9889@fuliss.net','0603-09-14 22:03:16Z','4421-04-28 14:46:27Z');
 
+update Empleado set idEstado = 2;
+DECLARE @cnt INT = 1;
+WHILE @cnt <= (select count(idEmpleado) from Empleado)
+BEGIN
+
+	UPDATE Empleado
+	SET fechaNacimiento = DATEADD(DAY, ABS(CHECKSUM(NEWID()) % 3650), '1980-01-01')
+	
+	UPDATE Empleado
+	SET fechaContratacion = DATEADD(DAY, ABS(CHECKSUM(NEWID()) % 2920), '2014-01-01')
+   
+   SET @cnt = @cnt + 1;
+END;
+GO
 
 --UsuarioEmpleados
 INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
@@ -1577,6 +1591,18 @@ insert into Pedido(idSucursal,idProveedor,idEstado,idProducto,fechaSolicitud,fec
 (18,34,6,11,'2021-11-02 14:02:32','2025-09-11 13:25:18',11),(8,3,6,10,'2021-07-09 02:04:09','2026-07-22 10:29:02',13),
 (1,1,6,1,'2021-12-23 08:36:20','2039-01-26 15:02:10',10000);
 
+DECLARE @cnt INT = 1;
+WHILE @cnt <= (select count(idPedido) from Pedido)
+BEGIN
+
+	UPDATE Pedido SET idProducto = @cnt where idPedido = @cnt;
+	UPDATE Pedido SET idSucursal = @cnt where idPedido = @cnt;
+	UPDATE Inventario SET idProducto = @cnt where idInventario = @cnt;
+	UPDATE Inventario SET idSucursal = @cnt where idInventario = @cnt; 
+   
+   SET @cnt = @cnt + 1;
+END;
+GO
 
 --Lotes de productos
 insert into LoteProducto(idPedido, fechaProduccion,fechaExpiracion,cantidad,

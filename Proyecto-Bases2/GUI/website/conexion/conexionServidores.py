@@ -735,7 +735,7 @@ class ConexionServidorSQL:
             result = []
             for x in prov:
                 result += [{'idProveedor':x['_outidproveedor'], 'nombreProveedor':x['_outnombreproveedor'],
-                'celular':x['_outcelular'], 'correo':x['_outcorreo'],'productos':self.catalogoProv(x['_outidproveedor'])}]
+                'celular':x['_outcelular'], 'correo':x['_outcorreo'],'productos':self.catalogoProv(pIdProveedor = x['_outidproveedor'])}]
                 # result += [x['productos'] = catalogoProv(x['idProveedor'])]
             return result
             
@@ -1760,8 +1760,34 @@ class ConexionServidorSQL:
         except Exception as e:
             print(e)
             return None
-
-
+    def ortorgarBonos(self):
+        """
+            Metodo para ortorgar bonos
+            Parametros: No tiene
+            Retorna: True si se pudo ejecutar el proc y false si no se puede.
+        """
+        try:
+            self.cursorSQL.execute("exec dbo.OtorgarBono")
+            return True
+        except Exception as e:
+            print(e)
+            return False
+    def verBonosOtorgados(self,idEmpleado,fechaInicio,fechaFin,idSucursal,idPais):
+        """
+            Metodo para ver los bonos otorgados.
+            Parametros: 
+                idEmpleado int
+                fechaInicio varchar 'yyyy-mm-dd'
+                fechaFin varchar 'yyyy-mm-dd'
+                idSucursal int
+                idPais int
+            Retorna: [{}]
+        """
+        try:
+            return self.select('exec dbo.ObtenerInfoBono ?, ?, ?, ?, ?',(idEmpleado,fechaInicio,fechaFin,idSucursal,idPais))
+        except Exception as e:
+            print(e)
+            return None
 
 
 class ConexionServidorPG:
@@ -1774,7 +1800,7 @@ class ConexionServidorPG:
             self.servidor = psycopg2.connect(
                                             host = 'localhost',
                                             user = 'postgres',
-                                            password='A1483369a',
+                                            password='123',
                                             database='Proveedores')
             self.cursorPG = self.servidor.cursor()
             self.servidor.autocommit = True
@@ -1948,3 +1974,5 @@ class ConexionServidorPG:
     #print(" ")
     # print(x.reporteProductos(pFechaInc='2022/11/15', pFechaFin='2022/11/20'))
     # print(x.reporteProductos())
+    # print(x.buscarProveedores(pNombreProveedor='Comodo'))
+    #print(" ")

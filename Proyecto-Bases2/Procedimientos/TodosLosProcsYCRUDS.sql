@@ -1511,7 +1511,7 @@ GO
 -- drop procedure CRUDfactura;
 go
 CREATE PROCEDURE CRUDfactura @opcion int, @idFactura int, @idSucursal int, @idCliente  int,
-				 @idEmpleado int, @idMetodoPago int, @total money, @fechaFactura datetime
+				 @idEmpleado int, @idMetodoPago int, @total money
 							 with encryption AS
 BEGIN
     declare @error int = 0,@errorMsg varchar(100);
@@ -1523,7 +1523,7 @@ BEGIN
 			RAISERROR (@errorMsg,16,1,N' Error numero',@error); 
         end
 	if (@opcion=0 and (@idSucursal is null or @idCliente is null or @idEmpleado is null or 
-					   @idMetodoPago is null or @total is null or @fechaFactura is null))
+					   @idMetodoPago is null or @total is null))
 		begin
             set @error=2; set @errorMsg='Para crear, no pueden haber atributos nulos. %s %d';
 			RAISERROR (@errorMsg,16,1,N' Error numero',@error); 
@@ -1558,7 +1558,7 @@ BEGIN
 		begin
 			insert into Factura(idSucursal, idCliente, idEmpleado, idMetodoPago, total, 
 								fechaFactura) 
-			values (@idSucursal, @idCliente, @idEmpleado, @idMetodoPago, @total, @fechaFactura)
+			values (@idSucursal, @idCliente, @idEmpleado, @idMetodoPago, @total, getDate())
 		end
 	if (@opcion = 1)
 		begin
@@ -1572,8 +1572,7 @@ BEGIN
 				idCliente = ISNULL(@idCliente,idCliente),
 				idEmpleado = ISNULL(@idEmpleado,idEmpleado),
 				idMetodoPago = ISNULL(@idMetodoPago,idMetodoPago),
-				total = ISNULL(@total,total),
-				fechaFactura = ISNULL(@fechaFactura,fechaFactura)
+				total = ISNULL(@total,total)
 			where idFactura = @idFactura;
 		end
 END
@@ -1646,26 +1645,23 @@ CREATE OR ALTER PROCEDURE OtorgarBono WITH ENCRYPTION AS
 BEGIN
 	/*
 	La empresa otorga un bono a los facturadores que hayan facturado mas de 1000 productos
-	en una semana.
-	Se debe conectar a un Job que lo ejecute cada semana a la misma hora, ejemplo todos los 
-	viernes a las 5pm.
+	en los ultimos 3 meses
+	
 	*/
 	
 
 	--Inserta bono de 100 dolares en la fecha actual a todos los empleados que hayan vendido mas de mil productos en la semana
-	INSERT INTO Bono(idEmpleado,cantidadBono,fechaBono)  
-		
+	INSERT INTO dbo.Bono(idEmpleado,cantidadBono,fechaBono)  
 		SELECT idEmpleado,100,GETDATE() from (
-			SELECT F.idEmpleado, SUM(DISTINCT D.idUnidad) as cantidadProductosVendidos FROM Factura AS F 
-				inner join Empleado AS E ON E.idEmpleado = F.idEmpleado --De factura salta a empleado para ver que si este activo y sea facturador
-				inner join Estado AS Es ON Es.idEstado = E.idEstado	--De empleado salta a estado para ver que el empleado este activo
-				inner join Puesto AS P ON P.idPuesto = E.idPuesto	--De empleado salta a puesto para ver que el empleado sea facturador
-				inner join Detalle AS D on D.idFactura = F.idFactura --De factura salta a detalle para contar los productos vendidos
+			SELECT F.idEmpleado, SUM(DISTINCT D.idUnidad) as cantidadProductosVendidos FROM dbo.Factura AS F 
+				inner join dbo.Empleado AS E ON E.idEmpleado = F.idEmpleado --De factura salta a empleado para ver que si este activo y sea facturador
+				inner join dbo.Estado AS Es ON Es.idEstado = E.idEstado	--De empleado salta a estado para ver que el empleado este activo
+				inner join dbo.Puesto AS P ON P.idPuesto = E.idPuesto	--De empleado salta a puesto para ver que el empleado sea facturador
+				inner join dbo.Detalle AS D on D.idFactura = F.idFactura --De factura salta a detalle para contar los productos vendidos
 				WHERE 
-					fechaFactura >= DATEADD(day, -7, GETDATE()) --Le resta 7 dias a la fecha actual. Es decir una semana entera. 
+					F.fechaFactura >= DATEADD(day, -90, GETDATE()) --Le resta 90 dias a la fecha actual. Es decir 3 meses
 					AND P.idPuesto = 1 --Puesto 1 es Facturador
 					AND Es.idEstado = 2 --Estado 2 es Activo.	
-			
 				GROUP BY F.idEmpleado --Agrupa por empleado
 				HAVING SUM(DISTINCT D.idUnidad)>=1000 --Filtra las agrupaciones que tengan mas de 1000 ventas en la semana.
 			) empleadosYcantidadProductosVendidos; 
@@ -1677,8 +1673,8 @@ GO
 --Procedimiento Obtener Informacion de Bonos
 --FALTA PROBARLO
 CREATE OR ALTER PROCEDURE ObtenerInfoBono @idEmpleado INT,
-								@fechaInicio SMALLDATETIME,
-								@fechaFin SMALLDATETIME,
+								@fechaInicioP varchar(50),
+								@fechaFinP varchar(50),
 								@idSucursal INT,
 								@idPais INT
 								WITH ENCRYPTION AS
@@ -1687,8 +1683,12 @@ BEGIN
 		Se debe poder obtener informaci�n sobre los bonos recibidos por empleado, fechas,
 		succursal y/o pais.
 		Si todos los parametros son nulos, muestra todos los bonos de todos los empleados.
+		'2020-08-25'
+		'2021-12-08'
 	*/
-
+		declare @fechaInicio  smalldatetime,@fechaFin smalldatetime;
+		set @fechaInicio = (SELECT CAST(@fechaInicioP AS smalldatetime)); 
+        set @fechaFin = (SELECT CAST(@fechaFinP AS smalldatetime)); 
 		SELECT E.idEmpleado as idEmpleado,B.fechaBono,S.nombreSucursal as nombreSucursal,
 				Pa.nombrePais as pais FROM Bono AS B
 
@@ -1804,23 +1804,48 @@ BEGIN
 
 END
 GO
+--Obtiene la sucursal mas cercana que tenga el producto que se busca.
+CREATE OR ALTER PROCEDURE sucursalExistenciasMasCercana @lat FLOAT,@lon FLOAT,@idProducto FLOAT
+WITH ENCRYPTION AS
+BEGIN
+	SELECT TOP 1 S.idSucursal,S.nombreSucursal,
+	S.ubicacionG.STDistance(geography::Point(@lat,@lon, 4326))/1000 AS kilometrosDistancia,
+	I.idProducto,P.nombre AS nombreProducto,I.cantidad 
+	FROM dbo.Inventario AS I
+		INNER JOIN dbo.Producto AS P ON P.idProducto=I.idProducto
+		INNER JOIN dbo.Sucursal AS S ON S.idSucursal = I.idSucursal
+		WHERE I.idProducto=@idProducto AND cantidad>0 ORDER BY kilometrosDistancia DESC;--Ordena por el que este mas cerca del cliente
+	
+    
+	
+END
+GO
+--Muestra los pedidos realizados por una o todas las sucursales.
+CREATE OR ALTER PROCEDURE mostrarPedidos @idSucursal INT WITH ENCRYPTION AS
+BEGIN
+	--Retorna
+	--nombreSucursal,nombreProducto,cantidad,fechaSolicitud,fechaRecibido,estado,idProveedor
+	SELECT Suc.nombreSucursal AS sucursal,Pro.nombre AS nombreProducto,
+			Pedi.cantidad,Pedi.fechaSolicitud,Pedi.fechaRecibido,Est.nombre AS estado,
+			Pedi.idProveedor AS idProveedor
+	FROM dbo.Pedido  AS Pedi
+		INNER JOIN dbo.Sucursal AS Suc ON Suc.idSucursal=Pedi.idSucursal
+		INNER JOIN dbo.Producto AS Pro ON Pro.idProducto = Pedi.idProducto
+		INNER JOIN dbo.Estado AS Est ON Est.idEstado=Pedi.idEstado
 
+		WHERE Pedi.idSucursal=ISNULL(@idSucursal,Pedi.idSucursal)
 
+END
+GO
 
+--Muestra id sucursal y el administrador de la sucursal. idSucursal y idEmpleado
+CREATE OR ALTER PROCEDURE validarAdministrador WITH ENCRYPTION AS
+BEGIN
 
-/*
-Estado:
-1 - Inactivo
-2 - Activo
-
-Puesto:
-1 - Facturador
-
-Moneda:
-1 - Dolar
-
-*/
-
+	SELECT S.idSucursal,S.idAdministrador FROM dbo.Sucursal AS S 
+	INNER JOIN dbo.Empleado AS Em ON Em.idEmpleado = S.idAdministrador;
+END
+GO
 
 --Procedimiento Facturar
 GO
@@ -1879,16 +1904,14 @@ BEGIN
             commit;
 END
 GO
-
 --Procedimiento getIdProveedores
 GO
-CREATE  PROCEDURE getIdProveedores @nombreProducto varchar(20),
-                                 @nombreProveedor varchar(20),
+CREATE or alter PROCEDURE getIdProveedores @idProducto int,
+                                 @nombreProveedor varchar(100),
                                  @idPais INT,
                                  @idProvincia int,
                                  @idCanton int,
-                                 @idDistrito int,
-                                 @idUbicacion int
+                                 @idDistrito int
                                 WITH ENCRYPTION AS
 BEGIN
 	SELECT Prov.idProveedor
@@ -1901,17 +1924,15 @@ BEGIN
     INNER JOIN Canton ON Canton.idCanton = Distrito.idCanton --Obtener canton
     INNER JOIN Provincia ON Provincia.idProvincia = Canton.idProvincia --Obtener provincia
     INNER JOIN Pais ON Pais.idPais = Provincia.idPais --Obtener pais
-	WHERE Prov.nombreProveedor = isnull(@nombreProveedor, Prov.nombreProveedor) and
+	WHERE (@nombreProveedor is null or Prov.nombreProveedor like '%'+@nombreProveedor+'%') and
     Prov.estado = 2 AND --Proveedor activo
-    Producto.nombre = isnull(@nombreProducto, Producto.nombre) AND
-    Ubicacion.idUbicacion = isnull(@idUbicacion, Ubicacion.idUbicacion) AND
+    Producto.idProducto = isnull(@idProducto, Producto.idProducto) AND
     Distrito.idDistrito = isnull(@idDistrito, Distrito.idDistrito) AND
     Canton.idCanton = isnull(@idCanton, Canton.idCanton) AND
     Provincia.idProvincia = isnull(@idProvincia, Provincia.idProvincia) AND
     Pais.idPais = isnull(@idPais, Pais.idPais) ;
 end
 go
-
 --Procedimiento informacion de precios de los proveedores
 GO
 CREATE PROCEDURE getCatalogoProv @idProveedor INT,
@@ -1929,18 +1950,29 @@ BEGIN
 end
 go
 
+--Procedimiento cambioMoneda
+GO
+CREATE PROCEDURE getCambioMoneda @idPais INT
+                                WITH ENCRYPTION AS
+BEGIN
+	SELECT Moneda.nombreDivisa, Moneda.cambioDolar
+    FROM Pais 
+    INNER JOIN Moneda ON Moneda.idMoneda = Pais.idMoneda
+	WHERE Pais.idPais = isnull(@idPais, Pais.idPais)
+end
+go
 
 --Procedimiento de reportes para ver productos mas vendidos
 GO
-CREATE PROCEDURE ReportesProductos @idPais INT,
+CREATE or alter PROCEDURE ReportesProductos @idPais INT,
                         @idProducto INT,
                         @idSucursal INT,
                         @idProveedor INT,
-                        @fechaInc date,
-                        @fechaFin date
-                        WITH ENCRYPTION AS
+                        @fechaInc varchar(20),
+                        @fechaFin varchar(20)
+AS
 BEGIN
-	SELECT count(Detalle.idDetalle) as vendidos, Producto.nombre,
+SELECT count(Detalle.idDetalle) as vendidos, Producto.nombre,
     Sucursal.nombreSucursal, Prov.nombreProveedor,
     Pais.nombrePais, Factura.fechaFactura
     FROM Detalle
@@ -1956,17 +1988,17 @@ BEGIN
     inner join Distrito ON Distrito.idDistrito = Ubicacion.idDistrito
     inner join Canton ON Canton.idCanton = Distrito.idCanton
     inner join Provincia ON Provincia.idProvincia = Canton.idProvincia
-    inner join Pais ON Pais.idPais = Provincia.idPais --Para obtener el nombrePais
+    inner join Pais ON Pais.idPais = Provincia.idPais
 	WHERE Pais.idPais = isnull(@idPais, Pais.idPais) and
     Producto.idProducto = isnull(@idProducto, Producto.idProducto) and
     Sucursal.idSucursal = isnull(@idSucursal, Sucursal.idSucursal) and
     Prov.idProveedor = isnull(@idProveedor, Prov.idProveedor) and
     Prov.estado = 2 and --Proveedor activo
-    Factura.fechaFactura BETWEEN isnull(@fechaInc, Factura.fechaFactura) and
-    isnull(@fechaFin, Factura.fechaFactura)
-    GROUP BY Producto.nombre, Sucursal.nombreSucursal, Prov.nombreProveedor,
+	Factura.fechaFactura BETWEEN isnull(CONVERT(datetime, @fechaInc), Factura.fechaFactura) and
+    isnull(CONVERT(datetime, @fechaFin), Factura.fechaFactura)
+	GROUP BY Producto.nombre, Sucursal.nombreSucursal, Prov.nombreProveedor,
     Pais.nombrePais, Factura.fechaFactura
-    ORDER BY vendidos DESC ;
+	ORDER BY vendidos DESC;
 END
 GO
 
@@ -2004,14 +2036,13 @@ BEGIN
     Sucursal.idSucursal = isnull(@idSucursal, Sucursal.idSucursal) and
     Prov.idProveedor = isnull(@idProveedor, Prov.idProveedor) and
     Prov.estado = 2 and --Proveedor activo
-    Factura.fechaFactura BETWEEN isnull(@fechaInc, Factura.fechaFactura) and
-    isnull(@fechaFin, Factura.fechaFactura)
+    Factura.fechaFactura BETWEEN isnull(CONVERT(datetime, @fechaInc), Factura.fechaFactura) and
+    isnull(CONVERT(datetime, @fechaFin), Factura.fechaFactura)
     GROUP BY Cliente.nombre,Cliente.apellido1,Cliente.apellido2, Producto.nombre, Sucursal.nombreSucursal, Prov.nombreProveedor,
     Pais.nombrePais, Factura.fechaFactura
     ORDER BY cantFacturas DESC ;
 END
 GO
-
 --Procedimiento de reportes para ver productos expirados
 GO
 CREATE PROCEDURE ReportesVencimientos @idPais INT,
@@ -2050,10 +2081,6 @@ BEGIN
     ORDER BY vencidos DESC ;
 END
 GO
-
-
-
-execute ReportesVencimientos null, null, null, null, null, null
 --Proceso para conseguir el id del usuario de un cliente segun su correo
 GO
 CREATE PROCEDURE getUsuarioCliente @correo varchar(50) WITH ENCRYPTION AS
@@ -2064,7 +2091,6 @@ BEGIN
     WHERE Cliente.correo = @correo;
 END
 GO
-
 --Proceso para conseguir el id del cliente segun su correo
 GO
 CREATE PROCEDURE getIdCliente @correo varchar(50) WITH ENCRYPTION AS
@@ -2074,7 +2100,6 @@ BEGIN
     WHERE Cliente.correo = @correo;
 END
 GO
-
 --Proceso para conseguir el id del usuario de un empleado segun su correo
 GO
 CREATE PROCEDURE getUsuarioEmpleado @correo varchar(50) WITH ENCRYPTION AS
@@ -2085,7 +2110,6 @@ BEGIN
     WHERE Empleado.correo = @correo;
 END
 GO
-
 --Proceso para conseguir el id del empleado segun su correo
 GO
 CREATE PROCEDURE getIdEmpleado @correo varchar(50) WITH ENCRYPTION AS
@@ -2095,7 +2119,6 @@ BEGIN
     WHERE Empleado.correo = @correo;
 END
 GO
-
 --Proceso para conseguir el id del empleado segun su correo
 GO
 CREATE or alter PROCEDURE getSucursal @nombrePais varchar(50), @idProvincia int, @idCanton int, @idDistrito int WITH ENCRYPTION AS
@@ -2113,28 +2136,64 @@ BEGIN
     Distrito.idDistrito = isnull(@idDistrito, Distrito.idDistrito);
 END
 GO
- 
---Calcular el subtotal del detalle
+--Proceso para conseguir el la cantidad disponible en un inventario
 GO
-CREATE PROCEDURE calcularSubtotal @idUnidad int WITH ENCRYPTION AS
+CREATE or alter PROCEDURE getCantidadInventario @idProducto INT, @idSucursal int WITH ENCRYPTION AS
 BEGIN
-    DECLARE @precio INT, @Descuentos INT, @Impuestos INT
-	
-	SELECT @precio = Producto.precio, @Descuentos = Descuento.porcentaje,
-    @Impuestos = SUM(Impuesto.porcentaje)
-    FROM Unidad
-    inner join LoteProducto on LoteProducto.idLote = Unidad.idLote
-    inner join Descuento on Descuento.idLote = LoteProducto.idLote --Obtenemos el descuento del producto
-    inner join Pedido on Pedido.idPedido = LoteProducto.idPedido
-    inner join Producto on Producto.idProducto = Pedido.idProducto --Obtenemos el precio del producto
-    inner join ProductoxImpuesto on ProductoxImpuesto.idProducto = Pedido.idProducto
-    inner join Impuesto on Impuesto.idImpuesto = ProductoxImpuesto.idImpuesto --Obtenemos el impuesto del producto
-    WHERE Unidad.idUnidad = @idUnidad
-	group by Producto.precio, Descuento.porcentaje;
-    select (@precio + @precio * @Descuentos + @precio * @Impuestos) as subtotal;
+	SELECT Inventario.cantidad, Inventario.idProducto, Inventario.idSucursal
+    FROM Inventario
+    WHERE Inventario.idProducto = isnull(@idProducto, Inventario.idProducto) and
+    Inventario.idSucursal = isnull(@idSucursal, Inventario.idSucursal);
 END
 GO
-
+--Calcular el subtotal del detalle
+GO
+CREATE or alter PROCEDURE calcularSubtotal @idUnidad int WITH ENCRYPTION AS
+BEGIN
+    DECLARE @precio MONEY, @Descuentos Float, @Impuestos float, @idLoteProducto int, @idProducto int
+	-- Seleccionamos id's
+	SELECT @idLoteProducto = LoteProducto.idLote, @idProducto = Pedido.idProducto
+    FROM Unidad
+    inner join LoteProducto on LoteProducto.idLote = Unidad.idLote
+    inner join Pedido on Pedido.idPedido = LoteProducto.idPedido
+	WHERE Unidad.idUnidad = @idUnidad;
+	-- Seleccionamos precio
+	set @precio = isnull((Select Producto.precio
+	FROM Producto where Producto.idProducto = @idProducto), 0.0);
+	-- Seleccionamos descuento
+	set @Descuentos = isnull((Select Descuento.porcentaje
+	FROM Descuento where Descuento.idLote = @idLoteProducto), 0.0);
+	-- Seleccionamos impuesto
+	set @Impuestos = isnull((Select sum(Impuesto.porcentaje)
+	FROM ProductoxImpuesto
+	inner join Impuesto on Impuesto.idImpuesto = ProductoxImpuesto.idImpuesto
+	where ProductoxImpuesto.idProducto = @idProducto), 0.0);
+	-- Hacemos la suma
+    select (@precio -( @precio * @Descuentos) + @precio * @Impuestos) as subtotal;
+END
+GO
+GO
+CREATE or alter PROCEDURE getUnidadProducto @idProducto int WITH ENCRYPTION AS
+BEGIN
+    select unidad.idUnidad from unidad
+    inner join LoteProducto on LoteProducto.idLote = Unidad.idLote
+    inner join Pedido on Pedido.idPedido = LoteProducto.idPedido
+    inner join Producto on Producto.idProducto = Pedido.idProducto --Obtenemos producto
+    where Producto.idProducto = @idProducto
+    and (unidad.idEstado = 3 or unidad.idEstado = 10)
+END
+GO
+GO
+CREATE or alter PROCEDURE getInfoDetalle @idFactura int WITH ENCRYPTION AS
+BEGIN
+    select producto.nombre, detalle.subTotal from detalle
+    inner join Unidad on Unidad.idUnidad = detalle.idUnidad
+    inner join LoteProducto on LoteProducto.idLote = Unidad.idLote
+    inner join Pedido on Pedido.idPedido = LoteProducto.idPedido
+    inner join Producto on Producto.idProducto = Pedido.idProducto --Obtenemos producto
+    where Detalle.idFactura = isnull(@idFactura,Detalle.idFactura)
+END
+GO
 --Trigger de Lote: Cambia el estado del pedido y modifica la cantidad del inventario
 GO
 CREATE or alter TRIGGER recibirLote ON LoteProducto AFTER INSERT AS
@@ -2159,7 +2218,6 @@ BEGIN
     where idSucursal = @idSucursal and idProducto = @idProducto;
 END
 GO
-
 --Trigger de crear Detalle: Debe de cambiar el estado de la unidad a reservado
 GO
 CREATE or alter TRIGGER crearDetalle ON Detalle AFTER INSERT AS
@@ -2183,8 +2241,6 @@ END
 GO
 
 -- Dados 2 ubicaciones, indique la distancia que hay entre ellos
--- drop procedure getDistance;
-
 go
 CREATE OR ALTER PROCEDURE getDistance @idUbicacion1 geography, @idUbicacion2 geography with encryption AS
 BEGIN
@@ -2200,10 +2256,7 @@ BEGIN
 		end
 END
 GO
-
-
 -- PedidoDomicilio 
--- drop procedure getSucursalCercanaExistencias;
 go
 CREATE OR ALTER PROCEDURE getSucursalCercanaExistencias @idUbicacion int, @idProducto int
 											   with encryption AS
@@ -2250,11 +2303,9 @@ BEGIN
 	select @SucursalCercanaFinal;
 END
 GO
-
 -- determinar si van a
 -- expirer en una semana y se pone en descuento, si un producto ya ha expirado debe de
 -- sacarlo del exhibidor
-use CostaRica;
 go
 CREATE PROCEDURE ponerProductoEnDescuento @idLote int, @porcentaje float WITH ENCRYPTION AS
 BEGIN
@@ -2284,7 +2335,6 @@ BEGIN
 		end
 END
 GO
-
 go
 CREATE PROCEDURE sacarDeExhibidor @idLote int WITH ENCRYPTION AS
 BEGIN
@@ -2306,22 +2356,43 @@ BEGIN
 	update Unidad set idEstado = 4 where idLote = @idLote; -- actualiza las unidades del lote
 END
 GO
-
-create procedure consultaEmpleado(@idSucursal int, @idPuesto int, @fechaContratacion date, @idEmpleado int )
+create procedure consultaEmpleado(@idSucursal int, @idPuesto int, @fechaInicioContratacion date,
+ @fechaFinContratacion date,@idEmpleado int )
 as 
 	
-	select Empleado.cedula, Empleado.nombreEmpleado, empleado.apellido1, empleado.apellido2 ,
-	Estado.nombre, Empleado.fechaNacimiento, Sucursal.nombreSucursal, Puesto.nombrePuesto
+	select Empleado.idEmpleado,Empleado.cedula, Empleado.nombreEmpleado, empleado.apellido1, empleado.apellido2 ,
+	Estado.nombre as estado, Empleado.fechaNacimiento, Sucursal.nombreSucursal, Puesto.nombrePuesto ,
+	Empleado.fechaContratacion, Empleado.correo
 	from Empleado inner join Estado on Empleado.idEstado=Estado.idEstado
 	inner join Sucursal on Empleado.idSucursal= Sucursal.idSucursal 
 	inner join Puesto on Empleado.idPuesto = Puesto.idPuesto
 	where idEmpleado = isnull(@idEmpleado, idEmpleado) and 
 	Empleado.idSucursal = ISNULL(@idSucursal, Empleado.idSucursal) and
 	Empleado.idPuesto = ISNULL(@idPuesto, Empleado.idPuesto) and
-	Empleado.fechaContratacion= ISNULL(@fechaContratacion,Empleado.fechaContratacion);
+	Empleado.fechaContratacion between 
+			isnull(@fechaInicioContratacion, Empleado.fechaContratacion) and 
+			isnull(@fechaFinContratacion, DATEADD(day,1, getdate()));
 
 go
-
+create procedure consultaCliente(@Cedula int ,@idCliente int )
+as 
+	BEGIN
+	select Cliente.idCliente,Cliente.cedula, Cliente.nombre, Cliente.apellido1, Cliente.apellido2 ,
+	Estado.nombre as estado, Cliente.fechaNacimiento, Cliente.celular, Cliente.correo
+	from Cliente inner join Estado on Cliente.idEstado=Estado.idEstado
+	where Cliente.idCliente = isnull(@idCliente, Cliente.idCliente) and 
+	Cliente.cedula=isnull(@cedula,Cliente.cedula)
+	END
+go
+create procedure consultaClienteC(@Correo varchar(60))
+as 
+	BEGIN
+	select Cliente.idCliente,Cliente.cedula, Cliente.nombre, Cliente.apellido1, Cliente.apellido2 
+	, Cliente.fechaNacimiento, Cliente.celular, Cliente.correo
+	from Cliente 
+	where Cliente.correo = isnull(@Correo ,Cliente.correo) 
+	END
+go
 create procedure montoRecolectadoEnvio(@idSucursal int, @fechaInicial date, @fechaFin date, @idCliente int )
 as 
 	select sum(Envio.costoEnvio) as totalesEnvios , Sucursal.nombreSucursal, Factura.idCliente, Envio.fechaEnvio 
@@ -2332,15 +2403,35 @@ as
 	group by  Sucursal.nombreSucursal, Factura.idCliente, Envio.fechaEnvio ;
 
 go
-
 create procedure infoPrecioProductoSucursal(@idProducto int, @nombre varchar(50))
 as
 	select Producto.nombre, Producto.precio from Producto 
 	where Producto.idProducto = isnull(@idProducto, Producto.idProducto)
 	and Producto.nombre= isnull(@nombre,Producto.nombre);
-
 go
-
+GO
+CREATE PROCEDURE getFoto @idFoto int WITH ENCRYPTION AS
+BEGIN
+	SELECT Fotos.foto 
+    FROM Fotos
+    WHERE Fotos.idFoto = @idFoto;
+END
+GO
+GO
+CREATE PROCEDURE getNombreProducto @idProducto int WITH ENCRYPTION AS
+BEGIN
+	SELECT Producto.nombre
+    FROM Producto
+    WHERE Producto.idProducto = @idProducto;
+END
+GO
+CREATE PROCEDURE getNombreProductoFoto @idFoto int WITH ENCRYPTION AS
+BEGIN
+	SELECT Producto.nombre
+    FROM Fotos inner join 
+	Producto on Fotos.idProducto = Producto.idProducto where idFoto=@idFoto;
+END
+GO
 --Procedimiento buscarProducto
 GO
 CREATE PROCEDURE buscarProducto @idSucursal INT,
@@ -2353,12 +2444,9 @@ BEGIN
 								and Inventario.idSucursal = @idSucursal;
 end
 go
-
-
 -- Procedimiento que obtiene las ganancias netas
 -- Se debe poder obtener informacion sobre ganancias netas igualmente por fechas, país,
 -- sucursales y/o categoría de productos.
-
 GO
 CREATE PROCEDURE getGananciasNetas @fechaInicio date, @fechaFinal date, @idPais int, @idSucursal int,
 								   @idCategoria int

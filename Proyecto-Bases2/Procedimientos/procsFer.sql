@@ -332,22 +332,28 @@ GO
  
 --Calcular el subtotal del detalle
 GO
-CREATE PROCEDURE calcularSubtotal @idUnidad int WITH ENCRYPTION AS
+CREATE or alter PROCEDURE calcularSubtotal @idUnidad int WITH ENCRYPTION AS
 BEGIN
-    DECLARE @precio INT, @Descuentos INT, @Impuestos INT
-	
-	SELECT @precio = Producto.precio, @Descuentos = Descuento.porcentaje,
-    @Impuestos = SUM(Impuesto.porcentaje)
+    DECLARE @precio MONEY, @Descuentos Float, @Impuestos float, @idLoteProducto int, @idProducto int
+	-- Seleccionamos id's
+	SELECT @idLoteProducto = LoteProducto.idLote, @idProducto = Pedido.idProducto
     FROM Unidad
     inner join LoteProducto on LoteProducto.idLote = Unidad.idLote
-    inner join Descuento on Descuento.idLote = LoteProducto.idLote --Obtenemos el descuento del producto
     inner join Pedido on Pedido.idPedido = LoteProducto.idPedido
-    inner join Producto on Producto.idProducto = Pedido.idProducto --Obtenemos el precio del producto
-    inner join ProductoxImpuesto on ProductoxImpuesto.idProducto = Pedido.idProducto
-    inner join Impuesto on Impuesto.idImpuesto = ProductoxImpuesto.idImpuesto --Obtenemos el impuesto del producto
-    WHERE Unidad.idUnidad = @idUnidad
-	group by Producto.precio, Descuento.porcentaje;
-    select (@precio - (@precio * @Descuentos) + @precio * @Impuestos) as subtotal;
+	WHERE Unidad.idUnidad = @idUnidad;
+	-- Seleccionamos precio
+	set @precio = isnull((Select Producto.precio
+	FROM Producto where Producto.idProducto = @idProducto), 0.0);
+	-- Seleccionamos descuento
+	set @Descuentos = isnull((Select Descuento.porcentaje
+	FROM Descuento where Descuento.idLote = @idLoteProducto), 0.0);
+	-- Seleccionamos impuesto
+	set @Impuestos = isnull((Select sum(Impuesto.porcentaje)
+	FROM ProductoxImpuesto
+	inner join Impuesto on Impuesto.idImpuesto = ProductoxImpuesto.idImpuesto
+	where ProductoxImpuesto.idProducto = @idProducto), 0.0);
+	-- Hacemos la suma
+    select (@precio -( @precio * @Descuentos) + @precio * @Impuestos) as subtotal;
 END
 GO
 
@@ -358,7 +364,7 @@ BEGIN
     inner join LoteProducto on LoteProducto.idLote = Unidad.idLote
     inner join Pedido on Pedido.idPedido = LoteProducto.idPedido
     inner join Producto on Producto.idProducto = Pedido.idProducto --Obtenemos producto
-    where Producto.idProducto = isnull(@idProducto,Producto.idProducto)
+    where Producto.idProducto = @idProducto
     and (unidad.idEstado = 3 or unidad.idEstado = 10)
 END
 GO
