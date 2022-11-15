@@ -2035,8 +2035,8 @@ BEGIN
     Sucursal.idSucursal = isnull(@idSucursal, Sucursal.idSucursal) and
     Prov.idProveedor = isnull(@idProveedor, Prov.idProveedor) and
     Prov.estado = 2 and --Proveedor activo
-    Factura.fechaFactura BETWEEN isnull(@fechaInc, Factura.fechaFactura) and
-    isnull(@fechaFin, Factura.fechaFactura)
+    Factura.fechaFactura BETWEEN isnull(CONVERT(datetime, @fechaInc), Factura.fechaFactura) and
+    isnull(CONVERT(datetime, @fechaFin), Factura.fechaFactura)
     GROUP BY Cliente.nombre,Cliente.apellido1,Cliente.apellido2, Producto.nombre, Sucursal.nombreSucursal, Prov.nombreProveedor,
     Pais.nombrePais, Factura.fechaFactura
     ORDER BY cantFacturas DESC ;
