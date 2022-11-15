@@ -1944,3 +1944,7 @@ class ConexionServidorPG:
     # print(x.getInfoBono(pIdPais=1))
     #print(x.sacarDeExhibidor())
     #print(" ")
+    # print(x.buscarProveedores(pNombreProveedor='Comodo'))
+    #print(" ")
+    # print(x.reporteProductos(pFechaInc='2022/11/15', pFechaFin='2022/11/20'))
+    # print(x.reporteProductos())
