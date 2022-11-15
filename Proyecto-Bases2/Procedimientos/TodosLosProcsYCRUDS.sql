@@ -1929,6 +1929,17 @@ BEGIN
 end
 go
 
+--Procedimiento cambioMoneda
+GO
+CREATE PROCEDURE getCambioMoneda @idPais INT
+                                WITH ENCRYPTION AS
+BEGIN
+	SELECT Moneda.nombreDivisa, Moneda.cambioDolar
+    FROM Pais 
+    INNER JOIN Moneda ON Moneda.idMoneda = Pais.idMoneda
+	WHERE Pais.idPais = isnull(@idPais, Pais.idPais)
+end
+go
 
 --Procedimiento de reportes para ver productos mas vendidos
 GO
