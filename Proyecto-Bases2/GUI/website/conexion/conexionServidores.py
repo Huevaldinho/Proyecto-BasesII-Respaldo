@@ -905,7 +905,6 @@ class ConexionServidorSQL:
         dias ={'Monday':'L','Tuesday':"K","Wednesday":'M',"Thursday":'J',"Friday":'V','Saturday':'S','Sunday':'D'}
         
         dia = dias.get(calendar.day_name[date.today().weekday()])#Saca la primera letra del dia para comparar si la sucursal esta abierta.
-        print(dia)
         abierto='Cerrado'
         horarioBonito = ''
         admin = {}
@@ -1749,7 +1748,7 @@ class ConexionServidorSQL:
         """
         pedidos = []
         try:
-            pedidos = self.select('exec dbo.mostrarPedidos ?',(idSucursal))
+            pedidos = self.select('exec [dbo].[mostrarPedidos] ? ',(idSucursal))
         except Exception as e:
             print(e)
             return None
@@ -1772,6 +1771,7 @@ class ConexionServidorSQL:
             postgres.cerrarConexionServidores()
             return pedidos
         except:
+            print('SE CAE EN SEGUNDO TRY')
             return None
 
     def getAdministradores(self):
