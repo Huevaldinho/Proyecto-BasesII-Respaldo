@@ -1848,11 +1848,6 @@ BEGIN
 END
 GO
 
-exec [dbo].[calcularSubtotal] 4
-select * from detalle
-select * from factura
-exec facturar 10003
-
 SELECT Pedido.idProducto, Pedido.idSucursal
                 FROM Detalle 
                 INNER JOIN Unidad ON Unidad.idUnidad = Detalle.idUnidad
@@ -2024,7 +2019,7 @@ select * from detalle
 
 --Procedimiento de reportes para ver Clientes mas frecuentes
 GO
-CREATE PROCEDURE ReportesClientes @idPais INT,
+CREATE or alter PROCEDURE ReportesClientes @idPais INT,
                         @idProducto INT,
                         @idSucursal INT,
                         @idProveedor INT,
@@ -2065,7 +2060,7 @@ END
 GO
 --Procedimiento de reportes para ver productos expirados
 GO
-CREATE PROCEDURE ReportesVencimientos @idPais INT,
+CREATE or alter PROCEDURE ReportesVencimientos @idPais INT,
                         @idProducto INT,
                         @idSucursal INT,
                         @idProveedor INT,
