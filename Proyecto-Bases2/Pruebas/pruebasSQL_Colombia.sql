@@ -1612,6 +1612,19 @@ insert into Pedido(idSucursal,idProveedor,idEstado,idProducto,fechaSolicitud,fec
 (25,24,6,7,'2018-02-15 01:01:08','2031-10-11 01:33:56',24),(91,25,6,8,'2021-12-23 08:36:20','2039-01-26 15:02:10',25),
 (1,1,6,1,'2021-12-23 08:36:20','2039-01-26 15:02:10',10000);
 
+DECLARE @cnt INT = 1;
+WHILE @cnt <= (select count(idPedido) from Pedido)
+BEGIN
+
+	UPDATE Pedido SET idProducto = @cnt where idPedido = @cnt;
+	UPDATE Pedido SET idSucursal = @cnt where idPedido = @cnt;
+	UPDATE Inventario SET idProducto = @cnt where idInventario = @cnt;
+	UPDATE Inventario SET idSucursal = @cnt where idInventario = @cnt; 
+   
+   SET @cnt = @cnt + 1;
+END;
+GO
+
 --Lotes de productos
 insert into LoteProducto(idPedido, fechaProduccion,fechaExpiracion,cantidad,
                         costoLote,porcentajeGanancia) values
