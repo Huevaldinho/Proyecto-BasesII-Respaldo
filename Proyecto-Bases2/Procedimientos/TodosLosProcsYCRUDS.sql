@@ -712,7 +712,7 @@ BEGIN
 			set idMoneda = ISNULL(@idMoneda,idMoneda), 
 				nombrePais = ISNULL(@nombrePais,nombrePais)
 			where idPais= @idPais;
-		end
+		endio
 END
 GO
 
@@ -2051,9 +2051,6 @@ BEGIN
 END
 GO
 
-
-
-execute ReportesVencimientos null, null, null, null, null, null
 --Proceso para conseguir el id del usuario de un cliente segun su correo
 GO
 CREATE PROCEDURE getUsuarioCliente @correo varchar(50) WITH ENCRYPTION AS
@@ -2113,6 +2110,17 @@ BEGIN
     Distrito.idDistrito = isnull(@idDistrito, Distrito.idDistrito);
 END
 GO
+
+--Proceso para conseguir el la cantidad disponible en un inventario
+GO
+CREATE or alter PROCEDURE getCantidadInventario @idProducto INT, @idSucursal int WITH ENCRYPTION AS
+BEGIN
+	SELECT Inventario.cantidad, Inventario.idProducto, Inventario.idSucursal
+    FROM Inventario
+    WHERE Inventario.idProducto = isnull(@idProducto, Inventario.idProducto) and
+    Inventario.idSucursal = isnull(@idSucursal, Inventario.idSucursal);
+END
+GO
  
 --Calcular el subtotal del detalle
 GO
@@ -2132,6 +2140,30 @@ BEGIN
     WHERE Unidad.idUnidad = @idUnidad
 	group by Producto.precio, Descuento.porcentaje;
     select (@precio + @precio * @Descuentos + @precio * @Impuestos) as subtotal;
+END
+GO
+
+GO
+CREATE or alter PROCEDURE getUnidadProducto @idProducto int WITH ENCRYPTION AS
+BEGIN
+    select unidad.idUnidad from unidad
+    inner join LoteProducto on LoteProducto.idLote = Unidad.idLote
+    inner join Pedido on Pedido.idPedido = LoteProducto.idPedido
+    inner join Producto on Producto.idProducto = Pedido.idProducto --Obtenemos producto
+    where Producto.idProducto = isnull(@idProducto,Producto.idProducto)
+    and (unidad.idEstado = 3 or unidad.idEstado = 10)
+END
+GO
+
+GO
+CREATE or alter PROCEDURE getInfoDetalle @idFactura int WITH ENCRYPTION AS
+BEGIN
+    select producto.nombre, detalle.subTotal from detalle
+    inner join Unidad on Unidad.idUnidad = detalle.idUnidad
+    inner join LoteProducto on LoteProducto.idLote = Unidad.idLote
+    inner join Pedido on Pedido.idPedido = LoteProducto.idPedido
+    inner join Producto on Producto.idProducto = Pedido.idProducto --Obtenemos producto
+    where Detalle.idFactura = isnull(@idFactura,Detalle.idFactura)
 END
 GO
 
