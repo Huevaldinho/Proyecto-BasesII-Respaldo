@@ -1270,6 +1270,7 @@ class ConexionServidorSQL:
     #Detalle
     def createDetalle(self, idUnidad, idFactura, subTotal):
         try:
+            print('a mi me llego un :D =>>>', subTotal)
             return self.cursorSQL.execute('exec dbo.CRUDdetalle ?, ?, ?, ?, ?',
                               (0, None, idUnidad, idFactura, subTotal))
         except Exception as e:
@@ -1317,13 +1318,17 @@ class ConexionServidorSQL:
                 return
             subtotal = 0
             total = 0
+            print(idFactura)
             for producto in pProductos:
                 unidades = self.select('exec getUnidadProducto ?', producto['idProducto'])
+                print('unidad', self.select('exec getUnidadProducto ?', producto['idProducto'])[0])
                 for i in range (0, producto['cantidad']):
                     subtotal = self.select('exec calcularSubtotal ?', unidades[i]['idUnidad'])[0]['subtotal']
-                    self.createDetalle(unidades[i]['idUnidad'], idFactura,
-                    subtotal)
+                    self.createDetalle(unidades[i]['idUnidad'], idFactura, subtotal)
+                    print('subtotal', subtotal)
                     total+=subtotal
+                    print('total', total)
+                    
             if (pLatitud != None and pLongitud != None):
                 self.createEnvio(idFactura, 6, total*0.1, None, pLatitud, pLongitud)
             self.facturar(idFactura)

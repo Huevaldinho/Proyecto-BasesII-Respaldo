@@ -141,7 +141,7 @@ GO
 -- drop procedure CRUDdetalle;
 go
 CREATE PROCEDURE CRUDdetalle @opcion int, @idDetalle int, @idUnidad int, @idFactura int,
-							 @subTotal int
+							 @subTotal Money
 							 with encryption AS
 BEGIN
     declare @error int = 0,@errorMsg varchar(100);

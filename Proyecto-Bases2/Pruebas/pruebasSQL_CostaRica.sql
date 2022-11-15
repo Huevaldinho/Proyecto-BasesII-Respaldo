@@ -1632,14 +1632,18 @@ insert into Pedido(idSucursal,idProveedor,idEstado,idProducto,fechaSolicitud,fec
 (1,1,6,1,'2021/12/23 08:36:20','2039/01/26 15:02:10',10000);
 
 DECLARE @cnt INT = 1;
-WHILE @cnt <= (select count(idPedido) from Pedido)
+WHILE @cnt < (select count(idPedido) from Pedido)
 BEGIN
-
+	if (select count(*) from producto where idProducto = @cnt)>0 and
+	(select count(*) from pedido where idPedido = @cnt)>0 and
+	(select count(*) from inventario where idInventario = @cnt)>0 and
+	(select count(*) from sucursal where idSucursal = @cnt)>0
+	begin
 	UPDATE Pedido SET idProducto = @cnt where idPedido = @cnt;
 	UPDATE Pedido SET idSucursal = @cnt where idPedido = @cnt;
 	UPDATE Inventario SET idProducto = @cnt where idInventario = @cnt;
 	UPDATE Inventario SET idSucursal = @cnt where idInventario = @cnt; 
-   
+   end
    SET @cnt = @cnt + 1;
 END;
 GO

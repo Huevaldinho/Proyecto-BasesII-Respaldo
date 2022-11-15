@@ -415,8 +415,9 @@ GO
 -- CRUD Envío
 -- drop procedure CRUDenvio;
 go
-CREATE PROCEDURE CRUDenvio @opcion int, @idEnvio int,@idFactura int, 
-						   @idEstado int, @costoEnvio money, @fechaEnvio date, @ubicacionG geography
+CREATE or alter PROCEDURE CRUDenvio @opcion int, @idEnvio int, @idFactura int, 
+						   @idEstado int, @costoEnvio money, @fechaEnvio date,
+						   @lat float, @lon float
 									  with encryption AS
 BEGIN
     declare @error int = 0,@errorMsg varchar(100);
@@ -427,8 +428,9 @@ BEGIN
             set @error=1; set @errorMsg='Debe ingresar el parametro @opcion. %s %d';
 			RAISERROR (@errorMsg,16,1,N' Error numero',@error); 
         end
-	if (@opcion=0 and (@idFactura is null or
-					   @costoEnvio is null or @fechaEnvio is null or @idEstado is null or @ubicacionG is null) )
+	if (@opcion=0 and (@idFactura is null or @costoEnvio is null
+					or @idEstado is null or @lat is null
+					or @lon is null) )
 		begin
             set @error=2; set @errorMsg='Para crear, no pueden haber atributos nulos. %s %d';
 			RAISERROR (@errorMsg,16,1,N' Error numero',@error); 
@@ -450,7 +452,7 @@ BEGIN
 	if (@opcion = 0) 
 		begin
 			insert into Envio (idFactura, costoEnvio, fechaEnvio, idEstado, ubicacionG)
-					  values (@idFactura, @costoEnvio, @fechaEnvio, @idEstado, @ubicacionG)
+					  values (@idFactura, @costoEnvio, @fechaEnvio, @idEstado, geography::Point(@lat, @lon, 4326))
 		end
 	if (@opcion = 1)
 		begin
@@ -464,7 +466,7 @@ BEGIN
 				costoEnvio = ISNULL(@costoEnvio,costoEnvio), 
 				fechaEnvio = ISNULL(@fechaEnvio,fechaEnvio), 
 				idEstado = ISNULL(@idEstado,idEstado), 
-				ubicacionG = ISNULL(@ubicacionG,ubicacionG)
+				ubicacionG = ISNULL(geography::Point(@lat, @lon, 4326),ubicacionG)
 			where idEnvio = @idEnvio;
 		end
 	if (@opcion = 3)
@@ -475,7 +477,6 @@ BEGIN
 		end
 END
 GO
-
 -- CRUD Ubicación
 -- drop procedure CRUDubicacion;
 go
@@ -1582,7 +1583,7 @@ GO
 -- drop procedure CRUDdetalle;
 go
 CREATE PROCEDURE CRUDdetalle @opcion int, @idDetalle int, @idUnidad int, @idFactura int,
-							 @subTotal int
+							 @subTotal MONEY
 							 with encryption AS
 BEGIN
     declare @error int = 0,@errorMsg varchar(100);
@@ -1847,6 +1848,22 @@ BEGIN
 END
 GO
 
+exec [dbo].[calcularSubtotal] 4
+select * from detalle
+select * from factura
+exec facturar 10003
+
+SELECT Pedido.idProducto, Pedido.idSucursal
+                FROM Detalle 
+                INNER JOIN Unidad ON Unidad.idUnidad = Detalle.idUnidad
+                INNER JOIN LoteProducto ON LoteProducto.idLote = Unidad.idLote
+	            INNER JOIN Pedido ON Pedido.idPedido = LoteProducto.idPedido 
+                WHERE Detalle.idDetalle = 10005
+
+SELECT subTotal FROM Detalle
+				WHERE Detalle.idDetalle = 10003
+
+
 --Procedimiento Facturar
 GO
 CREATE PROCEDURE Facturar @idFactura int WITH ENCRYPTION AS
@@ -1855,7 +1872,7 @@ BEGIN
         print 'El id de la factura no existe';
     ElSE
     DECLARE @idDetalle INT,
-    @montoTemp INT = 0,
+    @montoTemp money = 0.0,
     @idProducto INT,
     @idSucursal INT;
     DECLARE detalleCursor -- Para recorrer los detalles
@@ -2081,6 +2098,7 @@ BEGIN
     ORDER BY vencidos DESC ;
 END
 GO
+
 --Proceso para conseguir el id del usuario de un cliente segun su correo
 GO
 CREATE PROCEDURE getUsuarioCliente @correo varchar(50) WITH ENCRYPTION AS
