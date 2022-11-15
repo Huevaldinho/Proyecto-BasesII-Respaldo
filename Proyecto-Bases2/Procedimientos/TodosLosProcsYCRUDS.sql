@@ -1905,13 +1905,12 @@ END
 GO
 --Procedimiento getIdProveedores
 GO
-CREATE  PROCEDURE getIdProveedores @nombreProducto varchar(20),
-                                 @nombreProveedor varchar(20),
+CREATE or alter PROCEDURE getIdProveedores @idProducto int,
+                                 @nombreProveedor varchar(100),
                                  @idPais INT,
                                  @idProvincia int,
                                  @idCanton int,
-                                 @idDistrito int,
-                                 @idUbicacion int
+                                 @idDistrito int
                                 WITH ENCRYPTION AS
 BEGIN
 	SELECT Prov.idProveedor
@@ -1924,10 +1923,9 @@ BEGIN
     INNER JOIN Canton ON Canton.idCanton = Distrito.idCanton --Obtener canton
     INNER JOIN Provincia ON Provincia.idProvincia = Canton.idProvincia --Obtener provincia
     INNER JOIN Pais ON Pais.idPais = Provincia.idPais --Obtener pais
-	WHERE Prov.nombreProveedor = isnull(@nombreProveedor, Prov.nombreProveedor) and
+	WHERE (@nombreProveedor is null or Prov.nombreProveedor like '%'+@nombreProveedor+'%') and
     Prov.estado = 2 AND --Proveedor activo
-    Producto.nombre = isnull(@nombreProducto, Producto.nombre) AND
-    Ubicacion.idUbicacion = isnull(@idUbicacion, Ubicacion.idUbicacion) AND
+    Producto.idProducto = isnull(@idProducto, Producto.idProducto) AND
     Distrito.idDistrito = isnull(@idDistrito, Distrito.idDistrito) AND
     Canton.idCanton = isnull(@idCanton, Canton.idCanton) AND
     Provincia.idProvincia = isnull(@idProvincia, Provincia.idProvincia) AND
