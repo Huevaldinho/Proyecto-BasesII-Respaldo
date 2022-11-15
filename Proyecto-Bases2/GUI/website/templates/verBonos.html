@@ -1,0 +1,69 @@
+{% extends "barraMenuEmpleado.html"%}
+
+<title>{% block title %}Ver Bonos{% endblock %}</title>
+{% block content %}  
+
+    <h1 align="center">Ver bonos</h1>    
+    <form class="form-inline" method="POST" action="{{url_for('emp.verBonos') }}">
+        <div class="form-group">
+          <div class="input-group">
+            <div style = "width: 88%; margin-block: 2%; " class="input-group">
+                <input  type="checkbox" name = "sucursalCheck" class="form-check-input" id="sucursalCheck">
+                <span class="input-group-addon">Seleccione la sucursal: </span>
+                    <select name="sucursalSeleccionada" class="selectpicker form-control">
+                      {% for s in sucursales %}
+                      <option value="{{s}}">{{s.nombreSucursal}}</option>
+                      {% endfor %}
+                    </select>
+            </div>
+            <div style = "width: 13%; margin-block: 2%;" class="input-group">
+                <input  type="checkbox" name="fechaInicialCheck" class="form-check-input" id="fechaInicialCheck">
+                <label for="fechaInicial">Fecha Inicial</label>
+                <input type="date" id="fechaInicial" name="fechaInicialSeleccionada">
+            </div>
+            <div style = "width: 10%; margin-block: 2%;" class="input-group">
+                <input  type="checkbox" name="fechaFinalCheck" class="form-check-input" id="fechaFinalCheck">
+                <label for="fechaFinal">Fecha final</label>
+                <input type="date" id="fechaFinal" name="fechaFinalSeleccionada">
+            </div>
+            <div style = "width: 15%; margin-block: 2%;" class="form-group">
+                  <label for="idEmpleado"> ID Empleado </label>
+                  <input 
+                    type="number" 
+                    class="form-control" 
+                    id="idEmpleado" 
+                    name="idEmpleado" 
+                    min="1" >
+            </div>
+            <button style = "width: 50%; margin-left: 15%; " type="submit" class="btn btn-outline-dark">Ver</button>
+          </div>
+        </div>
+      </form>
+      {% if bonos!=[] %}
+      <br>
+        <!--El cliente debe seleccionar el pais para que se muestren las sucursales.-->
+        <table class="table table-bordered table-hover table-condensed">
+          <thead>
+            <tr>
+              <th title="Field #1">idEmpleado</th>
+              <th title="Field #2">fecha bono</th>
+              <th title="Field #3">nombre sucursal</th>
+              <th title="Field #4">pais</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for b in bonos %}
+              <tr>
+                  <td>{{b.idEmpleado}}</td>
+                  <td>{{b.fechaBono}}</td>
+                  <td>{{b.nombreSucursal}}</td>
+                  <td>{{b.pais}}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {%endif%}
+      {% if resultado!=None %}
+      <a href="/menuEmpleado" style = "  margin-left: 30%; margin-top:3%; text-align: center; margin-bottom: 100px;" class="btn btn-primary btn-lg" tabindex="-1" role="button" >Regresar</a>
+      {%endif%}
+{% endblock %}
