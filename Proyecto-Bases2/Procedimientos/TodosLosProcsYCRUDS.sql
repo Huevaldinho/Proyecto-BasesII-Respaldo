@@ -2254,7 +2254,7 @@ GO
 -- determinar si van a
 -- expirer en una semana y se pone en descuento, si un producto ya ha expirado debe de
 -- sacarlo del exhibidor
-use CostaRica;
+
 go
 CREATE PROCEDURE ponerProductoEnDescuento @idLote int, @porcentaje float WITH ENCRYPTION AS
 BEGIN
