@@ -1511,7 +1511,7 @@ GO
 -- drop procedure CRUDfactura;
 go
 CREATE PROCEDURE CRUDfactura @opcion int, @idFactura int, @idSucursal int, @idCliente  int,
-				 @idEmpleado int, @idMetodoPago int, @total money, @fechaFactura datetime
+				 @idEmpleado int, @idMetodoPago int, @total money
 							 with encryption AS
 BEGIN
     declare @error int = 0,@errorMsg varchar(100);
@@ -1523,7 +1523,7 @@ BEGIN
 			RAISERROR (@errorMsg,16,1,N' Error numero',@error); 
         end
 	if (@opcion=0 and (@idSucursal is null or @idCliente is null or @idEmpleado is null or 
-					   @idMetodoPago is null or @total is null or @fechaFactura is null))
+					   @idMetodoPago is null or @total is null))
 		begin
             set @error=2; set @errorMsg='Para crear, no pueden haber atributos nulos. %s %d';
 			RAISERROR (@errorMsg,16,1,N' Error numero',@error); 
@@ -1558,7 +1558,7 @@ BEGIN
 		begin
 			insert into Factura(idSucursal, idCliente, idEmpleado, idMetodoPago, total, 
 								fechaFactura) 
-			values (@idSucursal, @idCliente, @idEmpleado, @idMetodoPago, @total, @fechaFactura)
+			values (@idSucursal, @idCliente, @idEmpleado, @idMetodoPago, @total, getDate())
 		end
 	if (@opcion = 1)
 		begin
@@ -1572,8 +1572,7 @@ BEGIN
 				idCliente = ISNULL(@idCliente,idCliente),
 				idEmpleado = ISNULL(@idEmpleado,idEmpleado),
 				idMetodoPago = ISNULL(@idMetodoPago,idMetodoPago),
-				total = ISNULL(@total,total),
-				fechaFactura = ISNULL(@fechaFactura,fechaFactura)
+				total = ISNULL(@total,total)
 			where idFactura = @idFactura;
 		end
 END
@@ -2147,21 +2146,27 @@ END
 GO
 --Calcular el subtotal del detalle
 GO
-CREATE PROCEDURE calcularSubtotal @idUnidad int WITH ENCRYPTION AS
+CREATE or alter PROCEDURE calcularSubtotal @idUnidad int WITH ENCRYPTION AS
 BEGIN
-    DECLARE @precio INT, @Descuentos INT, @Impuestos INT
-	
-	SELECT @precio = Producto.precio, @Descuentos = Descuento.porcentaje,
-    @Impuestos = SUM(Impuesto.porcentaje)
+    DECLARE @precio MONEY, @Descuentos Float, @Impuestos float, @idLoteProducto int, @idProducto int
+	-- Seleccionamos id's
+	SELECT @idLoteProducto = LoteProducto.idLote, @idProducto = Pedido.idProducto
     FROM Unidad
     inner join LoteProducto on LoteProducto.idLote = Unidad.idLote
-    inner join Descuento on Descuento.idLote = LoteProducto.idLote --Obtenemos el descuento del producto
     inner join Pedido on Pedido.idPedido = LoteProducto.idPedido
-    inner join Producto on Producto.idProducto = Pedido.idProducto --Obtenemos el precio del producto
-    inner join ProductoxImpuesto on ProductoxImpuesto.idProducto = Pedido.idProducto
-    inner join Impuesto on Impuesto.idImpuesto = ProductoxImpuesto.idImpuesto --Obtenemos el impuesto del producto
-    WHERE Unidad.idUnidad = @idUnidad
-	group by Producto.precio, Descuento.porcentaje;
+	WHERE Unidad.idUnidad = @idUnidad;
+	-- Seleccionamos precio
+	set @precio = isnull((Select Producto.precio
+	FROM Producto where Producto.idProducto = @idProducto), 0.0);
+	-- Seleccionamos descuento
+	set @Descuentos = isnull((Select Descuento.porcentaje
+	FROM Descuento where Descuento.idLote = @idLoteProducto), 0.0);
+	-- Seleccionamos impuesto
+	set @Impuestos = isnull((Select sum(Impuesto.porcentaje)
+	FROM ProductoxImpuesto
+	inner join Impuesto on Impuesto.idImpuesto = ProductoxImpuesto.idImpuesto
+	where ProductoxImpuesto.idProducto = @idProducto), 0.0);
+	-- Hacemos la suma
     select (@precio -( @precio * @Descuentos) + @precio * @Impuestos) as subtotal;
 END
 GO
@@ -2172,7 +2177,7 @@ BEGIN
     inner join LoteProducto on LoteProducto.idLote = Unidad.idLote
     inner join Pedido on Pedido.idPedido = LoteProducto.idPedido
     inner join Producto on Producto.idProducto = Pedido.idProducto --Obtenemos producto
-    where Producto.idProducto = isnull(@idProducto,Producto.idProducto)
+    where Producto.idProducto = @idProducto
     and (unidad.idEstado = 3 or unidad.idEstado = 10)
 END
 GO
