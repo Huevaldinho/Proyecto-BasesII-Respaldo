@@ -735,7 +735,7 @@ class ConexionServidorSQL:
             result = []
             for x in prov:
                 result += [{'idProveedor':x['_outidproveedor'], 'nombreProveedor':x['_outnombreproveedor'],
-                'celular':x['_outcelular'], 'correo':x['_outcorreo'],'productos':self.catalogoProv(x['_outidproveedor'])}]
+                'celular':x['_outcelular'], 'correo':x['_outcorreo'],'productos':self.catalogoProv(pIdProveedor = x['_outidproveedor'])}]
                 # result += [x['productos'] = catalogoProv(x['idProveedor'])]
             return result
             
@@ -1797,7 +1797,7 @@ class ConexionServidorPG:
             self.servidor = psycopg2.connect(
                                             host = 'localhost',
                                             user = 'postgres',
-                                            password='A1483369a',
+                                            password='123',
                                             database='Proveedores')
             self.cursorPG = self.servidor.cursor()
             self.servidor.autocommit = True
@@ -1965,5 +1965,5 @@ class ConexionServidorPG:
     #print(pgConnection.readProovedorXProducto(4))
     # print(x.getInfoProv())
     # print(x.getInfoBono(pIdPais=1))
-    #print(x.sacarDeExhibidor())
+    # print(x.buscarProveedores(pNombreProveedor='Comodo'))
     #print(" ")

@@ -1948,6 +1948,7 @@ BEGIN
     AND PXP.idProducto = isnull(@idProducto, PXP.idProducto);
 end
 go
+
 --Procedimiento cambioMoneda
 GO
 CREATE PROCEDURE getCambioMoneda @idPais INT
