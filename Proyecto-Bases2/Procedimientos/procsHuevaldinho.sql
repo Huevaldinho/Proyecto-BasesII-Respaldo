@@ -6,13 +6,12 @@ CREATE OR ALTER PROCEDURE OtorgarBono WITH ENCRYPTION AS
 BEGIN
 	/*
 	La empresa otorga un bono a los facturadores que hayan facturado mas de 1000 productos
-	en una semana.
-	Se debe conectar a un Job que lo ejecute cada semana a la misma hora, ejemplo todos los 
-	viernes a las 5pm.
+	en tres meses.
+
 	*/
 	
 
-	--Inserta bono de 100 dolares en la fecha actual a todos los empleados que hayan vendido mas de mil productos en la semana
+	--Inserta bono de 100 dolares en la fecha actual a todos los empleados que hayan vendido mas de mil productos en tres meses.
 	INSERT INTO Bono(idEmpleado,cantidadBono,fechaBono)  
 		
 		SELECT idEmpleado,100,GETDATE() from (
@@ -22,12 +21,12 @@ BEGIN
 				inner join Puesto AS P ON P.idPuesto = E.idPuesto	--De empleado salta a puesto para ver que el empleado sea facturador
 				inner join Detalle AS D on D.idFactura = F.idFactura --De factura salta a detalle para contar los productos vendidos
 				WHERE 
-					fechaFactura >= DATEADD(day, -7, GETDATE()) --Le resta 7 dias a la fecha actual. Es decir una semana entera. 
+					fechaFactura >= DATEADD(day, -90, GETDATE()) --Le resta 90 dias a la fecha actual. Es decir 3 meses.
 					AND P.idPuesto = 1 --Puesto 1 es Facturador
 					AND Es.idEstado = 2 --Estado 2 es Activo.	
 			
 				GROUP BY F.idEmpleado --Agrupa por empleado
-				HAVING SUM(DISTINCT D.idUnidad)>=1000 --Filtra las agrupaciones que tengan mas de 1000 ventas en la semana.
+				HAVING SUM(DISTINCT D.idUnidad)>=1000 --Filtra las agrupaciones que tengan mas de 1000 ventas
 			) empleadosYcantidadProductosVendidos; 
 END
 GO
