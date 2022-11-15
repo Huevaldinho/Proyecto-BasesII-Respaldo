@@ -39,6 +39,44 @@ def pedidosRealizados():
         conexion.cerrarConexionServidor()
         return render_template('pedidosRealizados.html',sucursales=sucursales,pedidos=pedidos)
         
-        
+@emp.route('/otorgarBono',methods=['GET','POST'])
+def ortorgarBono():
+    if request.method=='GET':
+        #Llamar base para otorgar el bono
+        conexion = ConexionServidorSQL()
+        conexion.conectarServidor(conexion.getNombreBaseDatos(session['pais']))#Se conecta al servidor del pais
+        if (conexion.ortorgarBonos()):
+            flash('Se han ortorgado los bonos correctamente.',category='success')
+            conexion.cerrarConexionServidor()
+        else:
+            flash('No se ha podido otorgar los bonos',category='error')
+        return redirect(url_for('emp.menuEmpleado'))
 
-        
+@emp.route('/verBonos',methods=['GET','POST'])
+def verBonos():
+    conexion = ConexionServidorSQL()
+    conexion.conectarServidor(conexion.getNombreBaseDatos(session['pais']))#Se conecta al servidor del pais
+    sucursales=conexion.getSucursales()#Obtiene las sucursales del pais seleccionado
+    session['sucursales'] = sucursales#guarda en la session las sucursales 
+    if request.method=='GET':
+        return render_template('verBonos.html',sucursales=sucursales)
+    elif request.method=='POST':
+        #Sacar datos ingresados
+        if (request.form.get('fechaInicialCheck') != None):
+            fechaInicio = request.form.get('fechaInicialSeleccionada')
+        else:
+            fechaInicio = None
+        if (request.form.get('fechaFinalCheck') != None):
+            fechaFin = request.form.get('fechaFinalSeleccionada')
+        else:
+            fechaFin = None
+        if (request.form.get('sucursalCheck') != None):
+            idSucursal = eval(request.form.get('sucursalSeleccionada')).get('idSucursal') 
+        else:
+            idSucursal = None
+        idEmpleado = request.form.get('idEmpleado')
+        if (idEmpleado==''):
+            idEmpleado=None
+        bonos = conexion.verBonosOtorgados(idEmpleado,fechaInicio,fechaFin,idSucursal,1)
+        return render_template('verBonos.html',bonos=bonos,sucursales=sucursales)
+

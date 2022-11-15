@@ -1783,8 +1783,34 @@ class ConexionServidorSQL:
         except Exception as e:
             print(e)
             return None
-
-
+    def ortorgarBonos(self):
+        """
+            Metodo para ortorgar bonos
+            Parametros: No tiene
+            Retorna: True si se pudo ejecutar el proc y false si no se puede.
+        """
+        try:
+            self.cursorSQL.execute("exec dbo.OtorgarBono")
+            return True
+        except Exception as e:
+            print(e)
+            return False
+    def verBonosOtorgados(self,idEmpleado,fechaInicio,fechaFin,idSucursal,idPais):
+        """
+            Metodo para ver los bonos otorgados.
+            Parametros: 
+                idEmpleado int
+                fechaInicio varchar 'yyyy-mm-dd'
+                fechaFin varchar 'yyyy-mm-dd'
+                idSucursal int
+                idPais int
+            Retorna: [{}]
+        """
+        try:
+            return self.select('exec dbo.ObtenerInfoBono ?, ?, ?, ?, ?',(idEmpleado,fechaInicio,fechaFin,idSucursal,idPais))
+        except Exception as e:
+            print(e)
+            return None
 
 
 class ConexionServidorPG:
