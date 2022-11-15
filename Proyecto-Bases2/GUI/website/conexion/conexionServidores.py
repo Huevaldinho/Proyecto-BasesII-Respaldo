@@ -1790,7 +1790,7 @@ class ConexionServidorSQL:
             Retorna: True si se pudo ejecutar el proc y false si no se puede.
         """
         try:
-            self.select('exec dbo.OtorgarBono',())
+            self.cursorSQL.execute("exec dbo.OtorgarBono")
             return True
         except Exception as e:
             print(e)

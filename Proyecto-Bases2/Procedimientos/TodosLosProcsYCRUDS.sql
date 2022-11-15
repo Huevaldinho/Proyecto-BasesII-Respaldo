@@ -1645,26 +1645,23 @@ CREATE OR ALTER PROCEDURE OtorgarBono WITH ENCRYPTION AS
 BEGIN
 	/*
 	La empresa otorga un bono a los facturadores que hayan facturado mas de 1000 productos
-	en una semana.
-	Se debe conectar a un Job que lo ejecute cada semana a la misma hora, ejemplo todos los 
-	viernes a las 5pm.
+	en los ultimos 3 meses
+	
 	*/
 	
 
 	--Inserta bono de 100 dolares en la fecha actual a todos los empleados que hayan vendido mas de mil productos en la semana
-	INSERT INTO Bono(idEmpleado,cantidadBono,fechaBono)  
-		
+	INSERT INTO dbo.Bono(idEmpleado,cantidadBono,fechaBono)  
 		SELECT idEmpleado,100,GETDATE() from (
-			SELECT F.idEmpleado, SUM(DISTINCT D.idUnidad) as cantidadProductosVendidos FROM Factura AS F 
-				inner join Empleado AS E ON E.idEmpleado = F.idEmpleado --De factura salta a empleado para ver que si este activo y sea facturador
-				inner join Estado AS Es ON Es.idEstado = E.idEstado	--De empleado salta a estado para ver que el empleado este activo
-				inner join Puesto AS P ON P.idPuesto = E.idPuesto	--De empleado salta a puesto para ver que el empleado sea facturador
-				inner join Detalle AS D on D.idFactura = F.idFactura --De factura salta a detalle para contar los productos vendidos
+			SELECT F.idEmpleado, SUM(DISTINCT D.idUnidad) as cantidadProductosVendidos FROM dbo.Factura AS F 
+				inner join dbo.Empleado AS E ON E.idEmpleado = F.idEmpleado --De factura salta a empleado para ver que si este activo y sea facturador
+				inner join dbo.Estado AS Es ON Es.idEstado = E.idEstado	--De empleado salta a estado para ver que el empleado este activo
+				inner join dbo.Puesto AS P ON P.idPuesto = E.idPuesto	--De empleado salta a puesto para ver que el empleado sea facturador
+				inner join dbo.Detalle AS D on D.idFactura = F.idFactura --De factura salta a detalle para contar los productos vendidos
 				WHERE 
-					fechaFactura >= DATEADD(day, -7, GETDATE()) --Le resta 7 dias a la fecha actual. Es decir una semana entera. 
+					F.fechaFactura >= DATEADD(day, -90, GETDATE()) --Le resta 90 dias a la fecha actual. Es decir 3 meses
 					AND P.idPuesto = 1 --Puesto 1 es Facturador
 					AND Es.idEstado = 2 --Estado 2 es Activo.	
-			
 				GROUP BY F.idEmpleado --Agrupa por empleado
 				HAVING SUM(DISTINCT D.idUnidad)>=1000 --Filtra las agrupaciones que tengan mas de 1000 ventas en la semana.
 			) empleadosYcantidadProductosVendidos; 

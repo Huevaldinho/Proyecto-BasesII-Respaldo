@@ -42,7 +42,6 @@ def pedidosRealizados():
 @emp.route('/otorgarBono',methods=['GET','POST'])
 def ortorgarBono():
     if request.method=='GET':
-        print('OTORGA EL BONO')
         #Llamar base para otorgar el bono
         conexion = ConexionServidorSQL()
         conexion.conectarServidor(conexion.getNombreBaseDatos(session['pais']))#Se conecta al servidor del pais
