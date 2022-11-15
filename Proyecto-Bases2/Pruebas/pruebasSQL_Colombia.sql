@@ -1245,6 +1245,7 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (1,23,1,873595407,'Gloria','Utterson','Utterson','Gloria_Utterson8693@typill.biz','5398-01-31 06:16:04Z','5349-10-15 10:32:25Z'),
 (1,66,1,893906614,'Sharon','Shaw','Shaw','Sharon_Shaw2831@eirey.tech','7351-10-31 20:10:49Z','5181-11-05 10:09:58Z');;
 
+update Empleado set idEstado = 2;
 
 --UsuarioEmpleados
 INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
