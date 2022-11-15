@@ -20,4 +20,4 @@ GO
 
 
 --Check de proveedor en pedido.
-ALTER TABLE [dbo].[Pedido] ADD CONSTRAINT validarProveedorConstraint CHECK([dbo].[validarProveedor](idProveedor)=1);
+--ALTER TABLE [dbo].[Pedido] ADD CONSTRAINT validarProveedorConstraint CHECK([dbo].[validarProveedor](idProveedor)=1);

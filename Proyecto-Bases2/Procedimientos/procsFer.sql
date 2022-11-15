@@ -73,6 +73,8 @@ BEGIN
 END
 GO
 
+
+
 --Procedimiento getIdProveedores
 GO
 CREATE or alter PROCEDURE getIdProveedores @idProducto int,
@@ -172,6 +174,7 @@ BEGIN
     ORDER BY vendidos DESC ;
 END
 GO
+
 
 --Procedimiento de reportes para ver Clientes mas frecuentes
 GO

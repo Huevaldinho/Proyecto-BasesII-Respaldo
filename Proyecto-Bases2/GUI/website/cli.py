@@ -208,12 +208,9 @@ def factura():
         conexion = ConexionServidorSQL()
         conexion.conectarServidor(conexion.getNombreBaseDatos(session['pais']))
         factInfo = conexion.getInfoCompra(session['idFactura'])
+        print(factInfo)
         conexion.cerrarConexionServidor()
         return render_template('factura.html', factInfo = factInfo)
-
-
-
-
 
 @cli.route('/consultarSucursal',methods=['GET','POST'])
 def consultarSucursal():
@@ -306,8 +303,6 @@ def ingresarProducto(): #TODO Pasa parametro pais
         conexion.cerrarConexionServidor() 
     return render_template('ingresarProducto.html')
 
-
-
 @cli.route('/proveedorBuscar',methods=['GET','POST'])
 def proveedorBuscar():
     conexion = ConexionServidorSQL()
@@ -356,7 +351,6 @@ def proveedorBuscar():
         
     return render_template('proveedorBuscar.html',paises = paises, provincias = provincias,
         cantones = cantones, distritos = distritos, productos = productos, resultados = resultados) 
-
 
 @cli.route('/gananciasNetas',methods=['GET','POST'])
 def gananciasNetas():
@@ -623,8 +617,7 @@ def actualizarEmp():
     conexion.conectarServidor(conexion.getNombreBaseDatos(session['pais']))
     sucursales=conexion.getSucursal(session['pais'])
     puestos = conexion.getPuesto()
-    resultado=conexion.readEmpleado(session.get('idEmpleadoActualizar'))[0]
-    print(resultado)
+    resultado=conexion.readEmpleadoG(session.get('idEmpleadoActualizar'))[0]
     if request.method == "GET":
          return render_template('actualizarEm.html',sucursales=sucursales,puestos=puestos, resultado=resultado)
     if request.method == 'POST':
@@ -632,47 +625,38 @@ def actualizarEmp():
             nombre = request.form.get('nombre')
         else:
             nombre = None
-
         if (request.form.get('apellido1Check') != None):
             apellido1 = request.form.get('apellido1')
         else:
             apellido1 = None
-
         if (request.form.get('apellido2Check') != None):
             apellido2 = request.form.get('apellido2')
         else:
             apellido2 = None
-
         if (request.form.get('cedulaCheck') != None):
             cedula =int(request.form.get('cedula'))
         else:
             cedula = None
-
         if (request.form.get('correoCheck') != None):
             correo = request.form.get('correo')
         else:
             correo = None
-
         if (request.form.get('sucursalCheck') != None):
             idSucursal = int(eval(request.form.get('sucursalSeleccionada')).get('idSucursal'))
         else:
             idSucursal = None
-
         if (request.form.get('puestoCheck') != None):
             idPuesto = int(eval(request.form.get('puestoSeleccionado')).get('idPuesto'))
         else:
             idPuesto = None
-
         if (request.form.get('fechaNCheck') != None):
             fechaNacimiento = request.form.get('fechaNacimiento')
         else:
             fechaNacimiento = None
-
         if (request.form.get('fechaContratacionCheck') != None):
             fechaContratacion = request.form.get('fechaContratacion')
         else:
             fechaContratacion = None
-        
         #Buscar que el id exista, si verificar que si le ingresaron un num
         foto=None
         if (request.form.get('fotoCheck') != None):
@@ -680,24 +664,18 @@ def actualizarEmp():
             ruta=os.getcwd()
             path = Path(ruta,"images")
             path.mkdir(parents=True, exist_ok=True)
-            print(nombre,apellido1,apellido2,cedula,correo,fechaNacimiento,idPuesto,idSucursal,fechaContratacion)
             for file in request.files.getlist("file"):
-                print(file)
                 filename = file.filename
                 destination = Path(path,filename)
-                print(destination,"ESTE ES MI DESTINO")
                 lista.append(destination)
                 file.save(destination)
-            print(lista)
             foto=str(lista[0])
-
             #Actualizar la base de datos
         if (conexion.updateEmpleado(int(session.get('idEmpleadoActualizar')),idPuesto, idSucursal,cedula, nombre, apellido1, apellido2, 
             fechaContratacion, fechaNacimiento, correo, foto)):
             flash('Se ha actualizado correctamente.',category='success')  
         else:
             flash('No se ha podido actualizar, intente de nuevo.',category='error')
-        
         conexion.cerrarConexionServidor()
         return render_template("actualizarEm.html",sucursales=sucursales,puestos=puestos, resultado=resultado)#Devuelve el template  
             
@@ -708,23 +686,23 @@ def updateEmpleado():
     """
     #Si la pagina hace request de tipo post es porque esta enviando datos
 
-    conexion = ConexionServidorSQL()
-    conexion.conectarServidor(conexion.getNombreBaseDatos(session['pais']))
-
+   
     if request.method == "GET":
          return render_template('updateEmpleado.html')
-    if request.method == 'POST':
+    elif request.method == 'POST':
+        conexion = ConexionServidorSQL()
+        conexion.conectarServidor(conexion.getNombreBaseDatos(session['pais']))
         idEmpleado=request.form.get('idEmpleado')
-        print(idEmpleado)
-        
         if (idEmpleado==''):
             flash('Debe ingresar el ID del empleado que desea modificar',category='error')
-        if(conexion.getExisteEmpleado(idEmpleado)):
+           
+        elif(conexion.getExisteEmpleado(idEmpleado)):
             session['idEmpleadoActualizar']=idEmpleado #Aqui se enviar para el otro lado
             conexion.cerrarConexionServidor()  
-            return redirect(url_for('cli.actualizarEmp'))
+            return redirect(url_for('cli.actualizarEmp')) 
         else:
             flash('EL ID del empleado no existe',category='error')  
+        conexion.cerrarConexionServidor()
         return render_template("updateEmpleado.html")
 
 @cli.route('/deleteEmpleado',methods=['GET','POST'])
@@ -761,7 +739,6 @@ def deleteEmpleado():
 @cli.route('/montoRecolectadoEnvio',methods=['GET','POST'])
 def montoRecolectadoEnvio():
     conexion = ConexionServidorSQL()
-
     conexion.conectarServidor(conexion.getNombreBaseDatos(session['pais']))#Se conecta al servidor del pais
     sucursales=conexion.getSucursal(session['pais'])
     
@@ -873,17 +850,19 @@ def send_image(path, filename):
 @cli.route('/home',methods=['GET','POST'])
 def home():
     conexion = ConexionServidorSQL()
+    
     conexion.conectarServidor(conexion.getNombreBaseDatos(session['pais']))#Se conecta al servidor del pais
     idSucursal = eval(session['sucursal']).get('idSucursal')
-
+    print(conexion.conexionViva())
     productos  = conexion.select("select Producto.idProducto, idCategoria,nombre,descripcion,precio from Producto inner join Inventario on Inventario.idProducto = Producto.idProducto where Inventario.idSucursal = ?",(idSucursal))
-    
+    print(productos)
     path  = "images\A"
     paths = []
     for p in productos:
         paths += [path[:-1]+p['nombre']]
         #p.update({'precioNacional':640.44 * float(p['precio'])}) 
-        p.update({'precioNacional': conexion.conversion(1, float(p['precio']))})
+        print(p)
+        p.update({'precioNacional': conexion.conversion(1, p['precio'])})
 
     image_names = ['1.jpg', '2.jpg', '3.jpg']
     #return render_template("gallery.html", path = path, image_names=image_names)
@@ -939,7 +918,7 @@ def buscarProducto():
 
         #obtengo el producto que tiene el nombre indicado
         productos = conexion.select("exec dbo.buscarProducto ?, ?",(idSucursal, cadena))
-
+        
         if (len(productos) == 0):
             flash('No se encontraron coincidencias.',category='error')
 
@@ -947,13 +926,23 @@ def buscarProducto():
             conexion.cerrarConexionServidor()
 
             #Reenvia el template con el resultado de la búsqueda
-            return render_template('buscarProducto.html', productos = None)
+            return render_template('buscarProducto.html', productos = None, paths = None, image_names=None, length = None, pais = None)
         else:
+            path  = "images\A"
+            paths = []
+            for p in productos:
+                paths += [path[:-1]+p['nombre']]
+                #p.update({'precioNacional':640.44 * float(p['precio'])}) 
+                print(p)
+                p.update({'precioNacional': conexion.conversion(1, p['precio'])})
+
+            image_names = ['1.jpg', '2.jpg', '3.jpg']
+            
             #Cierra la conexion con el servidor
             conexion.cerrarConexionServidor()
-
+    
             #Reenvia el template con el resultado de la búsqueda
-            return render_template('buscarProducto.html', productos = productos)
+            return render_template('buscarProducto.html', productos = productos, paths = paths, image_names=image_names, length = len(productos), pais = session['pais'])
 
 @cli.route('/reporteProductos',methods=['GET','POST'])
 def reporteProducto():

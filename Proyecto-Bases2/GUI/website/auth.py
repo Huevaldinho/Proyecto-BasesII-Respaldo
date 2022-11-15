@@ -133,8 +133,8 @@ def registrarse():
             validacionFormato#Si hay errores con formatos
         else:#Validar con base de datos
             conexion = ConexionServidorSQL()
-            conexion.conectarServidor('CostaRica')
-            if (conexion.validarCorreoRegistrado(correo)==False):
+            conexion.conectarServidor(conexion.getNombreBaseDatos(session.get('pais')))
+            if (conexion.validarCorreoClienteRegistrado(correo)==False):
                 #pNombre, pApellido1, pApellido2, pCedula, pFechaNacimiento,pCorreo, pCelular, pContrasenna           
                 #Crear cuenta en base de datos
                 if (conexion.insertarCuentaCliente(nombre,apellido1,apellido2,int(cedula),fechaNacimiento,correo,celular,contrasenna1)):

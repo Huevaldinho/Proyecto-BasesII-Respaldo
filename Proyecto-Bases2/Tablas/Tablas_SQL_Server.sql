@@ -1,4 +1,5 @@
-create table Estado(
+
+CREATE table Estado(
 	idEstado int not null identity(1,1) primary key (idEstado),
 	nombre varchar(50) not null
 );

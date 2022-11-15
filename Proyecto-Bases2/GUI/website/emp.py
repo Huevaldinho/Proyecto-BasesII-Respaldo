@@ -29,7 +29,7 @@ def pedidosRealizados():
         return redirect(url_for('cli.pais'))
     conexion = ConexionServidorSQL()
     conexion.conectarServidor(conexion.getNombreBaseDatos(session['pais']))#Se conecta al servidor del pais
-    sucursales=conexion.getSucursal(1)#Obtiene las sucursales del pais seleccionado
+    sucursales=conexion.getSucursales()#Obtiene las sucursales del pais seleccionado
     session['sucursales'] = sucursales#guarda en la session las sucursales 
     if request.method=='GET':#Solo manda las sucursales
         return render_template('pedidosRealizados.html',sucursales=sucursales,pedidos=[])

@@ -1,5 +1,6 @@
+
+
 --Monedas
-use CostaRica;
 insert into Moneda(nombreDivisa, cambioDolar) values ('Dolar', 1),('Colon', 624.61),('Peso', 4822);
 
 --Metodos pago
@@ -67,7 +68,7 @@ insert into HorarioxSucursal(idHorario, idSucursal) values
 insert into Estado(nombre) values
             ('Inactivo'), ('Activo'), ('Exhibiendo'),
             ('Vencido'), ('Vendido'), ('Pendiente'),
-            ('Recibido'), ('Entregado'), ('Reservado'); 
+            ('Recibido'), ('Entregado'), ('Reservado'),('Descuento'); 
 
 --Departamentos
 insert into Departamento(nombreDepartamento) values 
@@ -141,7 +142,18 @@ INSERT INTO UsuarioCliente (idCliente, contrasenna) VALUES
                     (13, 'delete1234'), (14, 'lol123'),
                     (15, 'pass444');
 
+--Categorias
 
+insert into Categoria(nombre, descripcion) values
+            ('Bebida Gaseeosa', 'Hecha a base de agua carbonatada' ),
+            ('Bebida Natural', 'Producto natural'),
+            ('Bebida Energetica', 'Altos niveles de azucar');
+
+--Productos
+insert into Producto(idCategoria, nombre, descripcion, precio) values
+                    (1,'Coca cola', 'Bebida gaseosa', 2),
+                    (2,'Tropial te frio', 'Ayuda a la salud', 2),
+                    (3,'Monster', 'Disminuye temporalmente el cansancio ', 2);
 
 --Inventario
 insert into Inventario(idProducto,idSucursal,cantidad, minimo, maximo) values
@@ -163,12 +175,11 @@ insert into Pedido(idSucursal,idProveedor,idEstado,idProducto,fechaSolicitud,fec
 
 --Lotes de productos
 insert into LoteProducto(idPedido, fechaProduccion,fechaExpiracion,cantidad,
-                        costoLote,porcentajeGanancia)values
+                        costoLote,porcentajeGanancia)
+            values
                     (1,'2021-12-08','2022-12-08',25, 45, 0.10),
                     (2,'2021-08-20','2022-01-02',30, 50, 0.10),
                     (3,'2021-06-21','2022-12-15',20, 30, 0.10);
-
-select * from	Pedido
 
 --Unidades
 insert into Unidad(idLote, idEstado) values

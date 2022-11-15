@@ -9,7 +9,7 @@ class ConexionServidorSQL:
     servidor = None
     cursorSQL = None
     diccServidores = {'CostaRica':'(LocalDB)\CostaRica', 'Panama':'(LocalDB)\Panama', 'Colombia':'(LocalDB)\Colombia'}
-    paisesDic = {"Costa Rica":"CostaRica","Panamá":"Panama","Colombia":"Colombia"}
+    paisesDic = {"Costa Rica":"CostaRica","Panama":"Panama","Colombia":"Colombia"}
 
     def paises(self,opcion):
         """
@@ -837,9 +837,16 @@ class ConexionServidorSQL:
         '''
         try:
             #Pone los productos correspondientes al lote en descuento
-            lotes = self.cursorSQL.execute("select LoteProducto.idLote from LoteProducto inner join Unidad on Unidad.idLote = LoteProducto.idLote where DATEDIFF(week, getdate(), fechaExpiracion) < 1 and Unidad.idEstado != 10").fetchall()
-            for idLote in lotes:
-                self.select("exec dbo.ponerProductoEnDescuento ?, ?", (idLote, porcentaje))
+
+            # lotes = self.cursorSQL.execute("select LoteProducto.idLote from LoteProducto inner join Unidad on Unidad.idLote = LoteProducto.idLote where DATEDIFF(day, getdate(), fechaExpiracion) < 0 and Unidad.idEstado != 4").fetchall()
+            # for idLote in lotes:
+            #     self.select("exec dbo.sacarDeExhibidor ?", (idLote))
+
+
+            lotes = self.cursorSQL.execute("SELECT DISTINCT LoteProducto.idLote from LoteProducto inner join Unidad on Unidad.idLote = LoteProducto.idLote where DATEDIFF(week, getdate(), fechaExpiracion) < 1 and Unidad.idEstado = 3").fetchall()
+            print(lotes)
+            for idLote in lotes:#[dbo].[ponerProductoEnDescuento]
+                self.select("exec dbo.ponerProductoEnDescuento ?, ?", (idLote[0], porcentaje))
             return len(lotes)
         except Exception as e:
             #Si no encuentra el proc
@@ -983,7 +990,7 @@ class ConexionServidorSQL:
         '''
         try:
             #Pone los productos correspondientes en estado de vencido
-            lotes = self.cursorSQL.execute("select LoteProducto.idLote from LoteProducto inner join Unidad on Unidad.idLote = LoteProducto.idLote where DATEDIFF(day, getdate(), fechaExpiracion) < 0 and Unidad.idEstado != 4").fetchall()
+            lotes = self.cursorSQL.execute("select DISTINCT LoteProducto.idLote from LoteProducto inner join Unidad on Unidad.idLote = LoteProducto.idLote where DATEDIFF(day, getdate(), fechaExpiracion) < 0 and (Unidad.idEstado = 3 or Unidad.idEstado = 10)").fetchall()
             for idLote in lotes:
                 self.select("exec dbo.sacarDeExhibidor ?", (idLote))
             return len(lotes)
@@ -1066,6 +1073,15 @@ class ConexionServidorSQL:
             print(e)
             return None
 
+    def readEmpleadoG(self, idEmpleado):
+        try:
+          
+            dic=self.select('exec dbo.CRUDempleado ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?',
+            (1, idEmpleado,None, None, None, None, None, None, None, None, None, None, None))
+            return dic
+        except Exception as e:
+            print(e)
+            return None
     #CRUDS
     def getCategorias(self):
         """
@@ -1383,9 +1399,9 @@ class ConexionServidorSQL:
             query=  "SELECT Empleado.foto FROM Empleado WHERE idEmpleado= '{0}'"
             self.cursorSQL.execute(query.format(str(pIdEmpleado)))
             Myresult=self.cursorSQL.fetchone()[0]
-            dic = self.readEmpleado(pIdEmpleado)[0]
+            dic = self.readEmpleadoG(pIdEmpleado)[0]
             path=self.obtenerDirectorioEmpleado()
-            StoreFilePath=Path(path,'{0}.jpg'.format(str(dic["nombreEmpleado"])))
+            StoreFilePath=Path(path,'{0}.jpg'.format(str(dic["nombreEmpleado"]+str(pIdEmpleado))))
             with open (StoreFilePath,"wb")as File:
                 File.write(Myresult)
                 File.close()
@@ -1393,7 +1409,8 @@ class ConexionServidorSQL:
 
         except Exception as e:
                 #Si no encuentra el proc
-            print(e)
+            print('RETORNAL: getFotoEmpleado',e)
+
             return None
     
     def setEmpleado(self,pIdPuesto, pIdSucursal, pNombre, pApellido1, pApellido2, pCedula,
@@ -1428,16 +1445,6 @@ class ConexionServidorSQL:
             print(e)
             return False
 
-    def readEmpleado(self, idEmpleado):
-        try:
-            dirFoto=self.getFotoEmpleado(idEmpleado) #Tomamos la direccion donde se saco la imagen
-            dic=self.select('exec dbo.CRUDempleado ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?',
-            (1, idEmpleado,None, None, None, None, None, None, None, None, None, None, None))
-            dic[0]["foto"]=dirFoto #Le metemos en el diccionario la foto
-            return dic
-        except Exception as e:
-            print(e)
-            return None
 
     def updateEmpleado(self, idEmpleado, idPuesto, idSucursal, 
     cedula, nombreEmpleado, apellido1, apellido2, fechaContratacion, fechaNacimiento, correo, pFilePathFoto):
@@ -1647,7 +1654,6 @@ class ConexionServidorSQL:
             true: si logro sacar la imagen y no hubo errores
         """
         try:
-            print("holiss")
             query=  "SELECT Fotos.foto FROM Fotos WHERE idFoto= '{0}'" #Seleccionamos el id de una foto
             self.cursorSQL.execute(query.format(str(pIdFoto))) #Hacemos la consulta a sql y eso nos debe retornar una foto
             Myresult=self.cursorSQL.fetchone()[0]  #Lo anterior nos devuelve una tupla, por lo cual debemos especificarle el de la posicion 0 ya que es el que contiene la informacion
@@ -1692,19 +1698,6 @@ class ConexionServidorSQL:
             print(e)
             return None
 
-    def sacarDeExhibidor (self, idLote):
-        '''
-        Funcion: Saca los produtos vencidos
-        Param:
-            idLote(int) = id del lote del producto
-        '''
-        try:
-            #Pone los productos correspondientes en estado de vencido
-            return self.select("exec dbo.sacarDeExhibidor ?", (idLote))
-        except Exception as e:
-            #Si no encuentra el proc
-            print(e)
-            return None
 
     def consultaCliente(self,cedula,idCliente):
         try:
@@ -1804,7 +1797,7 @@ class ConexionServidorPG:
             self.servidor = psycopg2.connect(
                                             host = 'localhost',
                                             user = 'postgres',
-                                            password='pelodegato',
+                                            password='A1483369a',
                                             database='Proveedores')
             self.cursorPG = self.servidor.cursor()
             self.servidor.autocommit = True

@@ -9,7 +9,7 @@
     <br>
     <h3 align="center"> Actualizar Empleado</h3>  
     <h2 align="center">Marque las casillas que desea incluir como filtros</h2>  
-    <form  id="upload-form" action="{{ url_for('cli.updateEmpleado') }}" method="POST" enctype="multipart/form-data"><!--Envia request a la ruta registrarse-->
+    <form  id="upload-form" action="{{ url_for('cli.actualizarEmp') }}" method="POST" enctype="multipart/form-data"><!--Envia request a la ruta registrarse-->
         <div class="form-group">
             <input  type="checkbox" name="nombreCheck" class="form-check-input" id="nombreCheck">
             <label for="nombre"> Nombre </label>
