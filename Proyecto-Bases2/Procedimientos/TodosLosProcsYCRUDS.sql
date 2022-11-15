@@ -2356,18 +2356,22 @@ BEGIN
 	update Unidad set idEstado = 4 where idLote = @idLote; -- actualiza las unidades del lote
 END
 GO
-create procedure consultaEmpleado(@idSucursal int, @idPuesto int, @fechaContratacion date, @idEmpleado int )
+create procedure consultaEmpleado(@idSucursal int, @idPuesto int, @fechaInicioContratacion date,
+ @fechaFinContratacion date,@idEmpleado int )
 as 
 	
-	select Empleado.cedula, Empleado.nombreEmpleado, empleado.apellido1, empleado.apellido2 ,
-	Estado.nombre, Empleado.fechaNacimiento, Sucursal.nombreSucursal, Puesto.nombrePuesto
+	select Empleado.idEmpleado,Empleado.cedula, Empleado.nombreEmpleado, empleado.apellido1, empleado.apellido2 ,
+	Estado.nombre as estado, Empleado.fechaNacimiento, Sucursal.nombreSucursal, Puesto.nombrePuesto ,
+	Empleado.fechaContratacion, Empleado.correo
 	from Empleado inner join Estado on Empleado.idEstado=Estado.idEstado
 	inner join Sucursal on Empleado.idSucursal= Sucursal.idSucursal 
 	inner join Puesto on Empleado.idPuesto = Puesto.idPuesto
 	where idEmpleado = isnull(@idEmpleado, idEmpleado) and 
 	Empleado.idSucursal = ISNULL(@idSucursal, Empleado.idSucursal) and
 	Empleado.idPuesto = ISNULL(@idPuesto, Empleado.idPuesto) and
-	Empleado.fechaContratacion= ISNULL(@fechaContratacion,Empleado.fechaContratacion);
+	Empleado.fechaContratacion between 
+			isnull(@fechaInicioContratacion, Empleado.fechaContratacion) and 
+			isnull(@fechaFinContratacion, DATEADD(day,1, getdate()));
 
 go
 create procedure consultaCliente(@Cedula int ,@idCliente int )

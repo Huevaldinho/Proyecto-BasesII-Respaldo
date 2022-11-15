@@ -208,7 +208,6 @@ def factura():
         conexion = ConexionServidorSQL()
         conexion.conectarServidor(conexion.getNombreBaseDatos(session['pais']))
         factInfo = conexion.getInfoCompra(session['idFactura'])
-        print(factInfo)
         conexion.cerrarConexionServidor()
         return render_template('factura.html', factInfo = factInfo)
 
