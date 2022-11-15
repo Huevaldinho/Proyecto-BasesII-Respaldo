@@ -30,8 +30,8 @@ insert into Distrito(nombreDistrito, idCanton) values
 				('Chagres', 11),('Donoso', 12),('Penonome', 12);
 
 --Ubicaciones  
-insert into Ubicacion(idDistrito, descripcion) values
-('Cerca de tienda Angeles', 1),('En la segunda entrada después del ángel', 1),('Condominio Blancos',1),
+insert into Ubicacion(descripcion, idDistrito) values
+('Cerca de tienda Angeles', 1),('En la segunda entrada despuï¿½s del ï¿½ngel', 1),('Condominio Blancos',1),
 ('Calle 1, Avenida 21', 2),('Calle 6, Avenida 27', 2),('Calle 15374, Avenida 82', 3),
 ('Calle 2, Avenida 22', 4),('Calle 7, Avenida 72', 5),('Calle 35, Avenida 82', 6),
 ('Calle 3, Avenida 282', 7),('Calle 8, Avenida 25', 8),('Calle 57, Avenida 82', 9),
@@ -149,7 +149,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (1,5,1,557365415,'Angela','Andrews','Andrews','Angela_Andrews8928@cispeto.com','0519-04-10 18:28:57Z','1480-12-24 22:53:08Z'),
 (1,12,1,341976247,'Erick','Logan','Logan','Erick_Logan3738@acrit.org','6059-09-06 09:07:09Z','5926-01-28 08:46:44Z'),
 (1,47,1,183339797,'Valerie','Ramsey','Ramsey','Valerie_Ramsey4691@yahoo.com','5628-06-18 05:02:26Z','9648-08-21 09:24:36Z'),
-(2,27,1,224247276,'Daron','Tyrrell','Tyrrell','Daron_Tyrrell6@liret.org','3922-09-06 03:45:20Z','4593-03-12 09:40:13Z'),
+(2,27,1,224247276,'Daron','Tyrrell','Tyrrell','Daron_Tyrrell6@liret.org','3922-09-06 03:45:20Z','4593-03-12 09:40:13Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (2,48,1,727506124,'Violet','Marshall','Marshall','Violet_Marshall9096@jiman.org','2386-07-21 21:19:52Z','6411-01-15 00:42:32Z'),
 (2,13,1,723156422,'Julian','Pickard','Pickard','Julian_Pickard5078@zorer.org','8066-06-16 12:41:40Z','1036-04-09 18:20:13Z'),
 (1,23,1,647114749,'Logan','Nielson','Nielson','Logan_Nielson1186@guentu.biz','0699-08-07 22:39:19Z','7511-08-22 03:02:47Z'),
@@ -166,7 +168,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (1,28,1,821936270,'Elijah','Ballard','Ballard','Elijah_Ballard9221@qater.org','2851-10-26 10:29:00Z','7855-04-18 00:41:20Z'),
 (1,33,1,161171878,'Claire','Vinton','Vinton','Claire_Vinton5582@elnee.tech','8965-11-10 19:42:39Z','1968-01-15 18:43:44Z'),
 (2,44,1,131589191,'Juliette','Clark','Clark','Juliette_Clark6788@liret.org','6830-03-23 19:05:27Z','8669-06-30 21:40:36Z'),
-(2,11,1,590326769,'Cadence','Squire','Squire','Cadence_Squire7767@irrepsy.com','3071-02-21 00:11:09Z','0884-10-12 14:45:15Z'),
+(2,11,1,590326769,'Cadence','Squire','Squire','Cadence_Squire7767@irrepsy.com','3071-02-21 00:11:09Z','0884-10-12 14:45:15Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (1,40,1,419093531,'Olivia','Reid','Reid','Olivia_Reid6545@qater.org','8012-07-10 09:27:55Z','0297-05-14 20:01:03Z'),
 (2,26,1,530175635,'Ethan','Bradley','Bradley','Ethan_Bradley8011@gompie.com','1582-05-23 17:28:03Z','5946-06-12 04:19:12Z'),
 (2,43,1,495085935,'Cara','Janes','Janes','Cara_Janes535@sheye.org','8887-07-06 19:18:31Z','2774-10-11 02:10:06Z'),
@@ -188,7 +192,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (2,19,1,888580996,'Chester','Buckley','Buckley','Chester_Buckley4569@guentu.biz','0254-07-07 08:25:08Z','3494-10-10 07:16:13Z'),
 (1,31,1,257609050,'Bart','Bullock','Bullock','Bart_Bullock2146@naiker.biz','0153-09-05 08:13:49Z','5775-08-12 04:44:58Z'),
 (2,11,1,222687625,'Tyler','Thomson','Thomson','Tyler_Thomson7373@brety.org','8854-10-21 16:52:15Z','8659-11-09 01:52:58Z'),
-(2,10,1,490956827,'Abdul','Nobbs','Nobbs','Abdul_Nobbs6494@gembat.biz','1428-06-03 03:13:03Z','4478-11-25 03:40:08Z'),
+(2,10,1,490956827,'Abdul','Nobbs','Nobbs','Abdul_Nobbs6494@gembat.biz','1428-06-03 03:13:03Z','4478-11-25 03:40:08Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (2,4,1,702132904,'Mark','Gonzales','Gonzales','Mark_Gonzales5364@irrepsy.com','1600-11-16 11:19:30Z','1493-10-28 07:20:50Z'),
 (2,28,1,400164545,'Irene','Milner','Milner','Irene_Milner6476@ovock.tech','9163-06-30 15:29:40Z','4376-11-27 12:11:07Z'),
 (1,40,1,846370648,'Denny','Hill','Hill','Denny_Hill2284@yahoo.com','6048-11-08 14:19:40Z','9934-08-07 19:52:12Z'),
@@ -211,7 +217,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (2,38,1,576316793,'Peter','Jenkin','Jenkin','Peter_Jenkin5977@acrit.org','2395-04-06 20:56:53Z','4258-09-14 18:40:20Z'),
 (2,7,1,601646389,'Joseph','Gray','Gray','Joseph_Gray7270@grannar.com','2377-11-20 08:31:02Z','7390-06-07 05:09:50Z'),
 (1,36,1,636799650,'Kieth','Coleman','Coleman','Kieth_Coleman7318@gmail.com','1511-02-25 22:15:30Z','0692-11-17 03:11:03Z'),
-(1,41,1,853382890,'Megan','Richards','Richards','Megan_Richards6203@famism.biz','2365-02-23 22:04:18Z','5004-10-30 14:46:02Z'),
+(1,41,1,853382890,'Megan','Richards','Richards','Megan_Richards6203@famism.biz','2365-02-23 22:04:18Z','5004-10-30 14:46:02Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (2,48,1,449318431,'Mike','Gates','Gates','Mike_Gates7390@jiman.org','6081-02-23 09:27:01Z','1686-01-03 04:19:57Z'),
 (2,17,1,867657880,'Gil','Devonport','Devonport','Gil_Devonport7340@vetan.org','7548-08-21 02:39:03Z','6506-04-27 07:27:28Z'),
 (2,12,1,864525744,'Bob','Healy','Healy','Bob_Healy5776@nickia.com','6301-09-25 22:08:01Z','0680-02-20 17:43:19Z'),
@@ -242,7 +250,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (2,25,1,394509949,'Ilona','Ingram','Ingram','Ilona_Ingram2406@iatim.tech','0539-02-27 14:04:36Z','2594-11-17 01:21:52Z'),
 (1,21,1,100051407,'Zara','Benson','Benson','Zara_Benson1470@gompie.com','7143-03-18 11:26:46Z','1377-02-08 19:39:10Z'),
 (2,34,1,537880027,'Benjamin','Corbett','Corbett','Benjamin_Corbett3057@yahoo.com','3240-10-02 18:56:32Z','2892-01-19 21:32:38Z'),
-(2,11,1,479438295,'Summer','Palmer','Palmer','Summer_Palmer6650@naiker.biz','9373-09-26 07:46:49Z','9162-01-19 17:23:26Z'),
+(2,11,1,479438295,'Summer','Palmer','Palmer','Summer_Palmer6650@naiker.biz','9373-09-26 07:46:49Z','9162-01-19 17:23:26Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (1,34,1,140537994,'Esmeralda','Holt','Holt','Esmeralda_Holt7232@infotech44.tech','9295-07-17 04:11:01Z','4252-02-28 12:52:07Z'),
 (1,23,1,206921501,'Elisabeth','Butler','Butler','Elisabeth_Butler5754@bauros.biz','6884-06-14 18:30:11Z','4078-09-14 01:32:05Z'),
 (1,43,1,762331915,'Kimberly','Rowan','Rowan','Kimberly_Rowan8381@cispeto.com','4307-06-28 07:27:45Z','5122-08-01 17:52:42Z'),
@@ -259,7 +269,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (2,13,1,856537602,'Johnathan','Adams','Adams','Johnathan_Adams8964@famism.biz','4321-01-25 16:15:13Z','5824-02-15 04:02:36Z'),
 (2,46,1,802628196,'Payton','Goodman','Goodman','Payton_Goodman3811@sheye.org','5446-09-13 08:23:32Z','4576-09-18 03:25:38Z'),
 (2,48,1,754321193,'Gabriel','Dallas','Dallas','Gabriel_Dallas1411@qater.org','5137-06-28 07:21:22Z','3406-12-20 00:04:01Z'),
-(1,45,1,777633895,'Chuck','Tanner','Tanner','Chuck_Tanner7572@nanoff.biz','1464-12-30 21:29:29Z','9744-05-08 13:49:34Z'),
+(1,45,1,777633895,'Chuck','Tanner','Tanner','Chuck_Tanner7572@nanoff.biz','1464-12-30 21:29:29Z','9744-05-08 13:49:34Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (1,4,1,817547181,'George','Owen','Owen','George_Owen2634@yahoo.com','5034-06-01 02:00:23Z','2040-09-25 07:18:30Z'),
 (2,26,1,735738902,'Kurt','Blythe','Blythe','Kurt_Blythe1718@muall.tech','8835-07-16 00:37:20Z','5393-02-19 16:31:47Z'),
 (2,1,1,316761991,'Cristal','Warren','Warren','Cristal_Warren8993@typill.biz','4712-02-04 17:43:45Z','9424-04-06 13:11:57Z'),
@@ -280,7 +292,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (2,34,1,490237807,'Gabriel','Mcguire','Mcguire','Gabriel_Mcguire3277@zorer.org','0647-10-19 18:36:37Z','0587-08-03 01:11:11Z'),
 (2,43,1,849567092,'Hazel','Kelly','Kelly','Hazel_Kelly9840@sveldo.biz','5036-01-26 22:16:49Z','3975-06-19 22:27:13Z'),
 (1,20,1,322054720,'Julianna','Herbert','Herbert','Julianna_Herbert787@eirey.tech','6962-12-17 00:01:57Z','4611-03-16 14:04:01Z'),
-(2,36,1,135577746,'Nicholas','Zaoui','Zaoui','Nicholas_Zaoui7350@supunk.biz','5257-09-22 01:02:01Z','6672-05-02 18:09:23Z'),
+(2,36,1,135577746,'Nicholas','Zaoui','Zaoui','Nicholas_Zaoui7350@supunk.biz','5257-09-22 01:02:01Z','6672-05-02 18:09:23Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (2,39,1,689455123,'Barney','Benfield','Benfield','Barney_Benfield9935@nimogy.biz','7312-07-18 04:56:07Z','0425-11-13 07:11:48Z'),
 (1,37,1,686038755,'Leslie','Dobson','Dobson','Leslie_Dobson5224@guentu.biz','9323-07-21 01:02:13Z','0291-08-18 05:51:33Z'),
 (2,15,1,649216727,'Audrey','Grady','Grady','Audrey_Grady1402@gmail.com','5830-10-17 06:46:15Z','4832-11-10 17:49:12Z'),
@@ -311,7 +325,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (2,28,1,312175998,'Andrea','Purvis','Purvis','Andrea_Purvis503@zorer.org','6550-10-15 19:18:45Z','9237-12-13 08:55:00Z'),
 (1,26,1,851756863,'Dalia','Graves','Graves','Dalia_Graves3983@liret.org','1535-05-14 00:20:22Z','9042-02-11 07:40:52Z'),
 (1,29,1,607446619,'Liam','Morrison','Morrison','Liam_Morrison7421@vetan.org','1173-04-01 01:27:35Z','9229-05-04 22:22:06Z'),
-(1,10,1,498848159,'Sloane','Denton','Denton','Sloane_Denton9580@famism.biz','4453-11-09 12:41:28Z','7508-09-04 12:37:51Z'),
+(1,10,1,498848159,'Sloane','Denton','Denton','Sloane_Denton9580@famism.biz','4453-11-09 12:41:28Z','7508-09-04 12:37:51Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (1,18,1,272916973,'Clint','James','James','Clint_James3119@ubusive.com','2120-01-16 03:55:36Z','2306-01-09 01:56:16Z'),
 (2,25,1,279498244,'Nicole','Vangness','Vangness','Nicole_Vangness2455@mafthy.com','4289-01-09 09:02:07Z','3664-07-27 12:48:43Z'),
 (2,2,1,719096498,'Carter','Olivier','Olivier','Carter_Olivier7948@atink.com','0836-04-12 03:01:24Z','2148-11-01 11:43:12Z'),
@@ -341,7 +357,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (2,33,1,743183972,'Tom','Plant','Plant','Tom_Plant9925@muall.tech','8524-07-08 14:04:52Z','3785-10-06 03:42:02Z'),
 (1,1,1,105292036,'Daron','Mitchell','Mitchell','Daron_Mitchell7507@twipet.com','2235-01-29 18:12:37Z','9710-04-16 11:45:42Z'),
 (1,49,1,733132328,'Joseph','Rogers','Rogers','Joseph_Rogers2290@bretoux.com','9874-06-12 04:50:00Z','9788-09-09 01:19:33Z'),
-(2,47,1,802052552,'Rowan','Burnley','Burnley','Rowan_Burnley9561@cispeto.com','7196-11-14 10:46:01Z','8814-03-25 02:18:09Z'),
+(2,47,1,802052552,'Rowan','Burnley','Burnley','Rowan_Burnley9561@cispeto.com','7196-11-14 10:46:01Z','8814-03-25 02:18:09Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (2,36,1,507612421,'Leanne','Palmer','Palmer','Leanne_Palmer8124@nimogy.biz','3135-06-02 18:52:16Z','2446-05-21 16:51:03Z'),
 (2,40,1,698391110,'Cadence','Jackson','Jackson','Cadence_Jackson6856@jiman.org','0314-06-27 01:26:17Z','1061-03-20 02:32:49Z'),
 (1,31,1,780180292,'Jack','Partridge','Partridge','Jack_Partridge7402@tonsy.org','1748-11-07 20:03:14Z','4751-06-28 17:54:56Z'),
@@ -376,7 +394,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (1,35,1,353865437,'Charlize','Bryson','Bryson','Charlize_Bryson6916@ovock.tech','6588-11-05 08:23:57Z','1274-08-12 16:43:39Z'),
 (2,29,1,891271670,'Boris','Miller','Miller','Boris_Miller2980@ovock.tech','6490-03-29 16:11:36Z','3052-10-10 20:35:01Z'),
 (1,29,1,866056913,'Rocco','Reading','Reading','Rocco_Reading1094@famism.biz','9332-03-29 11:53:44Z','9618-06-22 07:44:06Z'),
-(2,9,1,856519447,'Jacob','Oakley','Oakley','Jacob_Oakley2901@gmail.com','4864-02-17 09:29:19Z','3537-01-27 11:46:55Z'),
+(2,9,1,856519447,'Jacob','Oakley','Oakley','Jacob_Oakley2901@gmail.com','4864-02-17 09:29:19Z','3537-01-27 11:46:55Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (2,8,1,843806313,'William','Forth','Forth','William_Forth1488@bungar.biz','8042-10-18 10:23:11Z','6871-10-07 09:25:30Z'),
 (1,21,1,162444698,'Mike','Ring','Ring','Mike_Ring4459@mafthy.com','3416-04-20 01:36:43Z','5796-03-02 22:06:48Z'),
 (2,30,1,527010997,'Cassidy','Niles','Niles','Cassidy_Niles497@fuliss.net','5721-02-03 06:53:10Z','7992-05-12 22:03:48Z'),
@@ -410,7 +430,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (2,6,1,405226476,'Susan','Thorpe','Thorpe','Susan_Thorpe5554@famism.biz','6422-10-25 07:38:32Z','0400-04-15 09:09:46Z'),
 (2,49,1,688437184,'Rick','Stewart','Stewart','Rick_Stewart7141@bretoux.com','4589-12-20 20:39:00Z','4065-10-25 12:25:37Z'),
 (1,30,1,764892133,'Matthew','Nash','Nash','Matthew_Nash7690@hourpy.biz','1027-06-20 09:14:05Z','1574-08-22 03:26:40Z'),
-(1,16,1,486220326,'Jackeline','Bright','Bright','Jackeline_Bright5145@dionrab.com','3746-11-14 09:51:02Z','2358-01-01 18:12:53Z'),
+(1,16,1,486220326,'Jackeline','Bright','Bright','Jackeline_Bright5145@dionrab.com','3746-11-14 09:51:02Z','2358-01-01 18:12:53Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (1,28,1,562124680,'Gloria','Richards','Richards','Gloria_Richards4992@bulaffy.com','5139-11-22 06:27:12Z','3016-05-01 16:13:18Z'),
 (1,7,1,665179359,'Camden','Eastwood','Eastwood','Camden_Eastwood8610@bauros.biz','3654-05-25 03:52:46Z','8669-06-19 14:02:11Z'),
 (2,44,1,750905844,'Mark','Chapman','Chapman','Mark_Chapman7993@gompie.com','3765-05-26 03:03:51Z','0731-07-17 15:38:43Z'),
@@ -447,7 +469,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (2,20,1,308658013,'Katelyn','Saunders','Saunders','Katelyn_Saunders7067@grannar.com','4092-05-05 04:32:10Z','9502-08-29 17:24:46Z'),
 (1,28,1,837935840,'Elijah','Shaw','Shaw','Elijah_Shaw9343@gompie.com','5354-01-20 07:55:00Z','4925-07-20 09:30:32Z'),
 (1,20,1,546951878,'Benny','Gibbons','Gibbons','Benny_Gibbons5000@fuliss.net','1597-01-02 15:51:03Z','3111-07-04 07:05:49Z'),
-(2,9,1,140812557,'Karla','Clarke','Clarke','Karla_Clarke8667@nimogy.biz','7429-02-14 15:45:31Z','9166-10-17 18:01:37Z'),
+(2,9,1,140812557,'Karla','Clarke','Clarke','Karla_Clarke8667@nimogy.biz','7429-02-14 15:45:31Z','9166-10-17 18:01:37Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (1,1,1,570810210,'Julian','Knight','Knight','Julian_Knight7783@bulaffy.com','0423-10-15 21:03:29Z','2243-07-22 00:49:10Z'),
 (2,18,1,187571914,'Gina','Price','Price','Gina_Price4566@zorer.org','8260-08-07 04:43:27Z','2430-03-19 19:49:25Z'),
 (2,4,1,474696222,'Eduardo','Dillon','Dillon','Eduardo_Dillon1609@twace.org','3095-08-04 20:47:11Z','5186-07-27 15:54:21Z'),
@@ -484,7 +508,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (1,13,1,510139839,'Nicholas','Craig','Craig','Nicholas_Craig1603@bretoux.com','4752-07-02 13:00:08Z','9142-10-26 05:24:06Z'),
 (1,39,1,435113198,'John','Woods','Woods','John_Woods2280@deons.tech','2190-04-08 15:12:21Z','1827-04-23 10:11:02Z'),
 (2,22,1,674682667,'Alma','Lloyd','Lloyd','Alma_Lloyd835@womeona.net','5747-02-09 00:17:29Z','6095-09-03 18:15:42Z'),
-(2,12,1,171394656,'Liam','Savage','Savage','Liam_Savage2464@elnee.tech','0948-02-26 12:55:55Z','2926-03-13 02:47:06Z'),
+(2,12,1,171394656,'Liam','Savage','Savage','Liam_Savage2464@elnee.tech','0948-02-26 12:55:55Z','2926-03-13 02:47:06Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (1,49,1,300234767,'Sydney','Farrant','Farrant','Sydney_Farrant5549@guentu.biz','7003-01-12 08:54:34Z','6094-08-04 19:55:37Z'),
 (2,48,1,651219382,'Chuck','Cowan','Cowan','Chuck_Cowan1286@twipet.com','3044-08-31 00:08:34Z','2821-11-30 21:28:23Z'),
 (1,14,1,492758961,'Bethany','Harris','Harris','Bethany_Harris424@tonsy.org','1733-06-02 10:19:49Z','4853-07-23 15:00:17Z'),
@@ -522,7 +548,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (2,18,1,715409710,'Maxwell','Judd','Judd','Maxwell_Judd213@gmail.com','2712-11-17 09:31:44Z','8941-06-21 16:25:09Z'),
 (2,45,1,839066999,'Ruby','Fields','Fields','Ruby_Fields3811@sheye.org','0677-08-05 17:46:18Z','5681-07-20 02:34:23Z'),
 (2,19,1,763973062,'Gil','Gray','Gray','Gil_Gray1561@bretoux.com','9971-10-19 18:21:34Z','1814-03-30 10:18:37Z'),
-(2,4,1,371084882,'Natalie','Windsor','Windsor','Natalie_Windsor8117@extex.org','1250-05-22 13:14:03Z','7031-04-29 06:55:21Z'),
+(2,4,1,371084882,'Natalie','Windsor','Windsor','Natalie_Windsor8117@extex.org','1250-05-22 13:14:03Z','7031-04-29 06:55:21Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (2,3,1,218534662,'Belinda','Oswald','Oswald','Belinda_Oswald1995@vetan.org','4840-07-03 12:01:11Z','8863-05-09 07:28:39Z'),
 (1,26,1,885494409,'Chloe','Brown','Brown','Chloe_Brown1381@hourpy.biz','9429-03-06 17:54:14Z','2941-06-22 11:24:12Z'),
 (2,13,1,600493409,'Chester','Oswald','Oswald','Chester_Oswald4436@brety.org','6952-05-26 10:46:47Z','2387-01-14 06:45:23Z'),
@@ -560,7 +588,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (1,11,1,130221903,'Bryce','Abbey','Abbey','Bryce_Abbey2382@gmail.com','6050-03-17 02:03:20Z','7532-04-09 09:07:58Z'),
 (1,18,1,529834632,'Mason','Windsor','Windsor','Mason_Windsor6990@infotech44.tech','6994-07-05 00:52:10Z','6459-10-10 20:15:23Z'),
 (1,21,1,561119728,'Ada','Addley','Addley','Ada_Addley1683@gembat.biz','8538-06-16 21:40:46Z','2903-12-01 22:36:36Z'),
-(2,48,1,706763065,'Jamie','Boden','Boden','Jamie_Boden7513@dionrab.com','0879-04-04 12:20:10Z','9590-06-07 04:47:56Z'),
+(2,48,1,706763065,'Jamie','Boden','Boden','Jamie_Boden7513@dionrab.com','0879-04-04 12:20:10Z','9590-06-07 04:47:56Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (1,35,1,123345109,'David','Wilkinson','Wilkinson','David_Wilkinson8803@ubusive.com','8064-01-06 01:01:09Z','4091-08-06 00:16:32Z'),
 (2,15,1,126372129,'Bryce','Patel','Patel','Bryce_Patel4218@cispeto.com','2437-10-14 19:48:01Z','8948-01-09 16:52:49Z'),
 (2,45,1,536451218,'Rocco','Utterson','Utterson','Rocco_Utterson7413@elnee.tech','6794-05-29 03:43:53Z','6787-08-29 11:04:37Z'),
@@ -584,7 +614,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (2,38,1,560218565,'Winnie','Andersson','Andersson','Winnie_Andersson8954@grannar.com','3557-08-15 21:42:41Z','8506-10-18 04:49:42Z'),
 (2,31,1,881690958,'Chadwick','Selby','Selby','Chadwick_Selby1024@nickia.com','8302-03-04 07:56:49Z','5100-08-01 16:54:07Z'),
 (1,34,1,552771725,'Daniel','Stewart','Stewart','Daniel_Stewart3565@grannar.com','2507-11-27 05:32:04Z','3259-06-30 20:12:57Z'),
-(1,34,1,403415946,'Lucas','Quinnell','Quinnell','Lucas_Quinnell3245@bulaffy.com','8841-11-14 04:55:41Z','8457-01-13 04:46:34Z'),
+(1,34,1,403415946,'Lucas','Quinnell','Quinnell','Lucas_Quinnell3245@bulaffy.com','8841-11-14 04:55:41Z','8457-01-13 04:46:34Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (2,8,1,351496044,'Danny','Gibbons','Gibbons','Danny_Gibbons5974@elnee.tech','1183-06-18 11:32:34Z','5043-09-04 10:43:50Z'),
 (1,13,1,780498465,'Liam','Griffiths','Griffiths','Liam_Griffiths3565@muall.tech','0358-02-11 12:24:49Z','4050-11-13 00:45:29Z'),
 (2,3,1,893353928,'Boris','Moore','Moore','Boris_Moore3473@ovock.tech','2898-09-25 12:45:19Z','3799-03-13 17:11:50Z'),
@@ -618,7 +650,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (1,11,1,288761766,'Bart','Radcliffe','Radcliffe','Bart_Radcliffe9275@deons.tech','1781-09-18 16:36:21Z','6148-09-14 14:35:49Z'),
 (2,41,1,377615215,'Evelynn','Edley','Edley','Evelynn_Edley1070@acrit.org','6798-10-29 15:17:01Z','1262-02-25 12:34:06Z'),
 (2,49,1,621404327,'Ronald','Morley','Morley','Ronald_Morley1999@qater.org','1627-03-21 17:17:17Z','9540-07-19 22:25:30Z'),
-(1,17,1,422010775,'Joseph','Robinson','Robinson','Joseph_Robinson2090@guentu.biz','3624-02-11 03:37:03Z','0520-07-24 03:01:15Z'),
+(1,17,1,422010775,'Joseph','Robinson','Robinson','Joseph_Robinson2090@guentu.biz','3624-02-11 03:37:03Z','0520-07-24 03:01:15Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (2,30,1,820417072,'Phillip','Knight','Knight','Phillip_Knight4065@corti.com','4974-08-31 20:48:03Z','7258-04-12 16:50:29Z'),
 (1,13,1,453961946,'Adalie','Ellwood','Ellwood','Adalie_Ellwood2127@sheye.org','6400-10-18 03:33:46Z','1107-08-30 13:15:01Z'),
 (1,41,1,586610201,'Chris','Broomfield','Broomfield','Chris_Broomfield8664@bulaffy.com','2567-09-23 15:23:49Z','6365-11-01 10:45:33Z'),
@@ -665,7 +699,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (1,41,1,458863745,'Mason','Rivers','Rivers','Mason_Rivers1915@elnee.tech','5255-11-10 15:16:54Z','5432-12-04 01:35:12Z'),
 (1,3,1,635090666,'Elijah','Styles','Styles','Elijah_Styles5543@bulaffy.com','6000-04-11 13:06:27Z','2082-12-13 21:17:07Z'),
 (2,41,1,572150488,'Margaret','Wise','Wise','Margaret_Wise5563@ovock.tech','2301-11-03 11:21:25Z','4421-03-28 14:57:11Z'),
-(2,47,1,339549645,'Barry','Hudson','Hudson','Barry_Hudson1532@grannar.com','0646-04-01 11:04:56Z','3173-11-28 17:58:46Z'),
+(2,47,1,339549645,'Barry','Hudson','Hudson','Barry_Hudson1532@grannar.com','0646-04-01 11:04:56Z','3173-11-28 17:58:46Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (1,38,1,690544256,'Alexander','Parr','Parr','Alexander_Parr4268@deavo.com','9784-02-12 01:11:28Z','1580-01-15 21:08:15Z'),
 (1,18,1,225053389,'Michael','Price','Price','Michael_Price4670@famism.biz','5752-12-06 06:27:58Z','9127-12-06 17:22:37Z'),
 (1,11,1,855715372,'Vicky','Harrison','Harrison','Vicky_Harrison8759@mafthy.com','2359-12-14 04:56:03Z','9066-03-17 13:55:40Z'),
@@ -699,7 +735,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (2,45,1,152760740,'Vicky','Janes','Janes','Vicky_Janes4447@jiman.org','9784-05-10 17:49:26Z','6454-06-01 05:42:49Z'),
 (1,6,1,632633532,'Priscilla','Moreno','Moreno','Priscilla_Moreno9608@eirey.tech','2123-11-05 02:16:34Z','9799-02-19 15:22:31Z'),
 (2,35,1,638796929,'Hayden','Richardson','Richardson','Hayden_Richardson103@cispeto.com','3555-02-24 19:01:05Z','2968-09-01 03:19:28Z'),
-(2,24,1,793435715,'Cassandra','Evans','Evans','Cassandra_Evans1434@hourpy.biz','6816-05-04 06:09:40Z','9985-03-21 01:26:54Z'),
+(2,24,1,793435715,'Cassandra','Evans','Evans','Cassandra_Evans1434@hourpy.biz','6816-05-04 06:09:40Z','9985-03-21 01:26:54Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (2,1,1,481792599,'Benny','Casey','Casey','Benny_Casey2879@atink.com','6266-11-22 15:55:09Z','9155-03-06 22:56:06Z'),
 (2,45,1,365914788,'Oliver','Anderson','Anderson','Oliver_Anderson4944@qater.org','1072-01-25 01:50:48Z','3569-12-05 17:33:09Z'),
 (1,16,1,881742790,'Sonya','Aldridge','Aldridge','Sonya_Aldridge7562@deavo.com','3367-10-14 16:12:39Z','7661-03-01 07:12:33Z'),
@@ -737,7 +775,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (2,5,1,432871868,'Chad','Coll','Coll','Chad_Coll5659@yahoo.com','7250-04-02 18:41:05Z','8152-04-05 14:25:07Z'),
 (2,13,1,191371775,'Marvin','Dale','Dale','Marvin_Dale7370@sveldo.biz','8986-06-26 06:08:05Z','5561-05-18 03:02:00Z'),
 (1,24,1,650173869,'Keira','Ryan','Ryan','Keira_Ryan6763@naiker.biz','0634-03-16 04:20:30Z','9581-10-05 07:52:54Z'),
-(2,27,1,175286317,'Keira','Turner','Turner','Keira_Turner5554@bretoux.com','5503-09-05 13:24:55Z','1689-11-16 14:38:04Z'),
+(2,27,1,175286317,'Keira','Turner','Turner','Keira_Turner5554@bretoux.com','5503-09-05 13:24:55Z','1689-11-16 14:38:04Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (1,47,1,869794304,'Carissa','Harris','Harris','Carissa_Harris657@ubusive.com','0839-12-06 12:23:35Z','9404-09-22 21:14:09Z'),
 (1,25,1,309503315,'Benny','Johnson','Johnson','Benny_Johnson6759@supunk.biz','0222-10-08 22:15:49Z','8944-04-29 12:40:25Z'),
 (2,47,1,557006826,'Mavis','Allwood','Allwood','Mavis_Allwood641@sheye.org','4899-08-22 17:09:41Z','6098-12-12 14:09:46Z'),
@@ -774,7 +814,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (2,47,1,448268362,'Leroy','Cameron','Cameron','Leroy_Cameron8557@joiniaa.com','4757-11-08 03:44:23Z','4441-05-22 00:20:39Z'),
 (2,28,1,197977162,'Matt','Gates','Gates','Matt_Gates6568@muall.tech','9233-05-01 12:28:55Z','2336-12-30 06:33:45Z'),
 (1,1,1,661043474,'Marilyn','Wigley','Wigley','Marilyn_Wigley2960@zorer.org','8839-03-29 16:23:20Z','8249-07-03 17:55:41Z'),
-(1,44,1,377584658,'Priscilla','Jefferson','Jefferson','Priscilla_Jefferson6025@naiker.biz','3282-04-11 22:21:28Z','2421-11-09 19:11:36Z'),
+(1,44,1,377584658,'Priscilla','Jefferson','Jefferson','Priscilla_Jefferson6025@naiker.biz','3282-04-11 22:21:28Z','2421-11-09 19:11:36Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (1,16,1,872516772,'Cassidy','Oldfield','Oldfield','Cassidy_Oldfield1360@eirey.tech','1295-09-05 07:15:17Z','0984-10-30 18:32:13Z'),
 (2,34,1,745248555,'Zoe','Wright','Wright','Zoe_Wright3441@bulaffy.com','8318-02-16 07:54:22Z','6418-05-20 19:12:43Z'),
 (2,31,1,766967076,'Celia','Kelly','Kelly','Celia_Kelly5111@deons.tech','8529-03-18 13:20:29Z','2298-06-13 04:48:15Z'),
@@ -829,7 +871,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (2,15,1,147023531,'Percy','Harvey','Harvey','Percy_Harvey5954@gompie.com','5359-10-22 08:52:40Z','4627-09-01 10:07:32Z'),
 (1,22,1,476627021,'Ron','Rowe','Rowe','Ron_Rowe5144@infotech44.tech','4369-07-13 18:18:04Z','2915-02-28 09:36:57Z'),
 (1,30,1,699862351,'Carmen','Dixon','Dixon','Carmen_Dixon5502@grannar.com','3869-06-15 22:41:04Z','7013-11-05 08:31:50Z'),
-(1,43,1,622991523,'Jackeline','Weatcroft','Weatcroft','Jackeline_Weatcroft2198@deons.tech','6820-09-20 01:17:28Z','2445-08-24 21:15:41Z'),
+(1,43,1,622991523,'Jackeline','Weatcroft','Weatcroft','Jackeline_Weatcroft2198@deons.tech','6820-09-20 01:17:28Z','2445-08-24 21:15:41Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (1,26,1,275648009,'Daniel','Harrison','Harrison','Daniel_Harrison1707@bulaffy.com','2836-01-19 20:47:52Z','7355-09-07 10:45:13Z'),
 (1,37,1,184073093,'Victoria','Morris','Morris','Victoria_Morris2502@muall.tech','6405-03-18 16:15:04Z','1424-10-22 00:26:22Z'),
 (1,2,1,881991295,'Melody','Smith','Smith','Melody_Smith4905@brety.org','6067-03-28 12:24:12Z','9465-01-14 13:30:15Z'),
@@ -866,7 +910,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (1,30,1,476933738,'Lara','Curtis','Curtis','Lara_Curtis2890@bulaffy.com','2219-09-30 20:37:19Z','2478-03-17 00:21:32Z'),
 (2,13,1,142264414,'Aiden','Mason','Mason','Aiden_Mason2323@naiker.biz','6089-05-07 13:20:19Z','5510-10-06 03:05:18Z'),
 (1,36,1,131543335,'Anthony','Coates','Coates','Anthony_Coates8050@nimogy.biz','3290-04-10 22:57:42Z','2322-04-21 06:58:00Z'),
-(1,33,1,866265834,'Mike','Taylor','Taylor','Mike_Taylor3120@nickia.com','7771-11-20 16:56:35Z','6708-12-26 16:31:01Z'),
+(1,33,1,866265834,'Mike','Taylor','Taylor','Mike_Taylor3120@nickia.com','7771-11-20 16:56:35Z','6708-12-26 16:31:01Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (2,32,1,796173671,'Noah','Exton','Exton','Noah_Exton1142@gmail.com','1658-10-24 14:14:04Z','3768-01-19 07:20:18Z'),
 (1,22,1,299662181,'Mark','Ramsey','Ramsey','Mark_Ramsey2620@gmail.com','1816-02-21 12:50:05Z','6581-04-16 05:26:41Z'),
 (1,17,1,290807427,'Crystal','Graham','Graham','Crystal_Graham1219@mafthy.com','6183-06-10 09:03:35Z','4004-11-02 08:35:16Z'),
@@ -901,7 +947,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (1,29,1,840319550,'Chanelle','Neville','Neville','Chanelle_Neville2770@bulaffy.com','1533-10-20 14:13:45Z','7284-03-06 18:54:37Z'),
 (1,18,1,121984098,'Cedrick','Farrant','Farrant','Cedrick_Farrant7632@iatim.tech','0136-08-27 16:44:25Z','6866-08-31 06:32:29Z'),
 (1,45,1,100631245,'George','Baldwin','Baldwin','George_Baldwin2053@elnee.tech','8193-01-21 03:45:21Z','0424-08-31 22:03:37Z'),
-(1,46,1,268540158,'Bob','Isaac','Isaac','Bob_Isaac3624@twipet.com','6831-04-19 01:30:28Z','4667-02-19 08:39:16Z'),
+(1,46,1,268540158,'Bob','Isaac','Isaac','Bob_Isaac3624@twipet.com','6831-04-19 01:30:28Z','4667-02-19 08:39:16Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (2,1,1,612098068,'Olivia','Reid','Reid','Olivia_Reid3159@mafthy.com','0753-08-27 01:58:15Z','9711-12-27 17:41:46Z'),
 (2,31,1,355388964,'Owen','Andrews','Andrews','Owen_Andrews4554@deavo.com','8727-03-17 15:40:55Z','3526-12-05 17:06:05Z'),
 (1,3,1,598368972,'Rick','Rothwell','Rothwell','Rick_Rothwell2629@vetan.org','4553-08-09 06:22:01Z','7119-04-24 07:48:40Z'),
@@ -942,7 +990,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (1,30,1,893227431,'Dakota','Williams','Williams','Dakota_Williams9049@elnee.tech','5308-03-18 06:20:30Z','8601-06-09 19:24:21Z'),
 (1,47,1,755027116,'Daniel','Harrison','Harrison','Daniel_Harrison9739@iatim.tech','5050-09-14 15:11:24Z','4847-01-16 14:57:26Z'),
 (2,44,1,435370657,'Bernadette','Wilton','Wilton','Bernadette_Wilton1736@hourpy.biz','4359-02-12 20:38:12Z','6885-10-03 04:32:10Z'),
-(1,25,1,206586159,'Mara','Sanchez','Sanchez','Mara_Sanchez9324@gmail.com','2383-08-07 06:42:01Z','0462-03-02 15:21:03Z'),
+(1,25,1,206586159,'Mara','Sanchez','Sanchez','Mara_Sanchez9324@gmail.com','2383-08-07 06:42:01Z','0462-03-02 15:21:03Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (2,26,1,523164814,'Ramon','Mcneill','Mcneill','Ramon_Mcneill3367@extex.org','4769-09-22 06:18:24Z','8164-12-11 10:37:13Z'),
 (1,24,1,309471015,'Teagan','Farrell','Farrell','Teagan_Farrell1760@famism.biz','8460-11-11 02:27:48Z','3897-12-12 05:16:09Z'),
 (1,1,1,327457136,'Mark','Sawyer','Sawyer','Mark_Sawyer7397@atink.com','8400-01-30 03:36:56Z','4218-08-26 19:04:46Z'),
@@ -993,7 +1043,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (2,23,1,878647587,'Abbey','Rehman','Rehman','Abbey_Rehman1587@liret.org','3815-04-06 15:54:15Z','5443-08-02 19:17:33Z'),
 (2,12,1,511539986,'Abbey','Heaton','Heaton','Abbey_Heaton1624@bauros.biz','4615-05-22 21:32:18Z','6730-11-18 07:17:58Z'),
 (1,45,1,474094990,'John','Niles','Niles','John_Niles9197@kideod.biz','4729-02-24 22:22:57Z','5954-06-02 03:22:36Z'),
-(2,17,1,161747813,'Harry','Selby','Selby','Harry_Selby4689@liret.org','7070-08-30 19:36:54Z','7084-05-18 08:36:16Z'),
+(2,17,1,161747813,'Harry','Selby','Selby','Harry_Selby4689@liret.org','7070-08-30 19:36:54Z','7084-05-18 08:36:16Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (1,20,1,310831590,'Jacob','Murphy','Murphy','Jacob_Murphy4547@famism.biz','6959-02-05 17:46:46Z','8660-12-20 17:09:40Z'),
 (2,48,1,614340863,'Kurt','Morris','Morris','Kurt_Morris6493@eirey.tech','5669-06-11 05:18:31Z','7644-10-08 13:44:40Z'),
 (2,49,1,261530162,'Daria','Nicholls','Nicholls','Daria_Nicholls2363@fuliss.net','8969-03-17 22:40:26Z','8409-09-10 02:26:13Z'),
@@ -1044,7 +1096,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (1,33,1,356807598,'Doug','Terry','Terry','Doug_Terry1881@vetan.org','9543-01-30 20:15:22Z','6778-04-25 02:17:49Z'),
 (1,26,1,240392179,'Phillip','Moreno','Moreno','Phillip_Moreno393@sveldo.biz','6285-06-13 08:41:34Z','1702-08-04 09:23:10Z'),
 (2,8,1,843200471,'Nicholas','Edwards','Edwards','Nicholas_Edwards8765@liret.org','7142-01-23 01:10:22Z','1881-08-18 04:31:39Z'),
-(1,41,1,876711983,'Julian','Silva','Silva','Julian_Silva3211@gembat.biz','3331-11-24 16:28:00Z','7841-06-29 11:50:12Z'),
+(1,41,1,876711983,'Julian','Silva','Silva','Julian_Silva3211@gembat.biz','3331-11-24 16:28:00Z','7841-06-29 11:50:12Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (1,8,1,319664448,'Marilyn','Rust','Rust','Marilyn_Rust9119@ovock.tech','9371-09-01 10:50:42Z','4404-10-27 03:10:53Z'),
 (1,29,1,320362465,'Henry','Saunders','Saunders','Henry_Saunders4490@deavo.com','9795-10-31 17:23:12Z','9300-07-27 12:19:10Z'),
 (2,19,1,348196193,'Rosalie','Pond','Pond','Rosalie_Pond3448@yahoo.com','7902-06-26 16:27:29Z','8927-01-28 13:18:06Z'),
@@ -1078,7 +1132,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (2,19,1,803139332,'Cecilia','Upton','Upton','Cecilia_Upton1057@nanoff.biz','4862-08-31 13:03:14Z','2526-10-04 09:12:13Z'),
 (2,45,1,340624038,'Joy','Farrow','Farrow','Joy_Farrow2471@corti.com','9391-12-24 15:13:31Z','7437-11-29 03:47:17Z'),
 (2,25,1,809002933,'Lindsay','Morrison','Morrison','Lindsay_Morrison1278@infotech44.tech','0511-01-26 15:45:21Z','1937-05-05 22:37:29Z'),
-(1,5,1,351706144,'Lucas','Wright','Wright','Lucas_Wright520@supunk.biz','1743-07-23 07:51:38Z','7424-10-03 10:15:56Z'),
+(1,5,1,351706144,'Lucas','Wright','Wright','Lucas_Wright520@supunk.biz','1743-07-23 07:51:38Z','7424-10-03 10:15:56Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (1,35,1,589029116,'Hayden','Miller','Miller','Hayden_Miller3271@ubusive.com','4687-06-11 09:27:07Z','7455-08-22 16:35:01Z'),
 (2,35,1,336786876,'Michael','Tennant','Tennant','Michael_Tennant3071@cispeto.com','7443-04-24 14:15:18Z','3086-04-24 05:30:23Z'),
 (2,46,1,412708757,'Penny','Rainford','Rainford','Penny_Rainford4124@infotech44.tech','9342-09-02 19:34:14Z','4287-12-02 14:15:36Z'),
@@ -1105,7 +1161,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (2,15,1,152483539,'Sebastian','Bowen','Bowen','Sebastian_Bowen6126@nanoff.biz','4130-07-14 06:06:05Z','6935-03-22 03:56:47Z'),
 (2,10,1,142195276,'Peter','Rehman','Rehman','Peter_Rehman451@nimogy.biz','1583-05-20 20:44:16Z','6721-03-14 16:44:33Z'),
 (2,25,1,699627764,'Keira','Stanley','Stanley','Keira_Stanley8955@grannar.com','9563-11-18 16:00:38Z','0517-02-14 08:38:01Z'),
-(1,8,1,523508501,'Percy','Lomax','Lomax','Percy_Lomax2377@gmail.com','0854-12-22 19:50:53Z','7409-05-03 12:21:30Z'),
+(1,8,1,523508501,'Percy','Lomax','Lomax','Percy_Lomax2377@gmail.com','0854-12-22 19:50:53Z','7409-05-03 12:21:30Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (2,23,1,100057622,'Liv','Khan','Khan','Liv_Khan3581@corti.com','5210-02-26 00:01:02Z','1067-04-06 11:05:15Z'),
 (2,29,1,794613099,'Bob','Mcgee','Mcgee','Bob_Mcgee6349@gmail.com','4857-03-25 17:02:38Z','2155-07-19 04:38:07Z'),
 (2,10,1,682112569,'Camden','Gardner','Gardner','Camden_Gardner8769@yahoo.com','5933-05-24 10:12:19Z','9787-09-18 07:45:37Z'),
@@ -1136,7 +1194,9 @@ insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, ape
 (1,40,1,639515494,'Mandy','Rossi','Rossi','Mandy_Rossi9252@corti.com','9692-05-17 07:22:43Z','7814-08-26 12:47:03Z'),
 (1,29,1,177572669,'Sofia','Rothwell','Rothwell','Sofia_Rothwell9327@womeona.net','3465-07-15 18:48:23Z','6712-07-24 14:50:44Z'),
 (1,44,1,667324091,'Lily','Ramsey','Ramsey','Lily_Ramsey7224@infotech44.tech','7941-03-24 04:19:00Z','9784-10-03 13:44:23Z'),
-(1,40,1,658469057,'Emery','Allen','Allen','Emery_Allen1086@atink.com','3917-08-10 18:06:06Z','2980-10-26 15:30:57Z'),
+(1,40,1,658469057,'Emery','Allen','Allen','Emery_Allen1086@atink.com','3917-08-10 18:06:06Z','2980-10-26 15:30:57Z');
+insert into Empleado(idPuesto, idSucursal, idEstado, cedula, nombreEmpleado, apellido1, 
+                    apellido2, correo, fechaContratacion, fechaNacimiento) values
 (1,46,1,547117044,'Mona','Sheldon','Sheldon','Mona_Sheldon6833@twace.org','9381-09-23 02:35:29Z','3680-10-10 04:03:58Z'),
 (1,4,1,631196675,'Bernadette','Ashley','Ashley','Bernadette_Ashley4809@grannar.com','3704-12-20 20:36:50Z','4961-05-29 11:48:02Z'),
 (1,41,1,897746944,'Paula','Tutton','Tutton','Paula_Tutton8696@gompie.com','3662-09-24 09:30:38Z','0237-10-30 13:02:07Z'),
@@ -1152,22 +1212,26 @@ INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (16,'gw6B7uP0RB'),(17,'eHxgtZVEME'),(18,'7K68EXaOEo'),(19,'6q7ndaGPCN'),(20,'FOBLAQkFGn'),
 (21,'N9EXAWz87j'),(22,'UBwmEyJKDT'),(23,'SFB88sIv7x'),(24,'xVIab7lknH'),(25,'kISd3DcYGM'),
 (26,'HZBwUH7FYR'),(27,'NEAJv93WLH'),(28,'Mjh6tKxiE4'),(29,'QupvpXTVFT'),(30,'9gLV4fHIr4'),
-(31,'KFM99i2FCK'),(32,'UZAdAdZPdX'),(33,'phQ1IqXLCO'),(34,'Co0KuKhqvH'),(35,'fNT59jfrVa'),
+(31,'KFM99i2FCK'),(32,'UZAdAdZPdX'),(33,'phQ1IqXLCO'),(34,'Co0KuKhqvH'),(35,'fNT59jfrVa');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (36,'G2pTPnzV0T'),(37,'KrDyHpj0tz'),(38,'6tdV2bOU2i'),(39,'KqzlHK9g5H'),(40,'VMzc7yKeyT'),
 (41,'Ap7feWZTbx'),(42,'YecSId1cq7'),(43,'qC5meu4AYE'),(44,'RtgiiesUGv'),(45,'upFHs0tgTd'),
 (46,'6ry0n8uVBu'),(47,'cY5Wfp84uo'),(48,'vhV5MB7x4n'),(49,'AXq4Hj5p5k'),(50,'uXSWSVusmD'),
 (51,'2ywpsZW2ol'),(52,'A6aYtFsAP6'),(53,'tS9K3XP8n0'),(54,'QOL0vLkAMr'),(55,'NCBTjx63nM'),
-(56,'ntdqTjzmwU'),(57,'KXPxVwvjnh'),(58,'fryhtqQplG'),(59,'bVVaNhvfhL'),(60,'V7O2hzxN8w'),
+(56,'ntdqTjzmwU'),(57,'KXPxVwvjnh'),(58,'fryhtqQplG'),(59,'bVVaNhvfhL'),(60,'V7O2hzxN8w');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (61,'BWQFr5556m'),(62,'SKBq3zCyky'),(63,'AQCbLhd693'),(64,'3DryEEEPtR'),(65,'lzi42L6i8s'),
 (66,'w8nKvvTy3J'),(67,'c95DtPcNly'),(68,'uwFTMLrIj9'),(69,'l57RH5ZhCS'),(70,'uPVjzm3fLm'),
 (71,'st6K7A3U7k'),(72,'DLP3hgCo5y'),(73,'z5KSDeafdk'),(74,'RM66R28wUH'),(75,'CFjcPjAbBS'),
-(76,'jPjXxxinHc'),(77,'jX0XT0PTmp'),(78,'iPUywuWsDe'),(79,'e8dLABnjJd'),(80,'TUo1hoPMIY'),
+(76,'jPjXxxinHc'),(77,'jX0XT0PTmp'),(78,'iPUywuWsDe'),(79,'e8dLABnjJd'),(80,'TUo1hoPMIY');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (81,'TrzWuU5ukD'),(82,'b0kn8l3pWR'),(83,'NpJJVNkcRH'),(84,'eJjpKxJHaq'),(85,'G28GCduB36'),
 (86,'vkz1KnhpBh'),(87,'tcddiRR4cK'),(88,'bwOqLVrDG2'),(89,'cijVW4Usfg'),(90,'QdF37nYeiu'),
 (91,'L0jse8WJpy'),(92,'6djIEK2IGn'),(93,'7jZ647qUsh'),(94,'6MfVqm910Y'),(95,'iKCqkw46zw'),
 (96,'vQY4xmamxg'),(97,'RBaH1u8Ncc'),(98,'KBSsFxgsWI'),(99,'Due5wqyliD'),(100,'LWDTGgt5zz'),
 (101,'xreXmt8pyA'),(102,'GsQpdhheUK'),(103,'5XoYQx78mj'),(104,'Dl3gUWPHTD'),(105,'sJwi7dGX0j'),
-(106,'9Pko4ZCFGy'),(107,'w9CP6eyuUG'),(108,'RZLRcwlGbx'),(109,'rkHDjyBPm4'),(110,'UKAeQtGglc'),
+(106,'9Pko4ZCFGy'),(107,'w9CP6eyuUG'),(108,'RZLRcwlGbx'),(109,'rkHDjyBPm4'),(110,'UKAeQtGglc');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (111,'oVCuRjDSMH'),(112,'y6nTHM19pI'),(113,'diIawHYqAs'),(114,'qEe8IWhXvA'),(115,'usDeGXgrXE'),
 (116,'1G0d8GMm7K'),(117,'KWSdbtcoKv'),(118,'oeNpXvfoTY'),(119,'krT51jOAAC'),(120,'J4ZlzXakDW'),
 (121,'52glaX2LFN'),(122,'kiTjjdDWl1'),(123,'fboIluEmz9'),(124,'U5k6csKrfe'),(125,'qC4wbll0BW'),
@@ -1178,169 +1242,203 @@ INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (146,'VBzf1JVr72'),(147,'5qN8406FI5'),(148,'hcyx1Mng9L'),(149,'KeyfXdO6eQ'),(150,'yKFZiCeBfg'),
 (151,'jZ72X3NCop'),(152,'gzrvsb1rlb'),(153,'m9k1GWWYPz'),(154,'slAdlvh6Ie'),(155,'QMSzu9cUrG'),
 (156,'KwaE3kyFvA'),(157,'gywy64zOJ7'),(158,'45jGKaqvHH'),(159,'3CrIp6K5jB'),(160,'6bKI8bZe20'),
-(161,'KOKtMOMU3d'),(162,'4C8nGdGnJ9'),(163,'t3oHAcvbIs'),(164,'AM2Q7p286a'),(165,'u0BGH3dgCf'),
+(161,'KOKtMOMU3d'),(162,'4C8nGdGnJ9'),(163,'t3oHAcvbIs'),(164,'AM2Q7p286a'),(165,'u0BGH3dgCf');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (166,'VwU2HQkCtt'),(167,'dvMLcrJrqa'),(168,'lIrtP22hAG'),(169,'9OZmXO1AJr'),(170,'EzPM68o0nZ'),
 (171,'uv0l4NElmO'),(172,'XDCmuPWjxO'),(173,'0Ji9Wv3ewR'),(174,'OC3lWNYysK'),(175,'JPX5TBxmcr'),
 (176,'mFCZikN1OI'),(177,'TkzVAVJaPg'),(178,'0h0nEkwmpV'),(179,'8QCFoJ9eCw'),(180,'Agjk0jaB58'),
 (181,'1WW50EOYV7'),(182,'xkL3JDhtr1'),(183,'VpYdfT8Pxf'),(184,'Kvrrdm3GOj'),(185,'4lIE8ZVqbx'),
 (186,'BqTEmM73Zg'),(187,'G8l0xC3eZg'),(188,'JbfI6ugTfG'),(189,'8Ry9ddbnFQ'),(190,'pAqrc59SQ5'),
-(191,'g1Q4nkLLH1'),(192,'qnXTizKlWU'),(193,'kPYJ1IuxpA'),(194,'vNDkjHB3W3'),(195,'RPfNkBnXJn'),
+(191,'g1Q4nkLLH1'),(192,'qnXTizKlWU'),(193,'kPYJ1IuxpA'),(194,'vNDkjHB3W3'),(195,'RPfNkBnXJn');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (196,'vX65URcHDf'),(197,'zYgGGckxub'),(198,'xQPdCVtLiz'),(199,'fXnBPXRHPS'),(200,'o4z1E3tZGI'),
 (201,'a0ms0eId39'),(202,'hRiN9bue0t'),(203,'Ldhcw3bYYJ'),(204,'lUEaYpu4Lv'),(205,'PyOQuXVm1m'),
 (206,'JOiX77SK66'),(207,'DtEtXMMIyU'),(208,'qzTFdXOQrY'),(209,'izgwAWwrcb'),(210,'Wk8Psfte2i'),
 (211,'LMxh5T5d3k'),(212,'tCdhYNMRtB'),(213,'aeqX8G0EW8'),(214,'nuYJNWB90q'),(215,'bSx2sUHb0e'),
 (216,'Tbu1HqgZjz'),(217,'c1G568nUUC'),(218,'MMbDjHqxpn'),(219,'9ZN1pLAhBg'),(220,'zmaBNjM26t'),
 (221,'qwHySGAqR9'),(222,'Atu5zDnOQv'),(223,'8GSxMjwZ09'),(224,'5y067MSYji'),(225,'KTPBgG2fLK'),
-(226,'67mKvkeTms'),(227,'Tk0REM2x8n'),(228,'uPprkp0QRF'),(229,'rRNqD7MqKW'),(230,'r8w0Ojc87U'),
+(226,'67mKvkeTms'),(227,'Tk0REM2x8n'),(228,'uPprkp0QRF'),(229,'rRNqD7MqKW'),(230,'r8w0Ojc87U');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (231,'OEgiZqR4kG'),(232,'tOCgACXKNG'),(233,'9Mml5wcycA'),(234,'M2T71nupQW'),(235,'pRFEnd6PzM'),
 (236,'MSu0UCb5nm'),(237,'Odcj304FpX'),(238,'Sr30asGi7b'),(239,'zN9Qy4Idmy'),(240,'MyCnIMzfLw'),
 (241,'j0jc3fY3Zl'),(242,'537LxAeLv9'),(243,'sbc1KdpPrO'),(244,'3kWL29ngXS'),(245,'fODB2T100H'),
 (246,'snuLEHYsSZ'),(247,'zJLLsVgwSy'),(248,'X7ycedXb81'),(249,'myYkfP0LGv'),(250,'k4N7dWD2Sh'),
 (251,'xFiCuvzRrl'),(252,'t7ubxBulpc'),(253,'fVphNdt09I'),(254,'ZfIbDgQVzu'),(255,'aieeBmJwKb'),
-(256,'lbM0CcZAzR'),(257,'B8SiLOzTXQ'),(258,'uYv5C61Kgk'),(259,'T7qhg7SRYl'),(260,'HQgitbQ5Tw'),
+(256,'lbM0CcZAzR'),(257,'B8SiLOzTXQ'),(258,'uYv5C61Kgk'),(259,'T7qhg7SRYl'),(260,'HQgitbQ5Tw');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (261,'x0Z3qMqRxF'),(262,'kOdO8ERuBN'),(263,'6h4vJe2NMk'),(264,'q51uxchx0U'),(265,'RBeTA2wRko'),
 (266,'Kf3F0P5nuM'),(267,'UcEMZpXtaf'),(268,'ge4r54DluQ'),(269,'sknhaLCv3h'),(270,'g4Co9z6R4V'),
 (271,'fC0EIplLJ5'),(272,'MU2dduygwN'),(273,'mlz38mbPsG'),(274,'7vrZvptjZu'),(275,'k0m8VMBjKP'),
 (276,'Aaeqs3M7Ff'),(277,'OVdD7bndsx'),(278,'APHCnv91iw'),(279,'l2FcGhQAq1'),(280,'dvd3gPXjA3'),
 (281,'jh1WOuScC7'),(282,'4UZT4VPA6a'),(283,'Kmx0UPwNgY'),(284,'Ya1oNEBsOV'),(285,'Oy8t7IWK9K'),
-(286,'9Xmkt6tAC9'),(287,'8F5niedvF0'),(288,'UhwlLVoE3M'),(289,'2mOWZBxR4Q'),(290,'UAqOXJ3UKc'),
+(286,'9Xmkt6tAC9'),(287,'8F5niedvF0'),(288,'UhwlLVoE3M'),(289,'2mOWZBxR4Q'),(290,'UAqOXJ3UKc');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (291,'olEJzbkAYY'),(292,'SpHzGV1jOh'),(293,'qM0zgT0hNC'),(294,'cU3aiRiFg7'),(295,'ax2g8o30HB'),
 (296,'RTFmvbuOmf'),(297,'kCwW68wqRz'),(298,'xwCQG3UU02'),(299,'a9aMuIOQpG'),(300,'gTcAWXAgk9'),
-(301,'2MjSOfRyf2'),(302,'HaYuElmklx'),(303,'ufBLSdUC4t'),(304,'3yt0AOaI7P'),(305,'1Zuw8G5r5v'),
+(301,'2MjSOfRyf2'),(302,'HaYuElmklx'),(303,'ufBLSdUC4t'),(304,'3yt0AOaI7P'),(305,'1Zuw8G5r5v');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (306,'vZ4wPWKYAu'),(307,'LP4w9Tqhu0'),(308,'KenW6UuOML'),(309,'imGI7d37ln'),(310,'DCHMDlf7xp'),
-(311,'ZY6FkRwhz5'),(312,'l6LyMiIvzf'),(313,'Zt6HwIWaSU'),(314,'zwbhwJpAiq'),(315,'rWHpBH1T9f'),
+(311,'ZY6FkRwhz5'),(312,'l6LyMiIvzf'),(313,'Zt6HwIWaSU'),(314,'zwbhwJpAiq'),(315,'rWHpBH1T9f');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (316,'cuIRPpczSc'),(317,'4VPeGyfnBD'),(318,'2INJyDmQFp'),(319,'RCbx1FoJRG'),(320,'r0sFvVGmjM'),
 (321,'mNR6mUg8dM'),(322,'DMtmL24cmA'),(323,'KVV5VCZHYc'),(324,'69q3DDveLh'),(325,'ippFCfGF42'),
 (326,'bo9iCQ1Wkj'),(327,'5ZkAPDf0jH'),(328,'GZQFceqQ20'),(329,'6UNfBS9I0x'),(330,'MY3llJFoz8'),
 (331,'9PgwvBX3Fi'),(332,'jkdumlLF97'),(333,'EXAv4sfpeT'),(334,'ZBb30rxat9'),(335,'4FCSNl5J9A'),
 (336,'7Ap14mPu1D'),(337,'gsZwIiJk35'),(338,'xuV9D8VriS'),(339,'wWpdVYWj8N'),(340,'cCjpdLqPJp'),
-(341,'cVQDMNopx6'),(342,'RhMiRJC6bu'),(343,'MjlpduLpg2'),(344,'SFi30bGmQI'),(345,'tqvC640AYT'),
+(341,'cVQDMNopx6'),(342,'RhMiRJC6bu'),(343,'MjlpduLpg2'),(344,'SFi30bGmQI'),(345,'tqvC640AYT');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (346,'ItyZc3tkjb'),(347,'B9I5oM9Tsz'),(348,'DapSAfxjti'),(349,'4LRMtiRIa7'),(350,'rfCyGuh0Xu'),
 (351,'5gRjPsEfZ7'),(352,'FK0Bh0r6MG'),(353,'503vHiX0MP'),(354,'77L9nY3s6B'),(355,'dvtc1goBRP'),
 (356,'ClnRzFngbr'),(357,'UNTJAH91YI'),(358,'799KmJGa3l'),(359,'3Wi6MVT4Ki'),(360,'uWQPqQcjcu'),
-(361,'hwnJSCmdop'),(362,'8Mn0y8oW6o'),(363,'xErzXksudW'),(364,'rh7IDGtZnJ'),(365,'s0Pekhtaas'),
+(361,'hwnJSCmdop'),(362,'8Mn0y8oW6o'),(363,'xErzXksudW'),(364,'rh7IDGtZnJ'),(365,'s0Pekhtaas');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (366,'lFmy6cFxvs'),(367,'U29S7bPews'),(368,'OOtx57zMPz'),(369,'1RTvum4JMk'),(370,'A5o5z017hI'),
 (371,'SOosdWWz29'),(372,'n2h50CiOhU'),(373,'hFSLrTkx7F'),(374,'F1pGhmnlRY'),(375,'QEQM7IYsEx'),
-(376,'RnaMlM6cBK'),(377,'wi2x3wNaYO'),(378,'Y77JEcyFOi'),(379,'51sKxcbdfU'),(380,'qKkGlrMdTL'),
+(376,'RnaMlM6cBK'),(377,'wi2x3wNaYO'),(378,'Y77JEcyFOi'),(379,'51sKxcbdfU'),(380,'qKkGlrMdTL');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (381,'57U0YUqQHJ'),(382,'Y0OcP40s9a'),(383,'Uu5EhNX0hW'),(384,'QVwDn7h2vd'),(385,'wKVV6z6H0r'),
 (386,'1dd20LBQSK'),(387,'6zsv2CELyS'),(388,'X87goJYjIs'),(389,'RPA0fw13Mc'),(390,'5Qjkg7cjd3'),
-(391,'vuSiT3g7Nq'),(392,'wcHk3qy2QF'),(393,'LK8WWGYW9q'),(394,'rzGP6h6bhm'),(395,'P4pfpdJ9r0'),
+(391,'vuSiT3g7Nq'),(392,'wcHk3qy2QF'),(393,'LK8WWGYW9q'),(394,'rzGP6h6bhm'),(395,'P4pfpdJ9r0');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (396,'IjTXrlv6LM'),(397,'eK7h87W2nW'),(398,'tWUnzQecq3'),(399,'7ZpJiHfshV'),(400,'vAQUHF7Ihs'),
 (401,'GQVUGvPphb'),(402,'GSPSOFex90'),(403,'bnVRktG9gu'),(404,'TV57wrDUDw'),(405,'2zKGPcu7GC'),
 (406,'lJJqRc5EtW'),(407,'pPJxHvXSgh'),(408,'BJuM8ldPCI'),(409,'8J3eIJLPqT'),(410,'w8kqGnqW8d'),
 (411,'FcbjAbZ6sp'),(412,'9pBlYfWpp8'),(413,'jHlMuCiDGU'),(414,'5GQiDgsUdq'),(415,'tPhATG79Sk'),
 (416,'RBrA471Oy7'),(417,'3W0Xu2Zch2'),(418,'xBL8OUkk3o'),(419,'FivfD3YQoF'),(420,'pdggxXYKQa'),
-(421,'rebaxPztvk'),(422,'XQVJ1UlVT0'),(423,'eIycNTfpK0'),(424,'5ZUc7lHUsy'),(425,'EpeDsYIWod'),
+(421,'rebaxPztvk'),(422,'XQVJ1UlVT0'),(423,'eIycNTfpK0'),(424,'5ZUc7lHUsy'),(425,'EpeDsYIWod');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (426,'wD1Z6ip9Nd'),(427,'tJi5o753MQ'),(428,'NQmewynvuy'),(429,'LIBrD2i5fY'),(430,'5HHPE4GjYu'),
 (431,'dPJXPgaWnH'),(432,'44PZRkI01w'),(433,'Z9XyUFIXZ1'),(434,'sEW9U58nbh'),(435,'cLSXdB2s7e'),
 (436,'vPslVd2VCK'),(437,'XC7vZ0hPEW'),(438,'lfZTUNr9UT'),(439,'Naa5GcVuo0'),(440,'DnkRKZOg8m'),
 (441,'emnk2Q0YRH'),(442,'v2At76lBo6'),(443,'ewkOS84HJ4'),(444,'8KBrykxzD0'),(445,'m7dgELm0TN'),
 (446,'xN2CIrBZR3'),(447,'VsOWJk1S4W'),(448,'Jv8yUhSEJH'),(449,'VEy6HvS8jG'),(450,'iYiJe3sHXd'),
-(451,'TU57ECODrl'),(452,'Y7PKhR4SPX'),(453,'R2tyxvNyTb'),(454,'yLqpxBI02F'),(455,'gPR8rlIYlN'),
+(451,'TU57ECODrl'),(452,'Y7PKhR4SPX'),(453,'R2tyxvNyTb'),(454,'yLqpxBI02F'),(455,'gPR8rlIYlN');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (456,'8a19LbkHJS'),(457,'yatQwNRkWg'),(458,'IDaK1CluGM'),(459,'mzMFcYUqdW'),(460,'aArjQGgALe'),
 (461,'UiBFF49rIJ'),(462,'00B6q8NnyX'),(463,'3kG9FHW03v'),(464,'gkil2ExHAh'),(465,'YmiUgk8u3R'),
 (466,'22MxltbCA7'),(467,'iJyWnPRaEl'),(468,'KGmQ9QCwdf'),(469,'Il7l2nXu9I'),(470,'mvHD8PyLqQ'),
 (471,'SiqRGwP6yV'),(472,'rpiey7LMd9'),(473,'1gb58Z8jRt'),(474,'c0FNMk4peG'),(475,'Yb5ob7NmPB'),
 (476,'DlsrYwHvSr'),(477,'ypoF21jVSN'),(478,'DfsXkZkwdB'),(479,'LWUQp1IXya'),(480,'cJXwSsx0vk'),
-(481,'X1TB7h3UH8'),(482,'LURRfbVYZB'),(483,'tMh2u3I5F1'),(484,'muB3nUCTSH'),(485,'7xQzOI1GQ0'),
+(481,'X1TB7h3UH8'),(482,'LURRfbVYZB'),(483,'tMh2u3I5F1'),(484,'muB3nUCTSH'),(485,'7xQzOI1GQ0');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (486,'XZbt1LUbQE'),(487,'Z7PPVbTYnL'),(488,'ZCFRD55rnm'),(489,'BCoPeNSRBc'),(490,'9lDOs9iBdx'),
 (491,'zdcEaVTJq5'),(492,'QnxnCXTAvI'),(493,'ICWLMy91jE'),(494,'X3N0xijjyI'),(495,'4JlFLWxZMV'),
 (496,'qhQVpxGR2m'),(497,'WckmiWZ60d'),(498,'xtLmO8aR9z'),(499,'AjoNXzn2LA'),(500,'bSqMwbi9hz'),
 (501,'71jsi6WoHq'),(502,'WzRDlwxWOs'),(503,'shvzCfC9zw'),(504,'abtJ2JA6pa'),(505,'d9vfolAnk9'),
-(506,'oLuzGaFtqC'),(507,'4WyUP4GIKc'),(508,'w0ryOtvPLb'),(509,'eYZzHOq4Dc'),(510,'DQQmgHKaPt'),
+(506,'oLuzGaFtqC'),(507,'4WyUP4GIKc'),(508,'w0ryOtvPLb'),(509,'eYZzHOq4Dc'),(510,'DQQmgHKaPt');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (511,'f2dHNxe6kX'),(512,'oziOif69NB'),(513,'NMFrZfkFRH'),(514,'iVAb6m5SlU'),(515,'tuTpyNrBEA'),
 (516,'KLNNfSxvrr'),(517,'MZodyTzHS5'),(518,'koX2Rd2Z3L'),(519,'xjAR6XHx5n'),(520,'zJk3HUFz1f'),
 (521,'YksIafxU5C'),(522,'aX2f4nYXga'),(523,'LCLpGaEdv7'),(524,'XDiYxM110a'),(525,'kx13MbRE9d'),
 (526,'5sSaTWZCC9'),(527,'bTi8oXzdsr'),(528,'whgG0YKSco'),(529,'J9dSBouHEb'),(530,'xyy18QO3Oz'),
-(531,'mxWSrYMMk5'),(532,'LHjY0c0Q69'),(533,'mrYQ37spHj'),(534,'JRDnCVnLkm'),(535,'chhJQpPaAg'),
+(531,'mxWSrYMMk5'),(532,'LHjY0c0Q69'),(533,'mrYQ37spHj'),(534,'JRDnCVnLkm'),(535,'chhJQpPaAg');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (536,'a76OM4ZFYt'),(537,'qgFAv3D6Vf'),(538,'zopThFJP9N'),(539,'sRpkJLUzaI'),(540,'6hw165chYW'),
 (541,'mTFervSnrH'),(542,'uJFLBY1e1j'),(543,'iOfNjR2yXl'),(544,'mm0nlZMK3X'),(545,'3rISXwblzh'),
 (546,'E8qzxYx14Z'),(547,'2dQFfITcjm'),(548,'Mrkdp1FMzx'),(549,'0R8zhn6BzN'),(550,'lUPeeZbCxP'),
 (551,'c8BNUWXMJ6'),(552,'SkBHilfai1'),(553,'LRnVA1bG8P'),(554,'ZCZkU1PveK'),(555,'Qt224BTI53'),
-(556,'4Be6DLVpMd'),(557,'4RO3gQLbwq'),(558,'Vt5XlcZub9'),(559,'iTLEUYidhI'),(560,'gkiBP8e8Wo'),
+(556,'4Be6DLVpMd'),(557,'4RO3gQLbwq'),(558,'Vt5XlcZub9'),(559,'iTLEUYidhI'),(560,'gkiBP8e8Wo');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (561,'02VOiLFGUk'),(562,'wkON5lFJiI'),(563,'sr3oKvL4Im'),(564,'7aYwIq87gJ'),(565,'SbI6W6VUGo'),
 (566,'2VZN6I8rEx'),(567,'AL8snWLbEO'),(568,'mInZzQj7RN'),(569,'Z0xdtmAK0A'),(570,'rR3tJGcaT9'),
 (571,'u3P1CurAYp'),(572,'jBZ0XJXf8A'),(573,'VBlEgVP4Ps'),(574,'yInRdfk6b9'),(575,'49wKbq2CV9'),
-(576,'t7bTntSLUq'),(577,'exvp1aXHW1'),(578,'jbE8FWPan0'),(579,'cMiQ90rUou'),(580,'NYlueGOGTA'),
+(576,'t7bTntSLUq'),(577,'exvp1aXHW1'),(578,'jbE8FWPan0'),(579,'cMiQ90rUou'),(580,'NYlueGOGTA');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (581,'SuqdaR3dNR'),(582,'e2ieOSPfqA'),(583,'tDdmoK0Te8'),(584,'IIGmhrgEzs'),(585,'7NHWQU0GgM'),
 (586,'1taSRPRDzP'),(587,'bj8OJVv57g'),(588,'wKp8Df6GWT'),(589,'TtxSHYsxUR'),(590,'adPkRXP2M4'),
 (591,'j5JAarDcPw'),(592,'TKqf6rwqHu'),(593,'m7kpFS4Fqp'),(594,'QD3buXkw1Z'),(595,'VQii8Pwunj'),
 (596,'livcRlUd4H'),(597,'w8vkgQQOui'),(598,'H9yrZWZCr0'),(599,'gKbHDrRbKJ'),(600,'DG2umWf7Cs'),
-(601,'8h9FcltDC5'),(602,'MSwEkmgngy'),(603,'8yElfBHDED'),(604,'1bA918KWpc'),(605,'7OZO6uUxKA'),
+(601,'8h9FcltDC5'),(602,'MSwEkmgngy'),(603,'8yElfBHDED'),(604,'1bA918KWpc'),(605,'7OZO6uUxKA');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (606,'z1bNuJdYkb'),(607,'ep89DuSwNl'),(608,'bK8E0tZzou'),(609,'qT3ENAAwPr'),(610,'fwvO7SPaLM'),
 (611,'chkiio2WWA'),(612,'untzuLv4vD'),(613,'tfhfGpZuGi'),(614,'d9ocSJsVfj'),(615,'HnaO72C5dw'),
 (616,'gVoHd69Fc2'),(617,'PHPxgu9Rhk'),(618,'caYM6FESiO'),(619,'ndQUCIVh8V'),(620,'Kn3nTAYnsM'),
-(621,'3uY3TF7bLX'),(622,'1qgOPv05uY'),(623,'ZbSLayhv25'),(624,'rbkVU2EXA7'),(625,'L3WlddHpXh'),
+(621,'3uY3TF7bLX'),(622,'1qgOPv05uY'),(623,'ZbSLayhv25'),(624,'rbkVU2EXA7'),(625,'L3WlddHpXh');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (626,'Kc2UwbcMdf'),(627,'iLjPqaGL3W'),(628,'rc4xMgFrs6'),(629,'r1XUvOjQi3'),(630,'a24fY9UG5D'),
 (631,'X5wA0rhFHQ'),(632,'WuegxqxOeb'),(633,'1zm96yiZYN'),(634,'M8wojvFXeE'),(635,'qdIShpXXrs'),
 (636,'LFmdMhTwEB'),(637,'IIq4EX8z6C'),(638,'lauZuXrUcQ'),(639,'bLsqBGVScC'),(640,'cSSc6iwONJ'),
 (641,'riapGvVMty'),(642,'z9Uxk6ZA27'),(643,'BqW3jSHSdM'),(644,'kcGSj2uDjQ'),(645,'uIjoMd8f19'),
-(646,'IwWPHALhFy'),(647,'nDtgNX2BOs'),(648,'MWamN3HsqG'),(649,'TmaeDyG0Ki'),(650,'qN7vnrZCaz'),
+(646,'IwWPHALhFy'),(647,'nDtgNX2BOs'),(648,'MWamN3HsqG'),(649,'TmaeDyG0Ki'),(650,'qN7vnrZCaz');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (651,'k6QJwvVtCO'),(652,'3d08eBmOcZ'),(653,'RB1pB8Yp9f'),(654,'dFR1gXVRrS'),(655,'dWx6pNX9Ql'),
 (656,'EKjBiiFkIx'),(657,'WpuguxL8cH'),(658,'pUhK64N4Ax'),(659,'lZYXbTgQS7'),(660,'RuJ35xlRL1'),
 (661,'BYgJ6tnYFn'),(662,'UKkUM6QXFb'),(663,'R4pez4LnPI'),(664,'S6sIvN3Par'),(665,'pHLpmGKyr8'),
-(666,'gNLukGsBTC'),(667,'i9I6VYbci8'),(668,'DB7XvKtA2s'),(669,'uW6RlEu8io'),(670,'f15YJp8PTO'),
+(666,'gNLukGsBTC'),(667,'i9I6VYbci8'),(668,'DB7XvKtA2s'),(669,'uW6RlEu8io'),(670,'f15YJp8PTO');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (671,'orPt4fQx8a'),(672,'XrJkRLD1UQ'),(673,'nd44dMFiOF'),(674,'LeqnDCGMWG'),(675,'y7AIRxrUG7'),
 (676,'mG4DlLxVQs'),(677,'Zrj2O3AfgO'),(678,'F0fOcqcwmp'),(679,'eucRdEjnC2'),(680,'Pu6orGYH3X'),
 (681,'wMy22vlql5'),(682,'sAskNoPRYJ'),(683,'TXdo8U31gV'),(684,'SV2P2S6kYs'),(685,'d3BHJPBWaC'),
 (686,'0GstDZtJ3i'),(687,'1tJPmXHdr5'),(688,'rp3qpaVVft'),(689,'ShbefLmILd'),(690,'ixq00uuwev'),
-(691,'HioeVKNCEn'),(692,'DXoJPUSpub'),(693,'v8ROX48C05'),(694,'qj0tmu27IU'),(695,'8kEiZKJhkg'),
+(691,'HioeVKNCEn'),(692,'DXoJPUSpub'),(693,'v8ROX48C05'),(694,'qj0tmu27IU'),(695,'8kEiZKJhkg');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (696,'cECDAIQZHb'),(697,'LKMI6dg4hf'),(698,'bVgZcK3szM'),(699,'ubbTdlhxsd'),(700,'ddzrJxY6l5'),
 (701,'nOAFFGinl0'),(702,'Ohk5qut2oV'),(703,'6tMDC8fyPo'),(704,'w7H3igbWOW'),(705,'D4L2P524BY'),
 (706,'EfRQ94C6DH'),(707,'luX6DRaqWK'),(708,'TWnSSBhTyG'),(709,'Fkw0jQp04o'),(710,'deTHvThPy8'),
-(711,'eLi1Fr1987'),(712,'WsI6BB7gWx'),(713,'lkwsqzDgg9'),(714,'eSe0l3C5v2'),(715,'Yq27RvVWFt'),
+(711,'eLi1Fr1987'),(712,'WsI6BB7gWx'),(713,'lkwsqzDgg9'),(714,'eSe0l3C5v2'),(715,'Yq27RvVWFt');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (716,'VA2BW4ZzLQ'),(717,'nVc8cDNRUI'),(718,'8BveY4rzb4'),(719,'drawneacdr'),(720,'eMueODN3eN'),
 (721,'hDB7uTPXnc'),(722,'MjYQx64pV8'),(723,'nuynnwRQQV'),(724,'ryUNXZqdBT'),(725,'OCzBe4ydrR'),
 (726,'IhigkwPYT8'),(727,'B8GSuYPK3Y'),(728,'QbnBtk5xIt'),(729,'7yj8NJPynk'),(730,'JRJCRP6hQG'),
 (731,'pnjSBq3gw9'),(732,'1cPkBNZHEl'),(733,'IahTO8Rktd'),(734,'oYgCETOQ7g'),(735,'PtBntrCjBE'),
-(736,'0ycp7OFQED'),(737,'YSwTVd6Mgr'),(738,'9IKiVZY4kg'),(739,'6sjpn050Fz'),(740,'N7L4H66sSP'),
+(736,'0ycp7OFQED'),(737,'YSwTVd6Mgr'),(738,'9IKiVZY4kg'),(739,'6sjpn050Fz'),(740,'N7L4H66sSP');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (741,'vzDTErn3Uh'),(742,'zLqiHqtGqe'),(743,'hFHqeB7QbY'),(744,'dqlUvGpQk5'),(745,'MCgi9CQnxa'),
 (746,'NzCxsqsWzD'),(747,'uXc5DJkWwA'),(748,'BdfuSfijrb'),(749,'uTdAKooxlF'),(750,'YSahKyjkez'),
 (751,'c40wZuTReN'),(752,'HIoXSb4bvZ'),(753,'fwurlsC8ke'),(754,'58F190cqka'),(755,'UWSY7PoDPt'),
 (756,'4IzEUpJIKr'),(757,'sVrARJDwXb'),(758,'8N1VFIdWuW'),(759,'E9s1jxIBhT'),(760,'qTf3s9pSGy'),
-(761,'M1pxurRe8M'),(762,'MxYynsm0be'),(763,'ACPDupr7nF'),(764,'cLP5JMU5G2'),(765,'goCVH34rQ9'),
+(761,'M1pxurRe8M'),(762,'MxYynsm0be'),(763,'ACPDupr7nF'),(764,'cLP5JMU5G2'),(765,'goCVH34rQ9');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (766,'Wz0myKmlCF'),(767,'9T12tBidoa'),(768,'Yrtj7V9361'),(769,'uArnsmUmH9'),(770,'js2A2MxJlF'),
 (771,'VbCzkpGRoc'),(772,'KspLV9lNJG'),(773,'r5Vp1qytqu'),(774,'i0S0fS82DD'),(775,'gC7oz1Drp3'),
 (776,'kj9eYZFW84'),(777,'1Xk33TaypC'),(778,'BtKGko8rz9'),(779,'mHDxK80xbG'),(780,'Nl4IMJbDuf'),
 (781,'aOBm21Z34t'),(782,'aYh8RtTxt5'),(783,'dnWjzZzB4a'),(784,'N46TjXGb5S'),(785,'i72rpyE50c'),
-(786,'0oTzCx2cxc'),(787,'BY8eggcNZ4'),(788,'n11bWguo3A'),(789,'V3KbkjlGRv'),(790,'fnndQJ8YLJ'),
+(786,'0oTzCx2cxc'),(787,'BY8eggcNZ4'),(788,'n11bWguo3A'),(789,'V3KbkjlGRv'),(790,'fnndQJ8YLJ');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (791,'W0g6z8w2cf'),(792,'CNixHIOg37'),(793,'5V5nY9NYKN'),(794,'hWduneWNml'),(795,'wsovtSE0WI'),
 (796,'5beNOB53hz'),(797,'uXrP7ptyJm'),(798,'vA4SKMrJ3G'),(799,'4WCCRG2Pfm'),(800,'jdqw0YAYyD'),
 (801,'iPrtW5hMDC'),(802,'Tv9a5XVp81'),(803,'xdTgDSUHbw'),(804,'LSVzhopTpW'),(805,'ipMdSydP1d'),
-(806,'DVa6QF6KqE'),(807,'kZuQ0BZK2Q'),(808,'sC9lSHQzNO'),(809,'zFP8sz1Yjc'),(810,'semlvI45mR'),
+(806,'DVa6QF6KqE'),(807,'kZuQ0BZK2Q'),(808,'sC9lSHQzNO'),(809,'zFP8sz1Yjc'),(810,'semlvI45mR');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (811,'YTWluAWzoI'),(812,'yG6bPfKwiA'),(813,'JBkahNZX0J'),(814,'NVN60fsoNr'),(815,'dCuboliKWP'),
 (816,'8IXlHXs6Dh'),(817,'l88e5d3Akt'),(818,'xfj0hHQIv6'),(819,'oOAkKE7lyd'),(820,'wwkpGeDQgL'),
 (821,'siknccjhEA'),(822,'GkLH2W8YT0'),(823,'fRLH6B43tC'),(824,'DAmjNGoWHr'),(825,'fahxWMldxu'),
-(826,'gp6qqaWdrb'),(827,'hqxB7G7l3w'),(828,'rlRlVEuYut'),(829,'ZbG9gYD63x'),(830,'uLppKzmfzQ'),
+(826,'gp6qqaWdrb'),(827,'hqxB7G7l3w'),(828,'rlRlVEuYut'),(829,'ZbG9gYD63x'),(830,'uLppKzmfzQ');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (831,'O9jBD5YUUl'),(832,'p8t8BGkyfj'),(833,'DBrGBf5lbg'),(834,'bOidea2E6l'),(835,'9slSHwcrnD'),
 (836,'OyAQNNSc9h'),(837,'9w3yJbZPdl'),(838,'Of23jUaZ9P'),(839,'DO7XRnORQR'),(840,'HZFYlNzwJq'),
 (841,'WNNCzt6Gq3'),(842,'w3ctduyfhf'),(843,'MI8MdyZdRW'),(844,'enQT30B5ih'),(845,'rHkXeO6W51'),
 (846,'YUOndOOBiA'),(847,'UczUYInJ0n'),(848,'t37AyFhlrO'),(849,'2Dia7KZm0p'),(850,'l9WhNOSQ9V'),
-(851,'lxgRHeXOyX'),(852,'rnTTIQ4YWN'),(853,'tASKBtgZwj'),(854,'xQmVmEhQSd'),(855,'xKyc88qDY6'),
+(851,'lxgRHeXOyX'),(852,'rnTTIQ4YWN'),(853,'tASKBtgZwj'),(854,'xQmVmEhQSd'),(855,'xKyc88qDY6');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (856,'U33vmleVPY'),(857,'87cOjaB7qE'),(858,'tnF3ajL0MD'),(859,'CdB0P3X1tB'),(860,'kMA4ezsj2h'),
 (861,'7tWUMqyAUC'),(862,'ZoIMVe6l9p'),(863,'CJNpdhmKYk'),(864,'1m7oFTHqni'),(865,'FXgrl6Dxj9'),
 (866,'3GkNexfq0p'),(867,'EnltLxrdHB'),(868,'XP8akpngEh'),(869,'dykZrvCuKS'),(870,'yaz8ecwxgy'),
 (871,'PkqilnIJnz'),(872,'K8mTLPCMCZ'),(873,'v7TzM7a96H'),(874,'3zAPS2ICxD'),(875,'n2HUHzxgxP'),
 (876,'ZjuGCSR1Vo'),(877,'NINf5U8WBS'),(878,'GAY9w208rX'),(879,'K3MqsTF4MA'),(880,'lQqIzeolZw'),
-(881,'1afeIZLvTK'),(882,'bTK8eU6gwl'),(883,'PDKAr0TPKS'),(884,'NOi5ftYriS'),(885,'IUkCiSGrof'),
+(881,'1afeIZLvTK'),(882,'bTK8eU6gwl'),(883,'PDKAr0TPKS'),(884,'NOi5ftYriS'),(885,'IUkCiSGrof');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (886,'iIyxhyQexR'),(887,'F5kB6NuPdu'),(888,'5O8dd5cHcZ'),(889,'ulkpuFZvYr'),(890,'d44QNNtjGU'),
 (891,'h0O4jTJUUl'),(892,'VIBXhdU5R0'),(893,'y81wRATsQP'),(894,'L3BH13XqFa'),(895,'6EawWU2gst'),
 (896,'3yRPfi9cni'),(897,'9aEEZbH4gn'),(898,'Gnz04uhEa6'),(899,'Iw9gWXmvlS'),(900,'35Dgaf9WW4'),
 (901,'M8AEnP8aVv'),(902,'B5BqaMahsB'),(903,'zWSOuLkSaY'),(904,'uLrfuKw53G'),(905,'ZLZ0R83WGN'),
-(906,'EbnVF0pwUc'),(907,'ppA7BzNg6Q'),(908,'afollo6c6v'),(909,'RNMMTSiWZ3'),(910,'eAkabuKcyc'),
+(906,'EbnVF0pwUc'),(907,'ppA7BzNg6Q'),(908,'afollo6c6v'),(909,'RNMMTSiWZ3'),(910,'eAkabuKcyc');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (911,'vWa0xjxBtb'),(912,'3NziKbcxns'),(913,'R0GCvZ5NK1'),(914,'ddneA4xVZu'),(915,'fgn8AQLBQA'),
 (916,'RWzGK4QYEX'),(917,'nj118ZkUiP'),(918,'nGY2NuMICf'),(919,'O37JjGohTF'),(920,'oZRBG5pwAk'),
 (921,'p1dAWK862a'),(922,'sIWjJulrS1'),(923,'vDAclOzWvR'),(924,'FaHbzWa7xY'),(925,'Iro3XfDs2W'),
 (926,'U7dJym0AYI'),(927,'VlLkURA4tw'),(928,'Un43sDYHFF'),(929,'LHeZ7H68mM'),(930,'gZipDhgDiF'),
 (931,'fI8FCqDkau'),(932,'Ot5T6OGwnN'),(933,'VBRgQ5FPzL'),(934,'hUiAkCIZWQ'),(935,'EVi17wdPsy'),
 (936,'auZVtd1byH'),(937,'lyuPN4L5t4'),(938,'GrZXI9dZje'),(939,'bzgAux4NQG'),(940,'KqkPoQkSoD'),
-(941,'ligystVCMu'),(942,'9b2UpvRtfa'),(943,'97pmtZGJs2'),(944,'YLvf23TsSA'),(945,'c1AfHsxQk3'),
+(941,'ligystVCMu'),(942,'9b2UpvRtfa'),(943,'97pmtZGJs2'),(944,'YLvf23TsSA'),(945,'c1AfHsxQk3');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (946,'80xOEn23ES'),(947,'nLUUVyqXbw'),(948,'cibe8H7JfA'),(949,'m0jz3hXgaP'),(950,'AZo9WQhqKS'),
 (951,'CZyyaaZTQ6'),(952,'qtYEqxmfax'),(953,'bK6MvC4cHr'),(954,'kQ9M8MCvYd'),(955,'IEQeiRAjSj'),
 (956,'oCPW11dlCX'),(957,'f6LiWZuMFe'),(958,'v1G7pW3coe'),(959,'BUJiDhBmUG'),(960,'sasA7L2sIJ'),
 (961,'gydxyx6Rqe'),(962,'8A7hVKwney'),(963,'XH19vUIF9d'),(964,'eLUe7N0WuQ'),(965,'lt50IsdLpx'),
 (966,'YPNTvZ7eCd'),(967,'o0RNAxqcjI'),(968,'Ta2OMnLA1D'),(969,'07aMEO7Asi'),(970,'PWUQlucszU'),
-(971,'BAlgd8W9GI'),(972,'N6n8mraFIw'),(973,'zptB37Gmmb'),(974,'LdLgBzW3tG'),(975,'173kUSsVn4'),
+(971,'BAlgd8W9GI'),(972,'N6n8mraFIw'),(973,'zptB37Gmmb'),(974,'LdLgBzW3tG'),(975,'173kUSsVn4');
+INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 (976,'UXkDeVRjng'),(977,'1uXp6uvH6w'),(978,'VgVB42wJqk'),(979,'Ov8sHy2HBp'),(980,'iwQMPGkOnk'),
 (981,'hlY1ixBiIm'),(982,'jH3DRGvphI'),(983,'1nFRNjQJwx'),(984,'RhfGCmWHJT'),(985,'xU9YGb2N4I'),
 (986,'V5qfs4fHn9'),(987,'h2vUVBmxAp'),(988,'unfNVhorKw'),(989,'qCOocW19XI'),(990,'GPeJw4ioDE'),
@@ -1349,7 +1447,7 @@ INSERT INTO UsuarioEmpleado (idEmpleado, contrasenna) VALUES
 
 --Clientes
 INSERT INTO Cliente (idEstado, cedula, correo, nombre, apellido1, apellido2, celular, fechaNacimiento) VALUES
-(2,'642251186','Clint_Abbey9788@jiman.org','Clint','Abbey','Abbey','03580761344','8/14/2116'),
+(2,642251186,'Clint_Abbey9788@jiman.org','Clint','Abbey','Abbey','03580761344','8/14/2116'),
 (2, 861019495, 'Emely_Forth3411@nanoff.biz', 'Emely', 'Forth', 'Forth', '80079737', '1025-10-03 11:29:55Z'),
 (2, 126780560, 'Violet_Blythe7020@ubusive.com', 'Violet', 'Blythe', 'Blythe', '85715376', '0275-10-15 05:45:51Z'),
 (2, 236550304, 'Tom_Tyrrell5484@yahoo.com', 'Tom', 'Tyrrell', 'Tyrrell', '87659467', '6441-05-29 07:41:01Z'),
@@ -1421,12 +1519,12 @@ insert into Categoria(nombre, descripcion) values
 ('Bebida', 'Producto para refrescarte'),
 ('Snacks', 'Date un gusto'),
 ('Carnes y pescados', 'Ideales para tus almuerzos de la semana' ),
-('Farmacia', 'Siempre ayudándote a sentirte mejor');
+('Farmacia', 'Siempre ayudï¿½ndote a sentirte mejor');
 
 --Productos
 insert into Producto(idCategoria, nombre, descripcion, precio) values
 (1,'Pera', 'tipicas y deliciosas', 0.5),(1,'Melon', 'cultivado por nuestra gente', 1),(1,'Guayaba', 'la fruta de temporada', 0.5),
-(2,'Jet', 'bebida energética', 2),(2,'Arizona', 'té asiático', 2),(2,'Lecha', 'proteína añadida', 2),
+(2,'Jet', 'bebida energï¿½tica', 2),(2,'Arizona', 'tï¿½ asiï¿½tico', 2),(2,'Lecha', 'proteï¿½na aï¿½adida', 2),
 (3,'Platanitos', 'marca Pro', 2),(3,'Yuquitas', 'marca Pro', 2),(3,'Meneitos', 'marca Jacks', 2),
 (4,'Higado', 'perfecto para comer con cebolla', 2),(4,'Salmon', 'desde los Alpes', 2),(4,'Pulpo', 'diferente y sabroso', 2),
 (5,'Aspirina', 'ayuda a combatir molestias', 2),(5,'Enterogermina', 'restaura la flora estomacal', 2),(5,'Rupax', 'Combate alergias', 2);;
@@ -1452,115 +1550,135 @@ insert into Inventario(idProducto,idSucursal,cantidad, minimo, maximo) values
 --Pedidos
 insert into Pedido(idSucursal,idProveedor,idEstado,idProducto,fechaSolicitud,fechaRecibido,cantidad) values 
 /*Pediente 6 y recibido 7*/
-(17,48,6,8,'2021-02-02 08:18:17Z','2024-04-28 21:56:37Z',23),(27,45,6,9,'2021-11-25 15:10:29Z','2026-12-25 01:04:25Z',29),
-(32,39,6,12,'2021-08-04 00:02:36Z','2025-09-15 09:40:54Z',29),(24,40,6,14,'2021-01-08 03:33:10Z','2027-07-15 02:04:21Z',11),
-(22,47,6,8,'2021-10-24 03:07:40Z','2026-09-16 12:38:17Z',42),(47,30,6,2,'2021-06-03 01:40:27Z','2024-08-25 08:26:47Z',16),
-(46,43,6,11,'2021-07-23 13:27:00Z','2026-03-05 02:15:53Z',28),(28,40,6,11,'2021-03-07 08:40:51Z','2024-09-01 22:38:48Z',10),
-(1,34,6,4,'2021-06-24 20:44:56Z','2024-09-19 05:20:57Z',15),(5,42,6,6,'2021-05-30 05:10:01Z','2025-12-05 20:37:24Z',22),
-(4,7,6,11,'2021-10-28 15:53:02Z','2026-02-11 18:47:20Z',29),(18,8,6,5,'2021-06-17 11:47:23Z','2025-01-22 19:37:48Z',28),
-(20,32,6,7,'2021-09-12 12:48:28Z','2027-03-06 14:53:29Z',26),(34,4,6,8,'2020-12-13 09:01:58Z','2027-06-13 00:29:10Z',26),
-(8,31,6,11,'2021-03-08 09:52:26Z','2024-12-11 06:27:04Z',16),(13,26,6,8,'2021-06-10 14:50:12Z','2027-02-04 16:33:45Z',13),
-(11,39,6,8,'2021-07-13 01:18:27Z','2025-06-21 04:46:03Z',26),(24,30,6,6,'2021-09-17 08:26:03Z','2024-08-04 11:56:21Z',28),
-(43,16,6,5,'2021-10-15 03:58:29Z','2024-09-13 02:58:44Z',21),(19,37,6,12,'2021-03-20 05:28:11Z','2024-06-16 05:20:23Z',15),
-(9,16,6,1,'2021-03-07 11:08:08Z','2024-09-27 22:20:02Z',26),(32,3,6,4,'2021-05-29 20:38:09Z','2023-11-20 16:30:19Z',24),
-(35,44,6,11,'2020-12-22 17:56:55Z','2027-09-05 15:45:10Z',14),(24,30,6,3,'2021-08-30 04:47:58Z','2026-04-05 09:20:51Z',12),
-(22,38,6,3,'2021-07-11 04:40:05Z','2027-01-28 06:50:29Z',15),(29,5,6,10,'2021-04-13 01:05:40Z','2025-07-07 00:39:50Z',16),
-(17,27,6,2,'2021-05-10 21:49:19Z','2025-02-26 04:10:45Z',21),(28,24,6,10,'2021-03-30 14:38:49Z','2026-04-23 16:35:53Z',21),
-(14,39,6,1,'2021-08-18 02:19:39Z','2027-05-02 03:52:40Z',14),(46,33,6,4,'2021-10-23 04:54:19Z','2025-11-26 13:56:43Z',12),
-(2,10,6,11,'2021-09-30 13:12:23Z','2026-07-13 01:16:16Z',28),(4,23,6,10,'2021-03-25 19:58:30Z','2026-09-29 22:14:21Z',13),
-(20,48,6,11,'2021-01-29 02:17:01Z','2024-02-25 02:32:08Z',26),(15,24,6,4,'2021-07-06 06:57:25Z','2024-05-29 10:55:47Z',25),
-(5,37,6,5,'2021-02-06 19:21:02Z','2024-08-19 05:40:53Z',14),(9,49,6,14,'2021-03-23 19:33:00Z','2026-02-12 11:06:27Z',27),
-(47,20,6,4,'2021-05-28 17:56:53Z','2023-11-17 12:51:44Z',15),(34,38,6,2,'2021-02-20 16:20:43Z','2024-05-22 22:58:08Z',23),
-(6,13,6,8,'2021-02-20 01:49:48Z','2027-07-09 22:39:54Z',12),(45,47,6,3,'2021-05-03 13:14:23Z','2024-06-01 18:43:27Z',25),
-(20,6,6,12,'2021-04-23 08:07:20Z','2026-06-26 16:37:27Z',25),(40,45,6,11,'2021-09-12 14:10:29Z','2027-02-02 09:45:56Z',29),
-(21,44,6,14,'2021-05-11 12:04:57Z','2026-07-07 16:09:05Z',10),(14,40,6,4,'2021-02-19 07:41:07Z','2026-11-27 07:17:21Z',21),
-(6,15,6,9,'2021-08-14 20:50:50Z','2027-10-09 05:35:39Z',25),(6,20,6,3,'2021-01-29 21:40:12Z','2025-03-31 08:06:31Z',23),
-(22,13,6,10,'2021-06-24 10:36:26Z','2025-07-26 17:12:04Z',21),(14,12,6,5,'2021-06-22 18:34:58Z','2024-10-10 07:46:35Z',23),
-(18,34,6,11,'2021-11-02 14:02:32Z','2025-09-11 13:25:18Z',11),(8,3,6,10,'2021-07-09 02:04:09Z','2026-07-22 10:29:02Z',13),
-(1,1,6,1,'2021-12-23 08:36:20Z','2039-01-26 15:02:10Z',10000);
+(17,48,6,8,'2021-02-02 08:18:17','2024-04-28 21:56:37',23),(27,45,6,9,'2021-11-25 15:10:29','2026-12-25 01:04:25',29),
+(32,39,6,12,'2021-08-04 00:02:36','2025-09-15 09:40:54',29),(24,40,6,14,'2021-01-08 03:33:10','2027-07-15 02:04:21',11),
+(22,47,6,8,'2021-10-24 03:07:40','2026-09-16 12:38:17',42),(47,30,6,2,'2021-06-03 01:40:27','2024-08-25 08:26:47',16),
+(46,43,6,11,'2021-07-23 13:27:00','2026-03-05 02:15:53',28),(28,40,6,11,'2021-03-07 08:40:51','2024-09-01 22:38:48',10),
+(1,34,6,4,'2021-06-24 20:44:56','2024-09-19 05:20:57',15),(5,42,6,6,'2021-05-30 05:10:01','2025-12-05 20:37:24',22),
+(4,7,6,11,'2021-10-28 15:53:02','2026-02-11 18:47:20',29),(18,8,6,5,'2021-06-17 11:47:23','2025-01-22 19:37:48',28),
+(20,32,6,7,'2021-09-12 12:48:28','2027-03-06 14:53:29',26),(34,4,6,8,'2020-12-13 09:01:58','2027-06-13 00:29:10',26),
+(8,31,6,11,'2021-03-08 09:52:26','2024-12-11 06:27:04',16),(13,26,6,8,'2021-06-10 14:50:12','2027-02-04 16:33:45',13),
+(11,39,6,8,'2021-07-13 01:18:27','2025-06-21 04:46:03',26),(24,30,6,6,'2021-09-17 08:26:03','2024-08-04 11:56:21',28),
+(43,16,6,5,'2021-10-15 03:58:29','2024-09-13 02:58:44',21),(19,37,6,12,'2021-03-20 05:28:11','2024-06-16 05:20:23',15),
+(9,16,6,1,'2021-03-07 11:08:08','2024-09-27 22:20:02',26),(32,3,6,4,'2021-05-29 20:38:09','2023-11-20 16:30:19',24),
+(35,44,6,11,'2020-12-22 17:56:55','2027-09-05 15:45:10',14),(24,30,6,3,'2021-08-30 04:47:58','2026-04-05 09:20:51',12),
+(22,38,6,3,'2021-07-11 04:40:05','2027-01-28 06:50:29',15),(29,5,6,10,'2021-04-13 01:05:40','2025-07-07 00:39:50',16),
+(17,27,6,2,'2021-05-10 21:49:19','2025-02-26 04:10:45',21),(28,24,6,10,'2021-03-30 14:38:49','2026-04-23 16:35:53',21),
+(14,39,6,1,'2021-08-18 02:19:39','2027-05-02 03:52:40',14),(46,33,6,4,'2021-10-23 04:54:19','2025-11-26 13:56:43',12),
+(2,10,6,11,'2021-09-30 13:12:23','2026-07-13 01:16:16',28),(4,23,6,10,'2021-03-25 19:58:30','2026-09-29 22:14:21',13),
+(20,48,6,11,'2021-01-29 02:17:01','2024-02-25 02:32:08',26),(15,24,6,4,'2021-07-06 06:57:25','2024-05-29 10:55:47',25),
+(5,37,6,5,'2021-02-06 19:21:02','2024-08-19 05:40:53',14),(9,49,6,14,'2021-03-23 19:33:00','2026-02-12 11:06:27',27),
+(47,20,6,4,'2021-05-28 17:56:53','2023-11-17 12:51:44',15),(34,38,6,2,'2021-02-20 16:20:43','2024-05-22 22:58:08',23),
+(6,13,6,8,'2021-02-20 01:49:48','2027-07-09 22:39:54',12),(45,47,6,3,'2021-05-03 13:14:23','2024-06-01 18:43:27',25),
+(20,6,6,12,'2021-04-23 08:07:20','2026-06-26 16:37:27',25),(40,45,6,11,'2021-09-12 14:10:29','2027-02-02 09:45:56',29),
+(21,44,6,14,'2021-05-11 12:04:57','2026-07-07 16:09:05',10),(14,40,6,4,'2021-02-19 07:41:07','2026-11-27 07:17:21',21),
+(6,15,6,9,'2021-08-14 20:50:50','2027-10-09 05:35:39',25),(6,20,6,3,'2021-01-29 21:40:12','2025-03-31 08:06:31',23),
+(22,13,6,10,'2021-06-24 10:36:26','2025-07-26 17:12:04',21),(14,12,6,5,'2021-06-22 18:34:58','2024-10-10 07:46:35',23),
+(18,34,6,11,'2021-11-02 14:02:32','2025-09-11 13:25:18',11),(8,3,6,10,'2021-07-09 02:04:09','2026-07-22 10:29:02',13),
+(1,1,6,1,'2021-12-23 08:36:20','2039-01-26 15:02:10',10000);
 
 
 --Lotes de productos
 insert into LoteProducto(idPedido, fechaProduccion,fechaExpiracion,cantidad,
                         costoLote,porcentajeGanancia) values
-(1,'2021-05-13 15:03:39Z','2023-11-14 00:49:42Z',30,20.72,0.7),(2,'2021-01-16 17:15:16Z','2023-11-14 20:33:10Z',30,32.47,0.56),
-(3,'2021-02-27 22:49:05Z','2023-11-14 04:54:05Z',30,23.17,0.07),(4,'2021-02-10 14:53:52Z','2023-11-15 10:36:22Z',30,33.81,0.92),
-(5,'2021-04-05 10:12:02Z','2023-11-15 20:27:21Z',30,32.84,0.88),(6,'2021-01-28 02:06:08Z','2027-03-01 22:56:38Z',30,31.19,0.35),
-(7,'2021-10-02 03:16:12Z','2025-01-25 14:43:08Z',30,22.34,0.14),(8,'2021-05-04 06:03:01Z','2026-03-05 12:12:00Z',30,33.16,0.33),
-(9,'2021-09-02 14:49:21Z','2025-12-24 13:30:02Z',30,32.19,0.31),(10,'2021-01-15 22:47:37Z','2027-03-05 02:13:24Z',30,23.53,0.66),
-(11,'2021-07-05 14:02:20Z','2025-01-23 00:22:19Z',30,39.66,0.32),(12,'2021-11-04 09:49:19Z','2024-11-10 03:51:33Z',30,30.13,0.48),
-(13,'2021-01-02 15:49:43Z','2027-08-07 16:25:42Z',30,36.95,0.66),(14,'2021-08-13 19:57:16Z','2027-01-09 19:28:05Z',30,24.54,0.96),
-(15,'2021-09-07 11:13:04Z','2026-02-09 00:12:35Z',30,38.61,0.96),(16,'2021-10-04 00:22:57Z','2025-12-03 01:50:00Z',30,36.43,0.86),
-(17,'2021-04-02 14:11:25Z','2026-10-24 09:56:03Z',30,37.72,0.6),(18,'2021-08-13 01:39:09Z','2027-05-07 06:14:19Z',30,31.98,0.17),
-(19,'2021-11-13 08:38:53Z','2024-07-16 04:14:29Z',30,23.89,0.25),(20,'2021-04-16 11:15:52Z','2025-09-05 17:17:30Z',30,25.78,0.77),
-(21,'2021-09-22 14:27:48Z','2024-10-13 04:06:13Z',30,36.45,0.86),(22,'2021-03-21 11:16:18Z','2023-12-24 10:55:17Z',30,21.45,0.48),
-(23,'2021-02-10 08:07:34Z','2025-07-29 05:40:05Z',30,21.32,0.68),(24,'2021-03-13 10:25:03Z','2027-06-18 01:11:39Z',30,29.56,0.09),
-(25,'2021-03-22 08:22:47Z','2026-09-10 15:01:49Z',30,37.97,0.53),(26,'2021-09-12 04:58:56Z','2026-12-30 17:00:50Z',30,27.52,0.25),
-(27,'2021-04-14 15:01:06Z','2024-05-25 03:45:20Z',30,30.36,0.14),(28,'2021-09-07 12:04:15Z','2026-02-02 22:51:46Z',30,31.53,0.51),
-(29,'2021-08-18 22:17:18Z','2025-07-15 10:27:00Z',30,37.5,0.45),(30,'2021-06-07 10:35:45Z','2026-06-09 12:04:05Z',30,25.84,0.66),
-(31,'2021-01-31 09:34:48Z','2026-07-12 07:36:41Z',30,20.6,1.0),(32,'2021-08-18 05:45:11Z','2025-12-16 09:14:58Z',30,35.67,0.38),
-(33,'2021-07-25 00:28:08Z','2027-02-11 19:48:24Z',30,33.69,0.83),(34,'2021-02-24 12:10:57Z','2026-02-02 07:21:05Z',30,32.75,0.35),
-(35,'2021-05-04 18:09:41Z','2027-08-03 22:02:11Z',30,29.85,0.94),(36,'2021-11-12 02:29:22Z','2026-04-10 09:44:26Z',30,33.4,0.27),
-(37,'2021-06-10 19:23:34Z','2025-11-25 14:57:26Z',30,39.21,0.77),(38,'2021-11-20 16:07:24Z','2025-05-22 01:08:23Z',30,27.63,0.44),
-(39,'2021-02-16 10:18:50Z','2026-09-25 11:38:43Z',30,25.63,0.34),(40,'2021-06-23 12:10:44Z','2026-07-07 15:27:51Z',30,39.69,0.42),
-(41,'2021-08-13 00:55:34Z','2024-08-28 22:13:02Z',30,26.13,0.4),(42,'2021-07-25 19:46:04Z','2026-09-27 14:49:35Z',30,37.25,0.51),
-(43,'2021-10-27 07:10:29Z','2024-02-08 12:01:02Z',30,20.1,0.28),(44,'2021-10-09 19:37:22Z','2025-01-09 05:12:41Z',30,32.5,0.29),
-(45,'2021-10-01 01:19:26Z','2025-10-04 19:08:19Z',30,32.23,0.21),(46,'2021-06-07 17:58:21Z','2025-04-23 07:43:20Z',30,37.46,0.14),
-(47,'2021-01-11 13:00:16Z','2024-10-19 21:11:14Z',30,33.88,0.39),(48,'2021-07-31 00:08:24Z','2023-12-09 13:10:26Z',30,22.42,0.36),
-(49,'2021-09-26 10:58:11Z','2026-09-27 21:12:34Z',30,38.64,0.42),(50,'2020-12-09 07:29:55Z','2027-07-26 05:39:14Z',30,20.26,0.03),
-(51,'2021-12-23 08:36:20Z','2039-01-26 15:02:10Z',10000,10000,0.5);
+(1,'2021-05-13 15:03:39','2023-11-14 00:49:42',30,20.72,0.7),(2,'2021-01-16 17:15:16','2023-11-14 20:33:10',30,32.47,0.56),
+(3,'2021-02-27 22:49:05','2023-11-14 04:54:05',30,23.17,0.07),(4,'2021-02-10 14:53:52','2023-11-15 10:36:22',30,33.81,0.92),
+(5,'2021-04-05 10:12:02','2023-11-15 20:27:21',30,32.84,0.88),(6,'2021-01-28 02:06:08','2027-03-01 22:56:38',30,31.19,0.35),
+(7,'2021-10-02 03:16:12','2025-01-25 14:43:08',30,22.34,0.14),(8,'2021-05-04 06:03:01','2026-03-05 12:12:00',30,33.16,0.33),
+(9,'2021-09-02 14:49:21','2025-12-24 13:30:02',30,32.19,0.31),(10,'2021-01-15 22:47:37','2027-03-05 02:13:24',30,23.53,0.66),
+(11,'2021-07-05 14:02:20','2025-01-23 00:22:19',30,39.66,0.32),(12,'2021-11-04 09:49:19','2024-11-10 03:51:33',30,30.13,0.48),
+(13,'2021-01-02 15:49:43','2027-08-07 16:25:42',30,36.95,0.66),(14,'2021-08-13 19:57:16','2027-01-09 19:28:05',30,24.54,0.96),
+(15,'2021-09-07 11:13:04','2026-02-09 00:12:35',30,38.61,0.96),(16,'2021-10-04 00:22:57','2025-12-03 01:50:00',30,36.43,0.86),
+(17,'2021-04-02 14:11:25','2026-10-24 09:56:03',30,37.72,0.6),(18,'2021-08-13 01:39:09','2027-05-07 06:14:19',30,31.98,0.17),
+(19,'2021-11-13 08:38:53','2024-07-16 04:14:29',30,23.89,0.25),(20,'2021-04-16 11:15:52','2025-09-05 17:17:30',30,25.78,0.77),
+(21,'2021-09-22 14:27:48','2024-10-13 04:06:13',30,36.45,0.86),(22,'2021-03-21 11:16:18','2023-12-24 10:55:17',30,21.45,0.48),
+(23,'2021-02-10 08:07:34','2025-07-29 05:40:05',30,21.32,0.68),(24,'2021-03-13 10:25:03','2027-06-18 01:11:39',30,29.56,0.09),
+(25,'2021-03-22 08:22:47','2026-09-10 15:01:49',30,37.97,0.53),(26,'2021-09-12 04:58:56','2026-12-30 17:00:50',30,27.52,0.25),
+(27,'2021-04-14 15:01:06','2024-05-25 03:45:20',30,30.36,0.14),(28,'2021-09-07 12:04:15','2026-02-02 22:51:46',30,31.53,0.51),
+(29,'2021-08-18 22:17:18','2025-07-15 10:27:00',30,37.5,0.45),(30,'2021-06-07 10:35:45','2026-06-09 12:04:05',30,25.84,0.66),
+(31,'2021-01-31 09:34:48','2026-07-12 07:36:41',30,20.6,1.0),(32,'2021-08-18 05:45:11','2025-12-16 09:14:58',30,35.67,0.38),
+(33,'2021-07-25 00:28:08','2027-02-11 19:48:24',30,33.69,0.83),(34,'2021-02-24 12:10:57','2026-02-02 07:21:05',30,32.75,0.35),
+(35,'2021-05-04 18:09:41','2027-08-03 22:02:11',30,29.85,0.94),(36,'2021-11-12 02:29:22','2026-04-10 09:44:26',30,33.4,0.27),
+(37,'2021-06-10 19:23:34','2025-11-25 14:57:26',30,39.21,0.77),(38,'2021-11-20 16:07:24','2025-05-22 01:08:23',30,27.63,0.44),
+(39,'2021-02-16 10:18:50','2026-09-25 11:38:43',30,25.63,0.34),(40,'2021-06-23 12:10:44','2026-07-07 15:27:51',30,39.69,0.42),
+(41,'2021-08-13 00:55:34','2024-08-28 22:13:02',30,26.13,0.4),(42,'2021-07-25 19:46:04','2026-09-27 14:49:35',30,37.25,0.51),
+(43,'2021-10-27 07:10:29','2024-02-08 12:01:02',30,20.1,0.28),(44,'2021-10-09 19:37:22','2025-01-09 05:12:41',30,32.5,0.29),
+(45,'2021-10-01 01:19:26','2025-10-04 19:08:19',30,32.23,0.21),(46,'2021-06-07 17:58:21','2025-04-23 07:43:20',30,37.46,0.14),
+(47,'2021-01-11 13:00:16','2024-10-19 21:11:14',30,33.88,0.39),(48,'2021-07-31 00:08:24','2023-12-09 13:10:26',30,22.42,0.36),
+(49,'2021-09-26 10:58:11','2026-09-27 21:12:34',30,38.64,0.42),(50,'2020-12-09 07:29:55','2027-07-26 05:39:14',30,20.26,0.03),
+(51,'2021-12-23 08:36:20','2039-01-26 15:02:10',10000,10000,0.5);
 
 --Unidades
 insert into Unidad(idLote, idEstado) values
 (1,3),(1,3),(1,3),(1,3),(1,3),(1,3),(1,3),(1,3),(1,3),(1,3),(1,3),(1,3),(1,3),(1,3),(1,3),(1,3),(1,3),(1,3),(1,3),(1,3),(1,3),(1,3),(1,3),(1,3),(1,3),(1,3),(1,3),(1,3),(1,3),(1,3),
 (2,3),(2,3),(2,3),(2,3),(2,3),(2,3),(2,3),(2,3),(2,3),(2,3),(2,3),(2,3),(2,3),(2,3),(2,3),(2,3),(2,3),(2,3),(2,3),(2,3),(2,3),(2,3),(2,3),(2,3),(2,3),(2,3),(2,3),(2,3),(2,3),(2,3),
-(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),
+(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3),(3,3);
+insert into Unidad(idLote, idEstado) values
 (4,3),(4,3),(4,3),(4,3),(4,3),(4,3),(4,3),(4,3),(4,3),(4,3),(4,3),(4,3),(4,3),(4,3),(4,3),(4,3),(4,3),(4,3),(4,3),(4,3),(4,3),(4,3),(4,3),(4,3),(4,3),(4,3),(4,3),(4,3),(4,3),(4,3),
-(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),
+(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3),(5,3);
+insert into Unidad(idLote, idEstado) values
 (6,3),(6,3),(6,3),(6,3),(6,3),(6,3),(6,3),(6,3),(6,3),(6,3),(6,3),(6,3),(6,3),(6,3),(6,3),(6,3),(6,3),(6,3),(6,3),(6,3),(6,3),(6,3),(6,3),(6,3),(6,3),(6,3),(6,3),(6,3),(6,3),(6,3),
-(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),
+(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3),(7,3);
+insert into Unidad(idLote, idEstado) values
 (8,3),(8,3),(8,3),(8,3),(8,3),(8,3),(8,3),(8,3),(8,3),(8,3),(8,3),(8,3),(8,3),(8,3),(8,3),(8,3),(8,3),(8,3),(8,3),(8,3),(8,3),(8,3),(8,3),(8,3),(8,3),(8,3),(8,3),(8,3),(8,3),(8,3),
-(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),
+(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3),(9,3);
+insert into Unidad(idLote, idEstado) values
 (10,3),(10,3),(10,3),(10,3),(10,3),(10,3),(10,3),(10,3),(10,3),(10,3),(10,3),(10,3),(10,3),(10,3),(10,3),(10,3),(10,3),(10,3),(10,3),(10,3),(10,3),(10,3),(10,3),(10,3),(10,3),(10,3),(10,3),(10,3),(10,3),(10,3),
 (11,3),(11,3),(11,3),(11,3),(11,3),(11,3),(11,3),(11,3),(11,3),(11,3),(11,3),(11,3),(11,3),(11,3),(11,3),(11,3),(11,3),(11,3),(11,3),(11,3),(11,3),(11,3),(11,3),(11,3),(11,3),(11,3),(11,3),(11,3),(11,3),(11,3),
-(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),
+(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3),(12,3);
+insert into Unidad(idLote, idEstado) values
 (13,3),(13,3),(13,3),(13,3),(13,3),(13,3),(13,3),(13,3),(13,3),(13,3),(13,3),(13,3),(13,3),(13,3),(13,3),(13,3),(13,3),(13,3),(13,3),(13,3),(13,3),(13,3),(13,3),(13,3),(13,3),(13,3),(13,3),(13,3),(13,3),(13,3),
 (14,3),(14,3),(14,3),(14,3),(14,3),(14,3),(14,3),(14,3),(14,3),(14,3),(14,3),(14,3),(14,3),(14,3),(14,3),(14,3),(14,3),(14,3),(14,3),(14,3),(14,3),(14,3),(14,3),(14,3),(14,3),(14,3),(14,3),(14,3),(14,3),(14,3),
-(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),
+(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3),(15,3);
+insert into Unidad(idLote, idEstado) values
 (16,3),(16,3),(16,3),(16,3),(16,3),(16,3),(16,3),(16,3),(16,3),(16,3),(16,3),(16,3),(16,3),(16,3),(16,3),(16,3),(16,3),(16,3),(16,3),(16,3),(16,3),(16,3),(16,3),(16,3),(16,3),(16,3),(16,3),(16,3),(16,3),(16,3),
 (17,3),(17,3),(17,3),(17,3),(17,3),(17,3),(17,3),(17,3),(17,3),(17,3),(17,3),(17,3),(17,3),(17,3),(17,3),(17,3),(17,3),(17,3),(17,3),(17,3),(17,3),(17,3),(17,3),(17,3),(17,3),(17,3),(17,3),(17,3),(17,3),(17,3),
-(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),
+(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3),(18,3);
+insert into Unidad(idLote, idEstado) values
 (19,3),(19,3),(19,3),(19,3),(19,3),(19,3),(19,3),(19,3),(19,3),(19,3),(19,3),(19,3),(19,3),(19,3),(19,3),(19,3),(19,3),(19,3),(19,3),(19,3),(19,3),(19,3),(19,3),(19,3),(19,3),(19,3),(19,3),(19,3),(19,3),(19,3),
-(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),
+(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3),(20,3);
+insert into Unidad(idLote, idEstado) values
 (21,3),(21,3),(21,3),(21,3),(21,3),(21,3),(21,3),(21,3),(21,3),(21,3),(21,3),(21,3),(21,3),(21,3),(21,3),(21,3),(21,3),(21,3),(21,3),(21,3),(21,3),(21,3),(21,3),(21,3),(21,3),(21,3),(21,3),(21,3),(21,3),(21,3),
-(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),
+(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3),(22,3);
+insert into Unidad(idLote, idEstado) values
 (23,3),(23,3),(23,3),(23,3),(23,3),(23,3),(23,3),(23,3),(23,3),(23,3),(23,3),(23,3),(23,3),(23,3),(23,3),(23,3),(23,3),(23,3),(23,3),(23,3),(23,3),(23,3),(23,3),(23,3),(23,3),(23,3),(23,3),(23,3),(23,3),(23,3),
-(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),
+(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3),(24,3);
+insert into Unidad(idLote, idEstado) values
 (25,3),(25,3),(25,3),(25,3),(25,3),(25,3),(25,3),(25,3),(25,3),(25,3),(25,3),(25,3),(25,3),(25,3),(25,3),(25,3),(25,3),(25,3),(25,3),(25,3),(25,3),(25,3),(25,3),(25,3),(25,3),(25,3),(25,3),(25,3),(25,3),(25,3),
 (26,3),(26,3),(26,3),(26,3),(26,3),(26,3),(26,3),(26,3),(26,3),(26,3),(26,3),(26,3),(26,3),(26,3),(26,3),(26,3),(26,3),(26,3),(26,3),(26,3),(26,3),(26,3),(26,3),(26,3),(26,3),(26,3),(26,3),(26,3),(26,3),(26,3),
-(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),
+(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3),(27,3);
+insert into Unidad(idLote, idEstado) values
 (28,3),(28,3),(28,3),(28,3),(28,3),(28,3),(28,3),(28,3),(28,3),(28,3),(28,3),(28,3),(28,3),(28,3),(28,3),(28,3),(28,3),(28,3),(28,3),(28,3),(28,3),(28,3),(28,3),(28,3),(28,3),(28,3),(28,3),(28,3),(28,3),(28,3),
 (29,3),(29,3),(29,3),(29,3),(29,3),(29,3),(29,3),(29,3),(29,3),(29,3),(29,3),(29,3),(29,3),(29,3),(29,3),(29,3),(29,3),(29,3),(29,3),(29,3),(29,3),(29,3),(29,3),(29,3),(29,3),(29,3),(29,3),(29,3),(29,3),(29,3),
-(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),
-(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),
+(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3),(30,3);
+insert into Unidad(idLote, idEstado) values
+(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3),(31,3);
+insert into Unidad(idLote, idEstado) values
 (32,3),(32,3),(32,3),(32,3),(32,3),(32,3),(32,3),(32,3),(32,3),(32,3),(32,3),(32,3),(32,3),(32,3),(32,3),(32,3),(32,3),(32,3),(32,3),(32,3),(32,3),(32,3),(32,3),(32,3),(32,3),(32,3),(32,3),(32,3),(32,3),(32,3),
 (33,3),(33,3),(33,3),(33,3),(33,3),(33,3),(33,3),(33,3),(33,3),(33,3),(33,3),(33,3),(33,3),(33,3),(33,3),(33,3),(33,3),(33,3),(33,3),(33,3),(33,3),(33,3),(33,3),(33,3),(33,3),(33,3),(33,3),(33,3),(33,3),(33,3),
-(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),
+(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3),(34,3);
+insert into Unidad(idLote, idEstado) values
 (35,3),(35,3),(35,3),(35,3),(35,3),(35,3),(35,3),(35,3),(35,3),(35,3),(35,3),(35,3),(35,3),(35,3),(35,3),(35,3),(35,3),(35,3),(35,3),(35,3),(35,3),(35,3),(35,3),(35,3),(35,3),(35,3),(35,3),(35,3),(35,3),(35,3),
 (36,3),(36,3),(36,3),(36,3),(36,3),(36,3),(36,3),(36,3),(36,3),(36,3),(36,3),(36,3),(36,3),(36,3),(36,3),(36,3),(36,3),(36,3),(36,3),(36,3),(36,3),(36,3),(36,3),(36,3),(36,3),(36,3),(36,3),(36,3),(36,3),(36,3),
 (37,3),(37,3),(37,3),(37,3),(37,3),(37,3),(37,3),(37,3),(37,3),(37,3),(37,3),(37,3),(37,3),(37,3),(37,3),(37,3),(37,3),(37,3),(37,3),(37,3),(37,3),(37,3),(37,3),(37,3),(37,3),(37,3),(37,3),(37,3),(37,3),(37,3),
-(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),
+(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3),(38,3);
+insert into Unidad(idLote, idEstado) values
 (39,3),(39,3),(39,3),(39,3),(39,3),(39,3),(39,3),(39,3),(39,3),(39,3),(39,3),(39,3),(39,3),(39,3),(39,3),(39,3),(39,3),(39,3),(39,3),(39,3),(39,3),(39,3),(39,3),(39,3),(39,3),(39,3),(39,3),(39,3),(39,3),(39,3),
-(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),
+(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3),(40,3);
+insert into Unidad(idLote, idEstado) values
 (41,3),(41,3),(41,3),(41,3),(41,3),(41,3),(41,3),(41,3),(41,3),(41,3),(41,3),(41,3),(41,3),(41,3),(41,3),(41,3),(41,3),(41,3),(41,3),(41,3),(41,3),(41,3),(41,3),(41,3),(41,3),(41,3),(41,3),(41,3),(41,3),(41,3),
 (42,3),(42,3),(42,3),(42,3),(42,3),(42,3),(42,3),(42,3),(42,3),(42,3),(42,3),(42,3),(42,3),(42,3),(42,3),(42,3),(42,3),(42,3),(42,3),(42,3),(42,3),(42,3),(42,3),(42,3),(42,3),(42,3),(42,3),(42,3),(42,3),(42,3),
-(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),
+(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3),(43,3);
+insert into Unidad(idLote, idEstado) values
 (44,3),(44,3),(44,3),(44,3),(44,3),(44,3),(44,3),(44,3),(44,3),(44,3),(44,3),(44,3),(44,3),(44,3),(44,3),(44,3),(44,3),(44,3),(44,3),(44,3),(44,3),(44,3),(44,3),(44,3),(44,3),(44,3),(44,3),(44,3),(44,3),(44,3),
-(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),
+(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3),(45,3);
+insert into Unidad(idLote, idEstado) values
 (46,3),(46,3),(46,3),(46,3),(46,3),(46,3),(46,3),(46,3),(46,3),(46,3),(46,3),(46,3),(46,3),(46,3),(46,3),(46,3),(46,3),(46,3),(46,3),(46,3),(46,3),(46,3),(46,3),(46,3),(46,3),(46,3),(46,3),(46,3),(46,3),(46,3),
-(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),
+(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3),(47,3);
+insert into Unidad(idLote, idEstado) values
 (48,3),(48,3),(48,3),(48,3),(48,3),(48,3),(48,3),(48,3),(48,3),(48,3),(48,3),(48,3),(48,3),(48,3),(48,3),(48,3),(48,3),(48,3),(48,3),(48,3),(48,3),(48,3),(48,3),(48,3),(48,3),(48,3),(48,3),(48,3),(48,3),(48,3),
-(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),
+(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3),(49,3);
+insert into Unidad(idLote, idEstado) values
 (50,3),(50,3),(50,3),(50,3),(50,3),(50,3),(50,3),(50,3),(50,3),(50,3),(50,3),(50,3),(50,3),(50,3),(50,3),(50,3),(50,3),(50,3),(50,3),(50,3),(50,3),(50,3),(50,3),(50,3),(50,3),(50,3),(50,3),(50,3),(50,3),(50,3);
 
 DECLARE @cnt INT = 0;
@@ -1578,7 +1696,7 @@ insert into Impuesto(porcentaje) values
 
 --Descuentos
 --insert into Descuento(idLote, porcentaje) values
--- queda vacío para insertar por proc
+-- queda vacï¿½o para insertar por proc
 
 
 --Impuestos por productos
@@ -1625,9 +1743,9 @@ GO
 
 --Bonos 
 --insert into Bono(idEmpleado, cantidadBono, fechaBono) values
--- queda vacío para insertar por proc
+-- queda vacï¿½o para insertar por proc
 
 --Envios 
-insert into Envio(idUbicacion, idFactura, idEstado, costoEnvio, fechaEnvio) values
-                (3, 3, 8, 10, '2022-12-15'),
-                (2, 2, 6, 10, '2022-10-30');
+insert into Envio(idFactura, idEstado, costoEnvio, fechaEnvio) values
+                (3, 8, 10, '2022-12-15'),
+                (2, 6, 10, '2022-10-30');
