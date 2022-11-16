@@ -384,8 +384,7 @@ def gananciasNetas():
         else:
             idCategoria = None
 
-        idPais = session['paises'].index(session['pais'])+1
-        resultado = conexion.getGananciasNetas(fechaInicio, fechaFinal, idPais, idSucursal, idCategoria)
+        resultado = conexion.getGananciasNetas(fechaInicio, fechaFinal, 1, idSucursal, idCategoria)
         #Cierra la conexion con el servidor
         conexion.cerrarConexionServidor()
         return render_template('gananciasNetas.html',sucursales=sucursales,categorias=categorias, resultado = resultado)
@@ -962,8 +961,7 @@ def reporteProducto():
         idSucursal = eval(request.form.get('sucursalSeleccionada')).get('idSucursal') if request.form.get('sucursalCheck') != None else None
         idProducto = eval(request.form.get('productoSeleccionado').replace('Decimal','')).get('idProducto') if request.form.get('productoCheck') != None else None
         idProveedor = eval(request.form.get('proveedorSeleccionado')).get('idProveedor') if request.form.get('proveedorCheck') != None else None
-        idPais = session['paises'].index(session['pais'])+1
-        resultado = conexion.reporteProductos(idPais, idProducto,  idSucursal, idProveedor, fechaInicio, fechaFinal)
+        resultado = conexion.reporteProductos(1, idProducto,  idSucursal, idProveedor, fechaInicio, fechaFinal)
         #Cierra la conexion con el servidor
         conexion.cerrarConexionServidor()
         return render_template('reporteProductos.html',sucursales=sucursales,productos=productos, proveedores = proveedores, resultado = resultado)
@@ -987,8 +985,7 @@ def reporteClientes():
         idSucursal = eval(request.form.get('sucursalSeleccionada')).get('idSucursal') if request.form.get('sucursalCheck') != None else None
         idProducto = eval(request.form.get('productoSeleccionado').replace('Decimal','')).get('idProducto') if request.form.get('productoCheck') != None else None
         idProveedor = eval(request.form.get('proveedorSeleccionado')).get('idProveedor') if request.form.get('proveedorCheck') != None else None
-        idPais = session['paises'].index(session['pais'])+1
-        resultado = conexion.reporteClientes(idPais, idProducto,  idSucursal, idProveedor, fechaInicio, fechaFinal)
+        resultado = conexion.reporteClientes(1, idProducto,  idSucursal, idProveedor, fechaInicio, fechaFinal)
         #Cierra la conexion con el servidor
         conexion.cerrarConexionServidor()
         return render_template('reporteClientes.html',sucursales=sucursales,productos=productos, proveedores = proveedores, resultado = resultado)
@@ -1012,8 +1009,7 @@ def reporteVencido():
         idSucursal = eval(request.form.get('sucursalSeleccionada')).get('idSucursal') if request.form.get('sucursalCheck') != None else None
         idProducto = eval(request.form.get('productoSeleccionado').replace('Decimal','')).get('idProducto') if request.form.get('productoCheck') != None else None
         idProveedor = eval(request.form.get('proveedorSeleccionado')).get('idProveedor') if request.form.get('proveedorCheck') != None else None
-        idPais = session['paises'].index(session['pais'])+1
-        resultado = conexion.reporteVencimientos(idPais, idProducto,  idSucursal, idProveedor, fechaInicio, fechaFinal)
+        resultado = conexion.reporteVencimientos(1, idProducto,  idSucursal, idProveedor, fechaInicio, fechaFinal)
         #Cierra la conexion con el servidor
         conexion.cerrarConexionServidor()
         return render_template('reporteVencidos.html',sucursales=sucursales,productos=productos, proveedores = proveedores, resultado = resultado)
