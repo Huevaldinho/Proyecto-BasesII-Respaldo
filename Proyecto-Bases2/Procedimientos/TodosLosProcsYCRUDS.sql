@@ -1348,7 +1348,7 @@ BEGIN
 	if (@opcion = 3)
 		begin
 			update Empleado 
-			set idEstado = 2
+			set idEstado = 1
 			where idEmpleado = @idEmpleado;
 		end
 END
@@ -1502,7 +1502,7 @@ BEGIN
 	if (@opcion = 3)
 		begin
 			update Cliente 
-			set idEstado = 2
+			set idEstado = 1
 			where idCliente = @idCliente;
 		end
 END
@@ -2045,7 +2045,7 @@ BEGIN
     ORDER BY cantFacturas DESC ;
 END
 GO
-
+ 
 GO
 CREATE or alter PROCEDURE ReportesVencimientos @idPais INT,
                         @idProducto INT,
