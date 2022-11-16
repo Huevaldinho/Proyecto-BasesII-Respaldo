@@ -1538,10 +1538,10 @@ insert into Categoria(nombre, descripcion) values
 --Productos
 insert into Producto(idCategoria, nombre, descripcion, precio) values
 (1,'Pera', 'tipicas y deliciosas', 0.5),(1,'Melon', 'cultivado por nuestra gente', 1),(1,'Guayaba', 'la fruta de temporada', 0.5),
-(2,'Jet', 'bebida energ�tica', 2),(2,'Arizona', 't� asi�tico', 2),(2,'Leche', 'prote�na a�adida', 2)
+(2,'Jet', 'bebida energetica', 2),(2,'Arizona', 'te asiatico', 2),(2,'Leche', 'proteina anhadida', 2)
 (3,'Platanitos', 'marca Pro', 2),(3,'Yuquitas', 'marca Pro', 2),(3,'Meneitos', 'marca Jacks', 2),
 (4,'Higado', 'perfecto para comer con cebolla', 2),(4,'Salmon', 'desde los Alpes', 2),(4,'Pulpo', 'diferente y sabroso', 2),
-(5,'Aspirina', 'ayuda a combatir molestias', 2),(5,'Enterogermina', 'restaura la flora estomacal', 2),(5,'Rupax', 'Combate alergias', 2);;
+(5,'Aspirina', 'ayuda a combatir molestias', 2),(5,'Enterogermina', 'restaura la flora estomacal', 2),(5,'Rupax', 'Combate alergias', 2);
 
 
 --Inventario
@@ -1592,15 +1592,23 @@ insert into Pedido(idSucursal,idProveedor,idEstado,idProducto,fechaSolicitud,fec
 (1,1,6,1,'2021-12-23 08:36:20','2039-01-26 15:02:10',10000);
 
 DECLARE @cnt INT = 1;
-WHILE @cnt <= (select count(idPedido) from Pedido)
+DECLARE @idProducto int = 1;
+WHILE @cnt < (select count(idPedido) from Pedido)
 BEGIN
-
-	UPDATE Pedido SET idProducto = @cnt where idPedido = @cnt;
-	UPDATE Pedido SET idSucursal = @cnt where idPedido = @cnt;
-	UPDATE Inventario SET idProducto = @cnt where idInventario = @cnt;
-	UPDATE Inventario SET idSucursal = @cnt where idInventario = @cnt; 
+	if (select count(idPedido) from Pedido where idPedido = @cnt) > 0 and
+	(select count(idInventario) from Inventario where idInventario = @cnt) > 0 and
+	(select count(idProducto) from Producto where idProducto = @idProducto) > 0 and
+	(select count(idSucursal) from Sucursal where idSucursal = @cnt) > 0 
+	begin
+		UPDATE Pedido SET idProducto = @idProducto where idPedido = @cnt;
+		UPDATE Pedido SET idSucursal = @cnt where idPedido = @cnt;
+		UPDATE Inventario SET idProducto = @idProducto where idInventario = @cnt;
+		UPDATE Inventario SET idSucursal = @cnt where idInventario = @cnt; 
+	end
    
+   SET @idProducto = @idProducto + 1;
    SET @cnt = @cnt + 1;
+   if @idProducto = 16 begin set @idProducto = 1; end
 END;
 GO
 

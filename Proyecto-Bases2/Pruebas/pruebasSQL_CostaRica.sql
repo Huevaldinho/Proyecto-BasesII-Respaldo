@@ -1576,13 +1576,12 @@ insert into Categoria(nombre, descripcion) values
 ('Carnes y pescados', 'Ideales para tus almuerzos de la semana' ),
 ('Farmacia', 'Siempre ayud�ndote a sentirte mejor');
 
---Productos
 insert into Producto(idCategoria, nombre, descripcion, precio) values
-(1,'Manzana', 'tipica manzana gala', 0.5),(1,'Pi�a', 'pi�as originarias del pais', 1),(1,'Manga', 'la fruta de temporada', 0.5),
-(2,'Coca Cola', 'Bebida gaseosa', 2),(2,'Fanta Naranja', 'Bebida gaseosa', 2),(2,'Te frio', 't� tropical', 2),
-(3,'Chirulitos', 'marca tosty', 2),(3,'Alboroto', 'marca Diana', 2),(3,'Man� Garapi�ado', 'marca Pro', 2),
-(4,'Lomito', 'jugoso corte', 2),(4,'Tilapia', 'tra�da del lago, fresca', 2),(4,'Camarones', 'camarones jumbo', 2),
-(5,'Enantyum', 'elimina molestias en 5 minutos', 2),(5,'Panadol Multisintomas', 'No dejes que te gane es refr�o', 2),(5,'Peptobismol', 'No m�s acidez', 2);;
+(1,'Manzana', 'tipica manzana gala', 0.5),(1,'Pinha', 'pinhas originarias del pais', 1),(1,'Manga', 'la fruta de temporada', 0.5),
+(2,'Coca Cola', 'Bebida gaseosa', 2),(2,'Fanta Naranja', 'Bebida gaseosa', 2),(2,'Te frio', 'te tropical', 2),
+(3,'Chirulitos', 'marca tosty', 2),(3,'Alboroto', 'marca Diana', 2),(3,'Mani Garapinhado', 'marca Pro', 2),
+(4,'Lomito', 'jugoso corte', 2),(4,'Tilapia', 'traida del lago, fresca', 2),(4,'Camarones', 'camarones jumbo', 2),
+(5,'Enantyum', 'elimina molestias en 5 minutos', 2),(5,'Panadol Multisintomas', 'No dejes que te gane es refrio', 2),(5,'Peptobismol', 'No mas acidez', 2);
 
 --Inventario
 insert into Inventario(idProducto,idSucursal,cantidad, minimo, maximo) values
@@ -1632,19 +1631,23 @@ insert into Pedido(idSucursal,idProveedor,idEstado,idProducto,fechaSolicitud,fec
 (1,1,6,1,'2021/12/23 08:36:20','2039/01/26 15:02:10',10000);
 
 DECLARE @cnt INT = 1;
+DECLARE @idProducto int = 1;
 WHILE @cnt < (select count(idPedido) from Pedido)
 BEGIN
-	if (select count(*) from producto where idProducto = @cnt)>0 and
-	(select count(*) from pedido where idPedido = @cnt)>0 and
-	(select count(*) from inventario where idInventario = @cnt)>0 and
-	(select count(*) from sucursal where idSucursal = @cnt)>0
+	if (select count(idPedido) from Pedido where idPedido = @cnt) > 0 and
+	(select count(idInventario) from Inventario where idInventario = @cnt) > 0 and
+	(select count(idProducto) from Producto where idProducto = @idProducto) > 0 and
+	(select count(idSucursal) from Sucursal where idSucursal = @cnt) > 0 
 	begin
-	UPDATE Pedido SET idProducto = @cnt where idPedido = @cnt;
-	UPDATE Pedido SET idSucursal = @cnt where idPedido = @cnt;
-	UPDATE Inventario SET idProducto = @cnt where idInventario = @cnt;
-	UPDATE Inventario SET idSucursal = @cnt where idInventario = @cnt; 
-   end
+		UPDATE Pedido SET idProducto = @idProducto where idPedido = @cnt;
+		UPDATE Pedido SET idSucursal = @cnt where idPedido = @cnt;
+		UPDATE Inventario SET idProducto = @idProducto where idInventario = @cnt;
+		UPDATE Inventario SET idSucursal = @cnt where idInventario = @cnt; 
+	end
+   
+   SET @idProducto = @idProducto + 1;
    SET @cnt = @cnt + 1;
+   if @idProducto = 16 begin set @idProducto = 1; end
 END;
 GO
 

@@ -1558,11 +1558,11 @@ insert into Categoria(nombre, descripcion) values
 
 --Productos
 insert into Producto(idCategoria, nombre, descripcion, precio) values
-(1,'Fresa', 'tra�das de la monta�a', 0.5),(1,'Sandia', 'jugosa y con sabor intenso', 1),(1,'Bananos', 'la fruta de temporada', 0.5),
-(2,'Te verde', 'tropical', 2),(2,'Te blanco', 'tropical', 2),(2,'Monster', 'bebida energ�tica', 2)
+(1,'Fresa', 'traidas de la montanha', 0.5),(1,'Sandia', 'jugosa y con sabor intenso', 1),(1,'Bananos', 'la fruta de temporada', 0.5),
+(2,'Te verde', 'tropical', 2),(2,'Te blanco', 'tropical', 2),(2,'Monster', 'bebida energetica', 2)
 (3,'Margaritas cebolla', 'crujientes papas tostadas', 2),(3,'Margaritas barbacoa', 'crujientes papas tostadas', 2),(3,'Cheetos', 'sabor queso', 2),
 (4,'Ostras', 'desde la costa colombiana', 2),(4,'Chuleta', 'de cerdo', 2),(4,'Chuleta ahumada', 'de cerdo', 2),
-(5,'Dorival', 'disminuye el dolor', 2),(5,'Advil', 'acetaminofen en c�psulas', 2),(5,'Biotos', 'No m�s tos', 2);;
+(5,'Dorival', 'disminuye el dolor', 2),(5,'Advil', 'acetaminofen en capsulas', 2),(5,'Biotos', 'No mas tos', 2);
 
 --Inventario
 insert into Inventario(idProducto,idSucursal,cantidad, minimo, maximo) values
@@ -1613,15 +1613,23 @@ insert into Pedido(idSucursal,idProveedor,idEstado,idProducto,fechaSolicitud,fec
 (1,1,6,1,'2021-12-23 08:36:20','2039-01-26 15:02:10',10000);
 
 DECLARE @cnt INT = 1;
-WHILE @cnt <= (select count(idPedido) from Pedido)
+DECLARE @idProducto int = 1;
+WHILE @cnt < (select count(idPedido) from Pedido)
 BEGIN
-
-	UPDATE Pedido SET idProducto = @cnt where idPedido = @cnt;
-	UPDATE Pedido SET idSucursal = @cnt where idPedido = @cnt;
-	UPDATE Inventario SET idProducto = @cnt where idInventario = @cnt;
-	UPDATE Inventario SET idSucursal = @cnt where idInventario = @cnt; 
+	if (select count(idPedido) from Pedido where idPedido = @cnt) > 0 and
+	(select count(idInventario) from Inventario where idInventario = @cnt) > 0 and
+	(select count(idProducto) from Producto where idProducto = @idProducto) > 0 and
+	(select count(idSucursal) from Sucursal where idSucursal = @cnt) > 0 
+	begin
+		UPDATE Pedido SET idProducto = @idProducto where idPedido = @cnt;
+		UPDATE Pedido SET idSucursal = @cnt where idPedido = @cnt;
+		UPDATE Inventario SET idProducto = @idProducto where idInventario = @cnt;
+		UPDATE Inventario SET idSucursal = @cnt where idInventario = @cnt; 
+	end
    
+   SET @idProducto = @idProducto + 1;
    SET @cnt = @cnt + 1;
+   if @idProducto = 16 begin set @idProducto = 1; end
 END;
 GO
 
