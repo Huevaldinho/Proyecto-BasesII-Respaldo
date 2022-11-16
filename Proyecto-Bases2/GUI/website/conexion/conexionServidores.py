@@ -923,6 +923,8 @@ class ConexionServidorSQL:
             sucAux = sucursal#Copia la info de sucursal porque nose puede modificar al ser el iterador del ciclo.
             if sucAux.get('distancia')==None:
                 sucAux['distancia']='No se ha podido calcular la distancia.'#Cambia None por este texto
+            else:
+                sucAux['distancia']=str((sucAux.get('distancia')[0].get('kilometros')))[:-9] + ' km'
             #Guarda cambios
             sucAux['horario'] = horarioBonito
             sucAux['abiertoCerrado']=abierto
