@@ -1559,7 +1559,7 @@ insert into Categoria(nombre, descripcion) values
 --Productos
 insert into Producto(idCategoria, nombre, descripcion, precio) values
 (1,'Fresa', 'traidas de la montanha', 0.5),(1,'Sandia', 'jugosa y con sabor intenso', 1),(1,'Bananos', 'la fruta de temporada', 0.5),
-(2,'Te verde', 'tropical', 2),(2,'Te blanco', 'tropical', 2),(2,'Monster', 'bebida energetica', 2)
+(2,'Te verde', 'tropical', 2),(2,'Te blanco', 'tropical', 2),(2,'Monster', 'bebida energetica', 2),
 (3,'Margaritas cebolla', 'crujientes papas tostadas', 2),(3,'Margaritas barbacoa', 'crujientes papas tostadas', 2),(3,'Cheetos', 'sabor queso', 2),
 (4,'Ostras', 'desde la costa colombiana', 2),(4,'Chuleta', 'de cerdo', 2),(4,'Chuleta ahumada', 'de cerdo', 2),
 (5,'Dorival', 'disminuye el dolor', 2),(5,'Advil', 'acetaminofen en capsulas', 2),(5,'Biotos', 'No mas tos', 2);

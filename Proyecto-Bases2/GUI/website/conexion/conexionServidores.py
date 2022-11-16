@@ -1830,7 +1830,7 @@ class ConexionServidorPG:
             self.servidor = psycopg2.connect(
                                             host = 'localhost',
                                             user = 'postgres',
-                                            password='123',
+                                            password='pelodegato',
                                             database='Proveedores')
             self.cursorPG = self.servidor.cursor()
             self.servidor.autocommit = True

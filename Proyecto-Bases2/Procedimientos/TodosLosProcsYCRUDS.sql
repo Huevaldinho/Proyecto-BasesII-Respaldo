@@ -1848,17 +1848,6 @@ BEGIN
 END
 GO
 
-SELECT Pedido.idProducto, Pedido.idSucursal
-                FROM Detalle 
-                INNER JOIN Unidad ON Unidad.idUnidad = Detalle.idUnidad
-                INNER JOIN LoteProducto ON LoteProducto.idLote = Unidad.idLote
-	            INNER JOIN Pedido ON Pedido.idPedido = LoteProducto.idPedido 
-                WHERE Detalle.idDetalle = 10005
-
-SELECT subTotal FROM Detalle
-				WHERE Detalle.idDetalle = 10003
-
-
 --Procedimiento Facturar
 GO
 CREATE PROCEDURE Facturar @idFactura int WITH ENCRYPTION AS
@@ -2014,8 +2003,6 @@ SELECT count(Detalle.idDetalle) as vendidos, Producto.nombre,
 END
 GO
 
-exec ReportesProductos null, null, null, null, null, null
-select * from detalle
 
 --Procedimiento de reportes para ver Clientes mas frecuentes
 GO
