@@ -1607,7 +1607,7 @@ INSERT INTO Cliente (idEstado, cedula, correo, nombre, apellido1, apellido2, cel
 (2,138123874,'Eduardo_Collingwood5358@naiker.biz','Eduardo','Collingwood','Collingwood','6-855-155-1160','1525-01-26 14:50:44Z'),
 (2,883078381,'Juliet_Michael5500@acrit.org','Juliet','Michael','Michael','0-623-155-2684','6770-12-02 20:05:47Z'),
 (2,387896260,'Evie_Lewis9995@grannar.com','Evie','Lewis','Lewis','0-822-388-4742','3383-10-31 21:53:22Z'),
-(2,10359956,'Adina_Mann378@tonsy.org','Adina','Mann','Mann','5-886-016-6423','4865-05-10 13:17:06Z'),;
+(2,10359956,'Adina_Mann378@tonsy.org','Adina','Mann','Mann','5-886-016-6423','4865-05-10 13:17:06Z');
 
 --UsuarioClientes
 INSERT INTO UsuarioCliente (idCliente, contrasenna) VALUES

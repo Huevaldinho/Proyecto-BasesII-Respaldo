@@ -1056,7 +1056,7 @@ class ConexionServidorSQL:
         """
         try:
             ruta=os.getcwd()
-            path = Path(ruta,"GUI", "website", "fotosEmpleados")
+            path = Path(ruta,"Proyecto-Bases2","GUI", "website", "fotosEmpleados")
             path.mkdir(parents=True, exist_ok=True)
             return path
     

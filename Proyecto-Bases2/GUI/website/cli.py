@@ -544,7 +544,6 @@ def consultaEmpleados():
             idEmpleado=None
 
         resultado = conexion.consultaEmpleado(idSucursal, idPuesto , fechaInicio,fechaFinal , idEmpleado)
-        print(resultado)
         if(idEmpleado!=None):
             if(conexion.getExisteEmpleado(idEmpleado)):
                 picture=conexion.getFotoEmpleado(idEmpleado)
