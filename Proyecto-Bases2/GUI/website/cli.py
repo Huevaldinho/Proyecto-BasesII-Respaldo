@@ -543,11 +543,30 @@ def consultaEmpleados():
         if (idEmpleado==''):
             idEmpleado=None
 
-        resultado = conexion.consultaEmpleado(idSucursal, idPuesto , fechaInicio,fechaFinal , idEmpleado )
+        resultado = conexion.consultaEmpleado(idSucursal, idPuesto , fechaInicio,fechaFinal , idEmpleado)
+        print(resultado)
+        if(idEmpleado!=None):
+            if(conexion.getExisteEmpleado(idEmpleado)):
+                picture=conexion.getFotoEmpleado(idEmpleado)
 
+                image_names = None
+                paths = None
+                photo = None
+
+                if (picture!=None):
+                    photo=True
+                    path  = "fotosEmpleados\A"
+                    paths = path[:-1]
+                    image_names = resultado[0]["nombreEmpleado"]+str(idEmpleado)+'.jpg'
+
+                conexion.cerrarConexionServidor()
+                return render_template('consultaEmpleados.html',sucursales=sucursales,puestos=puestos,length = 1, resultado = resultado, paths =paths,photo=photo,image_names=image_names)
+            else:
+                flash('EL ID del empleado no existe',category='error')  
+            
         #Cierra la conexion con el servidor
         conexion.cerrarConexionServidor()
-        return render_template('consultaEmpleados.html',sucursales=sucursales,puestos=puestos, resultado = resultado)
+        return render_template('consultaEmpleados.html',sucursales=sucursales,puestos=puestos, resultado = resultado,paths = None,photo=None,image_names=None)
 
 @cli.route('/ingresarEmpleado',methods=['GET','POST'])
 def ingresarEmpleado():
@@ -843,6 +862,7 @@ def existeEnPedido(key):
 
 @cli.route('/upload/<path> <filename>')
 def send_image(path, filename):
+    print("___________________________________", path, filename)
     return send_from_directory(path, filename)
 
 @cli.route('/home',methods=['GET','POST'])

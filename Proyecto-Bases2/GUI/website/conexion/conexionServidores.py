@@ -923,6 +923,8 @@ class ConexionServidorSQL:
             sucAux = sucursal#Copia la info de sucursal porque nose puede modificar al ser el iterador del ciclo.
             if sucAux.get('distancia')==None:
                 sucAux['distancia']='No se ha podido calcular la distancia.'#Cambia None por este texto
+            else:
+                sucAux['distancia']=str((sucAux.get('distancia')[0].get('kilometros')))[:-9] + ' km'
             #Guarda cambios
             sucAux['horario'] = horarioBonito
             sucAux['abiertoCerrado']=abierto
@@ -1054,7 +1056,7 @@ class ConexionServidorSQL:
         """
         try:
             ruta=os.getcwd()
-            path = Path(ruta,"Fotos Empleados")
+            path = Path(ruta,"GUI", "website", "fotosEmpleados")
             path.mkdir(parents=True, exist_ok=True)
             return path
     
@@ -1372,26 +1374,6 @@ class ConexionServidorSQL:
             #Si no encuentra el proc
             return None
    
-    def obtenerDirectorioEmpleado(self):
-        """
-        Funcion: Crear una carpeta dentro de la carpeta Imagenes 
-        Param:
-            pNombreCarpeta(str): Nombre de la carpta donde se guadara la carpte
-            pNombreArchivo(str): Nombre de como se llamara la carpeta
-        Retorna:
-            path: La ruta de la carpeta creada
-            None: si pasa algun error o no se pudo crear 
-        """
-        try:
-            ruta=os.getcwd()
-            path = Path(ruta,"Fotos Empleados")
-            path.mkdir(parents=True, exist_ok=True)
-            return path
-    
-        except Exception as e:
-                    #Si no encuentra el proc
-                print(e)
-                return None
    
     def getFotoEmpleado(self,pIdEmpleado):
         """
@@ -1405,13 +1387,16 @@ class ConexionServidorSQL:
             query=  "SELECT Empleado.foto FROM Empleado WHERE idEmpleado= '{0}'"
             self.cursorSQL.execute(query.format(str(pIdEmpleado)))
             Myresult=self.cursorSQL.fetchone()[0]
-            dic = self.readEmpleadoG(pIdEmpleado)[0]
-            path=self.obtenerDirectorioEmpleado()
-            StoreFilePath=Path(path,'{0}.jpg'.format(str(dic["nombreEmpleado"]+str(pIdEmpleado))))
-            with open (StoreFilePath,"wb")as File:
-                File.write(Myresult)
-                File.close()
-            return StoreFilePath
+            if (Myresult!=None):
+                dic = self.readEmpleadoG(pIdEmpleado)[0]
+                path=self.obtenerDirectorioEmpleado()
+                StoreFilePath=Path(path,'{0}.jpg'.format(str(dic["nombreEmpleado"]+str(pIdEmpleado))))
+                with open (StoreFilePath,"wb")as File:
+                    File.write(Myresult)
+                    File.close()
+                return StoreFilePath
+            else:
+                return None
 
         except Exception as e:
                 #Si no encuentra el proc
