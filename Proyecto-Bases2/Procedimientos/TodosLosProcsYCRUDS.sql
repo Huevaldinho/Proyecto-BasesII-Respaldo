@@ -2045,7 +2045,7 @@ BEGIN
     ORDER BY cantFacturas DESC ;
 END
 GO
---Procedimiento de reportes para ver productos expirados
+
 GO
 CREATE or alter PROCEDURE ReportesVencimientos @idPais INT,
                         @idProducto INT,
@@ -2076,8 +2076,8 @@ BEGIN
     Sucursal.idSucursal = isnull(@idSucursal, Sucursal.idSucursal) and
     Prov.idProveedor = isnull(@idProveedor, Prov.idProveedor) and
     Prov.estado = 2 and --Proveedor activo
-    Pedido.fechaRecibido BETWEEN isnull(@fechaInc, Pedido.fechaRecibido) and
-    isnull(@fechaFin, Pedido.fechaRecibido)
+    Pedido.fechaRecibido BETWEEN isnull(CONVERT(datetime,@fechaInc), Pedido.fechaRecibido) and
+    isnull(CONVERT(datetime,@fechaFin), Pedido.fechaRecibido)
     GROUP BY Producto.nombre, Sucursal.nombreSucursal, Prov.nombreProveedor,
     Pais.nombrePais
     ORDER BY vencidos DESC ;

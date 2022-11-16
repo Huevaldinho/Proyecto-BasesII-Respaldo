@@ -991,7 +991,7 @@ class ConexionServidorSQL:
         '''
         try:
             #Pone los productos correspondientes en estado de vencido
-            lotes = self.cursorSQL.execute("select DISTINCT LoteProducto.idLote from LoteProducto inner join Unidad on Unidad.idLote = LoteProducto.idLote where DATEDIFF(day, getdate(), fechaExpiracion) < 0 and (Unidad.idEstado = 3 or Unidad.idEstado = 10)").fetchall()
+            lotes = self.cursorSQL.execute("select DISTINCT LoteProducto.idLote from LoteProducto inner join Unidad on Unidad.idLote = LoteProducto.idLote where DATEDIFF(day, getdate(), fechaExpiracion) <= 0 and (Unidad.idEstado = 3 or Unidad.idEstado = 10)").fetchall()
             for idLote in lotes:
                 self.select("exec dbo.sacarDeExhibidor ?", (idLote))
             return len(lotes)
