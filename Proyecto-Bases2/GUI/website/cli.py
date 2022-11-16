@@ -548,18 +548,20 @@ def consultaEmpleados():
         print(resultado)
         if(idEmpleado!=None):
             if(conexion.getExisteEmpleado(idEmpleado)):
-                photo=True
-                #CREAR UN PROCEDIMINETO QUE DEVUELVA LO MISMO PER
                 picture=conexion.getFotoEmpleado(idEmpleado)
-                print(resultado)
-                #path =Path('{0}.jpg'.format(resultado["nombreEmpleado"]+str(idEmpleado)))
-                dire  = Path("fotosEmpleados",resultado[0]['nombreEmpleado']+str(idEmpleado)+'jpg')
-                print(dire)
-                
-                rut=Path('{0}.jpg'.format(resultado[0]["nombreEmpleado"]+str(idEmpleado)))
-                print(str(rut))
+
+                image_names = None
+                paths = None
+                photo = None
+
+                if (picture!=None):
+                    photo=True
+                    path  = "fotosEmpleados\A"
+                    paths = path[:-1]
+                    image_names = resultado[0]["nombreEmpleado"]+str(idEmpleado)+'.jpg'
+
                 conexion.cerrarConexionServidor()
-                return render_template('consultaEmpleados.html',sucursales=sucursales,puestos=puestos,length = 1, resultado = resultado, paths =str( dire),photo=photo,image_names=str(rut))
+                return render_template('consultaEmpleados.html',sucursales=sucursales,puestos=puestos,length = 1, resultado = resultado, paths =paths,photo=photo,image_names=image_names)
             else:
                 flash('EL ID del empleado no existe',category='error')  
             
@@ -861,6 +863,7 @@ def existeEnPedido(key):
 
 @cli.route('/upload/<path> <filename>')
 def send_image(path, filename):
+    print("___________________________________", path, filename)
     return send_from_directory(path, filename)
 
 @cli.route('/home',methods=['GET','POST'])
